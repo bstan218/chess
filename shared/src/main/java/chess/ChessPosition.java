@@ -40,4 +40,12 @@ public class ChessPosition {
         ChessPosition posobj = (ChessPosition) obj;
         return posobj.getColumn() == this.col && posobj.getRow() == this.row;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + (int) row;
+        hash = 31 * hash + (int) col;
+        return hash;
+    }
 }
