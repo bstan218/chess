@@ -49,9 +49,9 @@ public class ChessBoard {
         board = new ChessPiece[8][8];
         for (int i = 0; i < board.length; i++) { //col
             for (int j = 0; j < board[0].length; j++) { //row
-                ChessGame.TeamColor teamcolor = ChessGame.TeamColor.BLACK;
+                ChessGame.TeamColor teamcolor = ChessGame.TeamColor.WHITE;
                 if (j > 4) {
-                    teamcolor = ChessGame.TeamColor.WHITE;
+                    teamcolor = ChessGame.TeamColor.BLACK;
                 }
                 if (j == 1 | j == 6) {
                     board[i][j] = new ChessPiece(teamcolor, ChessPiece.PieceType.PAWN);
@@ -82,5 +82,32 @@ public class ChessBoard {
         }
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (super.equals(obj)) {
+            return true;
+        }
+        else if (!(obj instanceof ChessBoard)) return false;
+        ChessBoard posobj = (ChessBoard) obj;
+        ChessPiece[][] posobjboard = posobj.getBoard();
+        for (int i = 0; i < board.length; i++) { //col
+            for (int j = 0; j < board[0].length; j++) { //row
+                if (board[i][j] == null | posobjboard[i][j] == null) {
+                    if (!(board[i][j] == null & posobjboard[i][j] == null)) {
+                        return false;
+                    }
+                }
+                else if (board[i][j].getPieceType() != posobjboard[i][j].getPieceType()) {
+                    return false;
+                }
+                else if (board[i][j].getTeamColor() != posobjboard[i][j].getTeamColor()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public ChessPiece[][] getBoard() {
+        return board;
+    }
 }
