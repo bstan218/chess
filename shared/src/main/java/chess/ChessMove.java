@@ -41,4 +41,20 @@ public class ChessMove {
     public ChessPiece.PieceType getPromotionPiece() {
         return promotionPiece;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (super.equals(obj)) return true;
+        else if (!(obj instanceof ChessMove)) return false;
+        ChessMove posobj = (ChessMove) obj;
+        boolean retval = posobj.getStartPosition().equals(startPosition) &&
+                posobj.getEndPosition().equals(endPosition)&&
+                posobj.getPromotionPiece() == promotionPiece;
+        return retval;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
