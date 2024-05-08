@@ -227,7 +227,7 @@ public class ChessPiece {
                     }
                 }
                 ChessPosition leftpos = new ChessPosition(row+1+i, col);
-                if (validateCapture(board, pos, leftpos)) {
+                if (validateMove(board, pos, leftpos) && validateCapture(board, pos, leftpos)) {
                     if (firstposition.getRow() == (i == 1 ? 8 : 1)) {
                         for (ChessPiece.PieceType type : ChessPiece.PieceType.values()) {
                             if (type != PieceType.PAWN && type != PieceType.KING) collection.add(new ChessMove(pos, leftpos, type));
@@ -236,7 +236,7 @@ public class ChessPiece {
                     else collection.add(new ChessMove(pos, leftpos, null));
                 }
                 ChessPosition rightpos = new ChessPosition(row+1+i, col+2);
-                if (validateCapture(board, pos, rightpos)) {
+                if (validateMove(board, pos, rightpos) && validateCapture(board, pos, rightpos)) {
                     if (firstposition.getRow() == (i == 1 ? 8 : 1)) {
                         for (ChessPiece.PieceType type : ChessPiece.PieceType.values()) {
                             if (type != PieceType.PAWN && type != PieceType.KING) collection.add(new ChessMove(pos, rightpos, type));
