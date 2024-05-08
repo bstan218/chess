@@ -140,6 +140,7 @@ public class ChessPiece {
                     }
                     else break;
                 }
+                break;
             case QUEEN:
                 for (int i = 1; i < board.getBoard().length+1; i++) {
                     ChessPosition newposition = new ChessPosition(row+1+i, col+1+i);
@@ -243,6 +244,7 @@ public class ChessPiece {
                     }
                     else collection.add(new ChessMove(pos, rightpos, null));
                 }
+                break;
             case KNIGHT:
                 ChessPosition[] possiblemoves =
                         {new ChessPosition(row+3,col+2),
@@ -258,7 +260,7 @@ public class ChessPiece {
                         collection.add(new ChessMove(pos, newposition, null));
                     }
                 }
-
+                break;
         }
         return collection;
     }
