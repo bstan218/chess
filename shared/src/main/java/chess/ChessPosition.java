@@ -32,20 +32,19 @@ public class ChessPosition {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (super.equals(obj)) {
-            return true;
-        }
-        else if (!(obj instanceof ChessPosition)) return false;
-        ChessPosition posobj = (ChessPosition) obj;
-        return posobj.getColumn() == this.col && posobj.getRow() == this.row;
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * (hash + row);
+        hash = 31 * (hash + col);
+        return hash;
+
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + (int) row;
-        hash = 31 * hash + (int) col;
-        return hash;
+    public boolean equals(Object obj) {
+        if (super.equals(obj)) return true;
+        if (!(obj instanceof ChessPosition)) return false;
+        ChessPosition eobj = (ChessPosition) obj;
+        return eobj.getRow() == row && eobj.getColumn() == col;
     }
 }

@@ -1,5 +1,8 @@
 package chess;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * A chessboard that can hold and rearrange chess pieces.
  * <p>
@@ -7,9 +10,7 @@ package chess;
  * signature of the existing methods.
  */
 public class ChessBoard {
-
-    private ChessPiece[][] board; //[col][row]
-
+    private ChessPiece[][] board;
     public ChessBoard() {
         this.board = new ChessPiece[8][8];
     }
@@ -21,11 +22,7 @@ public class ChessBoard {
      * @param piece    the piece to add
      */
     public void addPiece(ChessPosition position, ChessPiece piece) {
-        int col = position.getColumn();
-        int row = position.getRow();
-        board[col-1][row-1] = piece;
-
-
+        board[position.getColumn()-1][position.getRow()-1] = piece;
     }
 
     /**
@@ -36,9 +33,7 @@ public class ChessBoard {
      * position
      */
     public ChessPiece getPiece(ChessPosition position) {
-        int col = position.getColumn();
-        int row = position.getRow();
-        return board[col-1][row-1];
+        return board[position.getColumn()-1][position.getRow()-1];
     }
 
     /**
@@ -46,68 +41,57 @@ public class ChessBoard {
      * (How the game of chess normally starts)
      */
     public void resetBoard() {
-        board = new ChessPiece[8][8];
+        ChessGame.TeamColor color;
         for (int i = 0; i < board.length; i++) { //col
-            for (int j = 0; j < board[0].length; j++) { //row
-                ChessGame.TeamColor teamcolor = ChessGame.TeamColor.WHITE;
-                if (j > 4) {
-                    teamcolor = ChessGame.TeamColor.BLACK;
-                }
+            for (int j = 0; j < board.length; j++) { //row
+                ChessPosition position = new ChessPosition(j+1,i+1);
+                if (j > 4) color = ChessGame.TeamColor.BLACK;
+                else color = ChessGame.TeamColor.WHITE;
                 if (j == 1 | j == 6) {
-                    board[i][j] = new ChessPiece(teamcolor, ChessPiece.PieceType.PAWN);
+                    addPiece(position, new ChessPiece(color, ChessPiece.PieceType.PAWN));
                 }
-                else if (j == 0 | j == 7) {
+                if (j == 0 | j == 7) {
                     switch (i) {
                         case 0:
                         case 7:
-                            board[i][j] = new ChessPiece(teamcolor, ChessPiece.PieceType.ROOK);
+                            addPiece(position, new ChessPiece(color, ChessPiece.PieceType.ROOK));
                             break;
                         case 1:
                         case 6:
-                            board[i][j] = new ChessPiece(teamcolor, ChessPiece.PieceType.KNIGHT);
+                            addPiece(position, new ChessPiece(color, ChessPiece.PieceType.KNIGHT));
                             break;
                         case 2:
                         case 5:
-                            board[i][j] = new ChessPiece(teamcolor, ChessPiece.PieceType.BISHOP);
-                            break;
-                        case 3:
-                            board[i][j] = new ChessPiece(teamcolor, ChessPiece.PieceType.QUEEN);
+                            addPiece(position, new ChessPiece(color, ChessPiece.PieceType.BISHOP));
                             break;
                         case 4:
-                            board[i][j] = new ChessPiece(teamcolor, ChessPiece.PieceType.KING);
+                            addPiece(position, new ChessPiece(color, ChessPiece.PieceType.KING));
+                            break;
+                        case 3:
+                            addPiece(position, new ChessPiece(color, ChessPiece.PieceType.QUEEN));
                             break;
                     }
                 }
+
             }
         }
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (super.equals(obj)) {
-            return true;
-        }
-        else if (!(obj instanceof ChessBoard)) return false;
-        ChessBoard posobj = (ChessBoard) obj;
-        ChessPiece[][] posobjboard = posobj.getBoard();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessBoard that = (ChessBoard) o;
         for (int i = 0; i < board.length; i++) { //col
-            for (int j = 0; j < board[0].length; j++) { //row
-                if (board[i][j] == null | posobjboard[i][j] == null) {
-                    if (!(board[i][j] == null & posobjboard[i][j] == null)) {
-                        return false;
-                    }
-                }
-                else if (board[i][j].getPieceType() != posobjboard[i][j].getPieceType()) {
-                    return false;
-                }
-                else if (board[i][j].getTeamColor() != posobjboard[i][j].getTeamColor()) {
-                    return false;
-                }
+            for (int j = 0; j < board.length; j++) { //row
+            ChessPosition position = new ChessPosition(j+1, i+1);
+            if (getPiece(position) == null | that.getPiece(position) == null) {
+                return getPiece(position) == null && that.getPiece(position) == null;
+            }
+            if (!(getPiece(position).equals(that.getPiece(position)))) return false;
             }
         }
         return true;
     }
-    public ChessPiece[][] getBoard() {
-        return board;
-    }
+
 }

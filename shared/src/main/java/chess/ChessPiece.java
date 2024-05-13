@@ -2,7 +2,6 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Represents a single chess piece
@@ -11,13 +10,12 @@ import java.util.List;
  * signature of the existing methods.
  */
 public class ChessPiece {
-
-    private PieceType type;
     private ChessGame.TeamColor pieceColor;
+    private ChessPiece.PieceType type;
 
-    public ChessPiece(ChessGame.TeamColor pieceColor, PieceType type) {
-        this.type = type;
+    public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
         this.pieceColor = pieceColor;
+        this.type = type;
     }
 
     /**
@@ -42,9 +40,7 @@ public class ChessPiece {
     /**
      * @return which type of chess piece this piece is
      */
-    public PieceType getPieceType() {
-        return type;
-    }
+    public PieceType getPieceType() { return type; }
 
     /**
      * Calculates all the positions a chess piece can move to
@@ -54,247 +50,179 @@ public class ChessPiece {
      * @return Collection of valid moves
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition pos) {
-        Collection<ChessMove> collection = new ArrayList<>();
-        int col = pos.getColumn()-1; //index
-        int row = pos.getRow()-1; //index
-        if (board.getBoard()[col][row] == null) {
-            return collection;
-        }
-        PieceType piecetype = board.getBoard()[col][row].getPieceType();
-        switch (piecetype) {
+        ArrayList<ChessMove> collection = new ArrayList<>();
+        int col = pos.getColumn();
+        int row = pos.getRow();
+
+        boolean isrook = false;
+        switch (type) {
             case KING:
-                for (int i=col-1; i <= col+1; i++) {
-                    for (int j=row-1; j <= row+1; j++) {
-                        ChessPosition newposition = new ChessPosition(j+1,i+1);
-                        if (validateMove(board, pos, newposition)) {
-                            collection.add(new ChessMove(pos, newposition, null));
-                        }
+                for (int i = col - 1; i <= col + 1; i++) {
+                    for (int j = row - 1; j <= row + 1; j++) {
+                        ChessPosition newpos = new ChessPosition(j, i);
+                        if (validateMove(board, pos, newpos)) collection.add(new ChessMove(pos, newpos, null));
                     }
                 }
                 break;
+
             case ROOK:
-                //pathway 1 - up:
-                for (int i = row+2; i <= board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(i, col+1);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
-                    }
-                    else break;
-                }
-                for (int i = row; i >= 0; i--) {
-                    ChessPosition newposition = new ChessPosition(i, col+1);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
-                    }
-                    else break;
-                }
-                for (int i = col+2; i <= board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(row+1, i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
-                    }
-                    else break;
-                }
-                for (int i = col; i >= 0; i--) {
-                    ChessPosition newposition = new ChessPosition(row+1, i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
-                    }
-                    else break;
-                }
-                break;
-            case BISHOP:
-                for (int i = 1; i < board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(row+1+i, col+1+i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
-                    }
-                    else break;
-                }
-                for (int i = 1; i < board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(row+1+i, col+1-i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
-                    }
-                    else break;
-                }
-                for (int i = 1; i < board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(row+1-i, col+1-i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
-                    }
-                    else break;
-                }
-                for (int i = 1; i < board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(row+1-i, col+1+i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
-                    }
-                    else break;
-                }
-                break;
+                isrook = true;
             case QUEEN:
-                for (int i = 1; i < board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(row+1+i, col+1+i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
+                boolean upopen = true;
+                boolean downopen = true;
+                boolean leftopen = true;
+                boolean rightopen = true;
+                for (int i = 1; i <= 8; i++) {
+                    if (upopen) {
+                        ChessPosition uppos = new ChessPosition(row + i, col);
+                        if (validateMove(board, pos, uppos)) {
+                            collection.add(new ChessMove(pos, uppos, null));
+                            if (validateCapture(board, pos, uppos)) upopen = false;
+                        } else upopen = false;
                     }
-                    else break;
+                    if (downopen) {
+                        ChessPosition downpos = new ChessPosition(row - i, col);
+                        if (validateMove(board, pos, downpos)) {
+                            collection.add(new ChessMove(pos, downpos, null));
+                            if (validateCapture(board, pos, downpos)) downopen = false;
+                        } else downopen = false;
+                    }
+                    if (leftopen) {
+                        ChessPosition leftpos = new ChessPosition(row, col - i);
+                        if (validateMove(board, pos, leftpos)) {
+                            collection.add(new ChessMove(pos, leftpos, null));
+                            if (validateCapture(board, pos, leftpos)) leftopen = false;
+                        } else leftopen = false;
+                    }
+                    if (rightopen) {
+                        ChessPosition rightpos = new ChessPosition(row, col + i);
+                        if (validateMove(board, pos, rightpos)) {
+                            collection.add(new ChessMove(pos, rightpos, null));
+                            if (validateCapture(board, pos, rightpos)) rightopen = false;
+                        } else rightopen = false;
+                    }
                 }
-                for (int i = 1; i < board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(row+1+i, col+1-i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
+                if (isrook) break;
+
+            case BISHOP:
+                boolean uropen = true;
+                boolean dropen = true;
+                boolean ulopen = true;
+                boolean dlopen = true;
+                for (int i = 1; i <= 8; i++) {
+                    if (uropen) {
+                        ChessPosition urpos = new ChessPosition(row + i, col + i);
+                        if (validateMove(board, pos, urpos)) {
+                            collection.add(new ChessMove(pos, urpos, null));
+                            if (validateCapture(board, pos, urpos)) uropen = false;
+                        } else uropen = false;
                     }
-                    else break;
-                }
-                for (int i = 1; i < board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(row+1-i, col+1-i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
+                    if (dropen) {
+                        ChessPosition drpos = new ChessPosition(row - i, col + i);
+                        if (validateMove(board, pos, drpos)) {
+                            collection.add(new ChessMove(pos, drpos, null));
+                            if (validateCapture(board, pos, drpos)) dropen = false;
+                        } else dropen = false;
                     }
-                    else break;
-                }
-                for (int i = 1; i < board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(row+1-i, col+1+i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
+                    if (ulopen) {
+                        ChessPosition ulpos = new ChessPosition(row + i, col - i);
+                        if (validateMove(board, pos, ulpos)) {
+                            collection.add(new ChessMove(pos, ulpos, null));
+                            if (validateCapture(board, pos, ulpos)) ulopen = false;
+                        } else ulopen = false;
                     }
-                    else break;
-                }
-                for (int i = row+2; i <= board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(i, col+1);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
+                    if (dlopen) {
+                        ChessPosition dlpos = new ChessPosition(row - i, col - i);
+                        if (validateMove(board, pos, dlpos)) {
+                            collection.add(new ChessMove(pos, dlpos, null));
+                            if (validateCapture(board, pos, dlpos)) dlopen = false;
+                        } else dlopen = false;
                     }
-                    else break;
-                }
-                for (int i = row; i >= 0; i--) {
-                    ChessPosition newposition = new ChessPosition(i, col+1);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
-                    }
-                    else break;
-                }
-                for (int i = col+2; i <= board.getBoard().length+1; i++) {
-                    ChessPosition newposition = new ChessPosition(row+1, i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
-                    }
-                    else break;
-                }
-                for (int i = col; i >= 0; i--) {
-                    ChessPosition newposition = new ChessPosition(row+1, i);
-                    if (validateMove(board, pos, newposition)) {
-                        collection.add(new ChessMove(pos, newposition, null));
-                        if (validateCapture(board, pos, newposition)) break;
-                    }
-                    else break;
                 }
                 break;
             case PAWN:
-                ChessGame.TeamColor teamColor = board.getPiece(pos).getTeamColor();
-                int i = -1;
-                if (teamColor == ChessGame.TeamColor.WHITE) i = 1; //white path
-                ChessPosition firstposition = new ChessPosition(row+1+i, col+1);
-                if (validateMove(board, pos, firstposition) && !(validateCapture(board, pos, firstposition))) {
-                    if (firstposition.getRow() == (i == 1 ? 8 : 1)) {
-                        for (ChessPiece.PieceType type : ChessPiece.PieceType.values()) {
-                            if (type != PieceType.PAWN && type != PieceType.KING) collection.add(new ChessMove(pos, firstposition, type));
+                ChessPosition forward1 = new ChessPosition(row + (pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col);
+                ChessPosition forward2 = new ChessPosition(row + (pieceColor == ChessGame.TeamColor.WHITE ? 2 : -2), col);
+                ChessPosition left1 = new ChessPosition(row + (pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col - 1);
+                ChessPosition right1 = new ChessPosition(row + (pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + 1);
+
+                for (ChessPosition newposition : new ChessPosition[]{forward1, forward2}) {
+                    if (validateMove(board, pos, newposition) && !validateCapture(board, pos, newposition)) {
+                        if (newposition.getRow() != (pieceColor == ChessGame.TeamColor.WHITE ? 8 : 1))
+                            collection.add(new ChessMove(pos, newposition, null));
+                        else {
+                            for (PieceType type : PieceType.values()) {
+                                if (type != PieceType.PAWN && type != PieceType.KING)
+                                    collection.add(new ChessMove(pos, newposition, type));
+                            }
                         }
-                    }
-                    else collection.add(new ChessMove(pos, firstposition, null));
-                    ChessPosition secondposition = new ChessPosition(row+1+2*i, col+1);
-                    if (validateMove(board, pos, secondposition) &&
-                            row == (i == 1 ? 1 : 6) &&
-                            !(validateCapture(board, pos, secondposition))) {
-                        collection.add(new ChessMove(pos, secondposition, null));
-                    }
+                    } else break;if (pos.getRow() != (pieceColor == ChessGame.TeamColor.WHITE ? 2 : 7)) break;
+
                 }
-                ChessPosition leftpos = new ChessPosition(row+1+i, col);
-                if (validateMove(board, pos, leftpos) && validateCapture(board, pos, leftpos)) {
-                    if (firstposition.getRow() == (i == 1 ? 8 : 1)) {
-                        for (ChessPiece.PieceType type : ChessPiece.PieceType.values()) {
-                            if (type != PieceType.PAWN && type != PieceType.KING) collection.add(new ChessMove(pos, leftpos, type));
+                for (ChessPosition newposition : new ChessPosition[]{left1, right1}) {
+                    if (validateCapture(board, pos, newposition)) {
+                        if (newposition.getRow() != (pieceColor == ChessGame.TeamColor.WHITE ? 8 : 1))
+                            collection.add(new ChessMove(pos, newposition, null));
+                        else {
+                            for (PieceType type : PieceType.values()) {
+                                if (type != PieceType.PAWN && type != PieceType.KING)
+                                    collection.add(new ChessMove(pos, newposition, type));
+                            }
                         }
                     }
-                    else collection.add(new ChessMove(pos, leftpos, null));
-                }
-                ChessPosition rightpos = new ChessPosition(row+1+i, col+2);
-                if (validateMove(board, pos, rightpos) && validateCapture(board, pos, rightpos)) {
-                    if (firstposition.getRow() == (i == 1 ? 8 : 1)) {
-                        for (ChessPiece.PieceType type : ChessPiece.PieceType.values()) {
-                            if (type != PieceType.PAWN && type != PieceType.KING) collection.add(new ChessMove(pos, rightpos, type));
-                        }
-                    }
-                    else collection.add(new ChessMove(pos, rightpos, null));
                 }
                 break;
             case KNIGHT:
-                ChessPosition[] possiblemoves =
-                        {new ChessPosition(row+3,col+2),
-                        new ChessPosition(row+3,col),
-                        new ChessPosition(row+2,col+3),
-                        new ChessPosition(row+2,col-1),
-                        new ChessPosition(row,col-1),
-                        new ChessPosition(row,col+3),
-                        new ChessPosition(row-1,col+2),
-                        new ChessPosition(row-1,col)};
-                for (ChessPosition newposition : possiblemoves) {
-                    if (validateMove(board,pos,newposition)) {
+                ChessPosition[] knightpositions =
+                {new ChessPosition(row+2,col+1),
+                new ChessPosition(row+2,col-1),
+                new ChessPosition(row+1,col+2),
+                new ChessPosition(row+1,col-2),
+                new ChessPosition(row-1,col+2),
+                new ChessPosition(row-1,col-2),
+                new ChessPosition(row-2,col+1),
+                new ChessPosition(row-2,col-1)};
+                for (ChessPosition newposition : knightpositions) {
+                    if (validateMove(board, pos, newposition))
                         collection.add(new ChessMove(pos, newposition, null));
-                    }
                 }
-                break;
-        }
-        return collection;
+
+
+        } return collection;
     }
 
-    /**
-     * Validates whether ending position is out of bounds, the current position,
-     * or blocked by piece of same team.
-     *
-     * @param board
-     * @param startingpos
-     * @param endingpos
-     * @return bool for if position is blocked or not
-     */
-    private boolean validateMove(ChessBoard board, ChessPosition startingpos, ChessPosition endingpos) {
-        int i = endingpos.getColumn();
-        int j = endingpos.getRow();
-        int col = startingpos.getColumn();
-        int row = startingpos.getRow();
 
-        if (!(i > 0 && i <= board.getBoard().length &&
-                j > 0 && j <= board.getBoard()[0].length &&
-                !(i == col && j == row))) return false;
 
-        boolean samePieceColor = false;
-        if (board.getPiece(startingpos) != null && board.getPiece(endingpos) != null) {
-            samePieceColor = (board.getPiece(startingpos).getTeamColor() == board.getPiece(endingpos).getTeamColor());
+    private boolean validateMove(ChessBoard board, ChessPosition currentposition, ChessPosition newposition) {
+        if (newposition.equals(currentposition)) return false;
+        if (newposition.getRow() > 8 | newposition.getColumn() > 8 |
+            newposition.getColumn() < 1 | newposition.getRow() < 1) {
+            return false;
         }
-        return !samePieceColor;
-
+        if (board.getPiece(newposition) != null) {
+            return board.getPiece(currentposition).getTeamColor() != board.getPiece(newposition).getTeamColor();
+        }
+        return true;
     }
-    private boolean validateCapture(ChessBoard board, ChessPosition startingpos, ChessPosition endingpos) { //returns true if it's a capture
-        if (board.getPiece(startingpos) != null && board.getPiece(endingpos) != null) {
-            return (board.getPiece(startingpos).getTeamColor() != board.getPiece(endingpos).getTeamColor());
+
+    private boolean validateCapture(ChessBoard board, ChessPosition currentposition, ChessPosition newposition) {
+        if (newposition.getRow() > 8 | newposition.getColumn() > 8 |
+            newposition.getColumn() < 1 | newposition.getRow() < 1) {
+            return false;
+        }
+        if (board.getPiece(newposition) != null) {
+            return board.getPiece(currentposition).getTeamColor() != board.getPiece(newposition).getTeamColor();
         }
         return false;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessPiece that = (ChessPiece) o;
+        return pieceColor == that.pieceColor && type == that.type;
+    }
+
 }

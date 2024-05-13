@@ -41,27 +41,27 @@ public class ChessMove {
     public ChessPiece.PieceType getPromotionPiece() {
         return promotionPiece;
     }
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * (hash + startPosition.hashCode());
+        hash = 31 * (hash + endPosition.hashCode());
+        if (promotionPiece != null) hash = 31 * (hash + promotionPiece.hashCode());
+        return hash;
+
+    }
 
     @Override
     public boolean equals(Object obj) {
         if (super.equals(obj)) return true;
-        else if (!(obj instanceof ChessMove)) return false;
-        ChessMove posobj = (ChessMove) obj;
-        boolean retval = posobj.getStartPosition().equals(startPosition) &&
-                posobj.getEndPosition().equals(endPosition)&&
-                posobj.getPromotionPiece() == promotionPiece;
-        return retval;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + startPosition.hashCode();
-        hash = 31 * hash + endPosition.hashCode();
-        if (promotionPiece != null) {
-            hash = 31 * hash + promotionPiece.hashCode();
+        if (!(obj instanceof ChessMove)) return false;
+        ChessMove eobj = (ChessMove) obj;
+        if (!(eobj.getStartPosition().equals(startPosition) && eobj.getEndPosition().equals(endPosition))) return false;
+        if (!(eobj.getPromotionPiece() == null && promotionPiece == null)) {
+            if (eobj.getPromotionPiece() == null | promotionPiece == null) return false;
+            return eobj.getPromotionPiece().equals(promotionPiece);
         }
-
-        return hash;
+        return true;
     }
+
 }
