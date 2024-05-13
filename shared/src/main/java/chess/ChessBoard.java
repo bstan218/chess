@@ -113,14 +113,27 @@ public class ChessBoard {
         ChessBoard that = (ChessBoard) o;
         for (int i = 0; i < board.length; i++) { //col
             for (int j = 0; j < board.length; j++) { //row
-            ChessPosition position = new ChessPosition(j+1, i+1);
-            if (getPiece(position) == null | that.getPiece(position) == null) {
-                return getPiece(position) == null && that.getPiece(position) == null;
-            }
-            if (!(getPiece(position).equals(that.getPiece(position)))) return false;
+                ChessPosition position = new ChessPosition(j + 1, i + 1);
+                if (getPiece(position) == null | that.getPiece(position) == null) {
+                    return getPiece(position) == null && that.getPiece(position) == null;
+                }
+                if (!(getPiece(position).equals(that.getPiece(position)))) return false;
             }
         }
         return true;
     }
 
+    public ChessBoard makeDeepCopy() {
+        ChessBoard copyBoard = new ChessBoard();
+        for (int i = 0; i < board.length; i++) { //col
+            for (int j = 0; j < board.length; j++) { //row
+                ChessPosition currentPosition = new ChessPosition(j+1,i+1);
+                if (getPiece(currentPosition) != null) {
+                    ChessPiece currentPiece = getPiece(currentPosition);
+                    copyBoard.addPiece(currentPosition, new ChessPiece(currentPiece.getTeamColor(),currentPiece.getPieceType()));
+                }
+            }
+        }
+                return copyBoard;
+    }
 }
