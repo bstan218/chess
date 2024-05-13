@@ -53,7 +53,7 @@ public class ChessBoard {
         return allPieces;
     }
 
-    public ChessPosition findKingPosition(ChessGame.TeamColor teamColor) throws {
+    public ChessPosition findKingPosition(ChessGame.TeamColor teamColor) {
 
         for (int i = 1; i <= board.length; i++) { //col
             for (int j = 1; j <= board.length; j++) {
