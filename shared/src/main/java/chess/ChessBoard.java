@@ -53,6 +53,22 @@ public class ChessBoard {
         return allPieces;
     }
 
+    public ChessPosition findKingPosition(ChessGame.TeamColor teamColor) throws {
+
+        for (int i = 1; i <= board.length; i++) { //col
+            for (int j = 1; j <= board.length; j++) {
+                ChessPosition currentPosition = new ChessPosition(j,i);
+                ChessPiece currentPiece = getPiece(currentPosition);
+                if (currentPiece != null) {
+                    if (currentPiece.getPieceType() == ChessPiece.PieceType.KING &&
+                            currentPiece.getTeamColor() == teamColor)
+                        return currentPosition;
+                }
+            }
+        }
+        return null;
+    }
+
     public void resetBoard() {
         ChessGame.TeamColor color;
         for (int i = 0; i < board.length; i++) { //col
