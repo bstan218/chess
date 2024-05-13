@@ -1,5 +1,6 @@
 package chess;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -9,16 +10,20 @@ import java.util.Collection;
  * signature of the existing methods.
  */
 public class ChessGame {
+    private ChessBoard gameboard;
+    private TeamColor teamturn;
 
     public ChessGame() {
-
+        setTeamTurn(TeamColor.WHITE);
+        this.gameboard = new ChessBoard();
+        this.gameboard.resetBoard();
     }
 
     /**
      * @return Which team's turn it is
      */
     public TeamColor getTeamTurn() {
-        throw new RuntimeException("Not implemented");
+        return teamturn;
     }
 
     /**
@@ -27,7 +32,7 @@ public class ChessGame {
      * @param team the team whose turn it is
      */
     public void setTeamTurn(TeamColor team) {
-        throw new RuntimeException("Not implemented");
+        teamturn = team;
     }
 
     /**
@@ -56,8 +61,21 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
-        throw new RuntimeException("Not implemented");
+        ChessPosition startposition = move.getStartPosition();
+        ChessPosition endposition = move.getEndPosition();
+        ChessPiece piece = gameboard.getPiece(startposition);
+        for (ChessMove collectionmove : piece.pieceMoves(gameboard,startposition)) {
+            if (collectionmove.getEndPosition().equals(endposition)) {
+                gameboard.addPiece(startposition,null);
+                gameboard.addPiece(endposition,piece);
+            }
+        }
+        throw new InvalidMoveException();
+
     }
+
+
+
 
     /**
      * Determines if the given team is in check
@@ -66,7 +84,24 @@ public class ChessGame {
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        TeamColor opposingTeamColor = TeamColor.BLACK;
+        if (teamColor == TeamColor.BLACK) opposingTeamColor = TeamColor.WHITE;
+
+        ChessPosition kingPosition = gameboard.getKingPosition(teamColor);
+
+        for (int i = 1; i <= 8; i++) { //col
+            for (int j = 1; j <= 8; j++) {
+                ChessPosition currentPosition = new ChessPosition(j, i);
+                ChessPiece currentPiece = gameboard.getPiece(currentPosition);
+                if (currentPiece != null && currentPiece.getTeamColor() == opposingTeamColor) {
+                    for (ChessMove move : currentPiece.pieceMoves(gameboard,currentPosition)) {
+                        if (move.getEndPosition().equals(kingPosition))
+                            return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -96,7 +131,7 @@ public class ChessGame {
      * @param board the new board to use
      */
     public void setBoard(ChessBoard board) {
-        throw new RuntimeException("Not implemented");
+        gameboard = board;
     }
 
     /**
@@ -105,6 +140,6 @@ public class ChessGame {
      * @return the chessboard
      */
     public ChessBoard getBoard() {
-        throw new RuntimeException("Not implemented");
+        return gameboard;
     }
 }
