@@ -68,6 +68,7 @@ public class ChessGame {
             if (collectionmove.getEndPosition().equals(endposition)) {
                 gameboard.addPiece(startposition,null);
                 gameboard.addPiece(endposition,piece);
+                return;
             }
         }
         throw new InvalidMoveException();
