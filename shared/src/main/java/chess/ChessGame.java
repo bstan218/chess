@@ -35,6 +35,11 @@ public class ChessGame {
         teamturn = team;
     }
 
+    public void swapTeamTurn() {
+        if (teamturn == TeamColor.BLACK)
+            setTeamTurn(TeamColor.WHITE);
+        else setTeamTurn(TeamColor.BLACK);
+    }
     /**
      * Enum identifying the 2 possible teams in a chess game
      */
@@ -51,7 +56,26 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        throw new RuntimeException("Not implemented");
+        ArrayList<ChessMove> validMoves = new ArrayList<>();
+        ChessPiece piece = gameboard.getPiece(startPosition);
+        if (piece == null) return null;
+        for (ChessMove move : piece.pieceMoves(gameboard,startPosition)) {
+            ChessBoard currentBoard = gameboard.makeDeepCopy();
+            try {
+                makeMove(move);
+            } catch (InvalidMoveException e) {
+                gameboard.addPiece(move.getStartPosition(),null);
+                gameboard.addPiece(move.getEndPosition(),piece);
+                if (isInCheck(piece.getTeamColor())) {
+                    gameboard = currentBoard;
+                    continue;
+                }
+            }
+            if (isInCheckmate(piece.getTeamColor())) continue;
+            gameboard = currentBoard;
+            validMoves.add(move);
+        }
+        return validMoves;
     }
 
     /**
@@ -64,10 +88,25 @@ public class ChessGame {
         ChessPosition startposition = move.getStartPosition();
         ChessPosition endposition = move.getEndPosition();
         ChessPiece piece = gameboard.getPiece(startposition);
+
+        if (piece == null) throw new InvalidMoveException();
+        if (piece.getTeamColor() != teamturn) throw new InvalidMoveException();
+
+
+
         for (ChessMove collectionmove : piece.pieceMoves(gameboard,startposition)) {
             if (collectionmove.getEndPosition().equals(endposition)) {
+                ChessBoard currentBoard = gameboard.makeDeepCopy();
                 gameboard.addPiece(startposition,null);
                 gameboard.addPiece(endposition,piece);
+                if (move.getPromotionPiece() != null) {
+                    gameboard.getPiece(endposition).setPieceType(move.getPromotionPiece());
+                }
+                if (isInCheck(piece.getTeamColor())) {
+                    gameboard = currentBoard;
+                    throw new InvalidMoveException();
+                }
+                swapTeamTurn();
                 return;
             }
         }
@@ -112,8 +151,39 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        if (!isInCheck(teamColor)) return false;
+        ChessBoard currentGameBoard = gameboard.makeDeepCopy();
+        //iterate through every possible move for teamColor
+        for (int i = 1; i <= 8; i++) { //col
+            for (int j = 1; j <= 8; j++) {
+                ChessPosition currentPosition = new ChessPosition(j, i);
+                ChessPiece currentPiece = currentGameBoard.getPiece(currentPosition);
+                if (currentPiece != null && currentPiece.getTeamColor() == teamColor) {
+                    for (ChessMove move : currentPiece.pieceMoves(currentGameBoard, currentPosition)) {
+                        ChessBoard copiedBoard = currentGameBoard.makeDeepCopy();
+                        gameboard = copiedBoard;
+                        try {
+                            makeMove(move);
+                        } catch (InvalidMoveException ignored) {
+                        }
+                        if (!isInCheck(teamColor)) {
+                            gameboard = currentGameBoard;
+                            return false;
+                        }
+
+
+                    }
+                }
+            }
+        }
+
+                        //clone board for each move
+        //check if move is in check
+        //if a move isnt in check, return false
+    gameboard = currentGameBoard;
+    return true;
     }
+
 
     /**
      * Determines if the given team is in stalemate, which here is defined as having
