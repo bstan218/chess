@@ -42,6 +42,9 @@ public class ChessPiece {
      */
     public PieceType getPieceType() { return type; }
 
+    public void setPieceType(PieceType pieceType) {
+        type = pieceType;
+    }
     /**
      * Calculates all the positions a chess piece can move to
      * Does not take into account moves that are illegal due to leaving the king in
