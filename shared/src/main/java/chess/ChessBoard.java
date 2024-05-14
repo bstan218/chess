@@ -42,16 +42,6 @@ public class ChessBoard {
      * (How the game of chess normally starts)
      */
 
-    public ArrayList<ChessPiece> getAllPieces() {
-        ArrayList<ChessPiece> allPieces = new ArrayList<>();
-        for (int i = 1; i <= board.length; i++) { //col
-            for (int j = 1; j <= board.length; j++) {
-                ChessPiece currentPiece = getPiece(new ChessPosition(j,i));
-                if (currentPiece != null) allPieces.add(currentPiece);
-            }
-        }
-        return allPieces;
-    }
 
     public ChessPosition getKingPosition(ChessGame.TeamColor teamColor) {
 
