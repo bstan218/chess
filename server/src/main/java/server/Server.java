@@ -1,7 +1,5 @@
 package server;
 
-import dataaccess.*;
-import service.UserService;
 import spark.*;
 import handler.*;
 
@@ -12,9 +10,7 @@ public class Server {
     private static LogoutHandler logoutHandler;
     private static ListGameHandler listGameHandler;
     private static CreateGameHandler createGameHandler;
-    private static JoinGameHandler joinGameHandler;
-
-    private static UserDAO service;
+    private  static JoinGameHandler joinGameHandler;
 
     public Server() {
         clearHandler = new ClearHandler();
@@ -24,8 +20,6 @@ public class Server {
         listGameHandler = new ListGameHandler();
         createGameHandler = new CreateGameHandler();
         joinGameHandler = new JoinGameHandler();
-
-        service = new MemoryUserDAO();
     }
 
     public int run(int desiredPort) {
@@ -46,19 +40,20 @@ public class Server {
     }
 
     private static void createRoutes() {
+        //Spark.get("/db", (req, res) -> "Hello BYU!");
         Spark.delete("/db", (req, res) ->
-                clearHandler.handleRequest(service, req, res));
+                clearHandler.handleRequest(req, res));
         Spark.post("/user", (req, res) ->
-                registerHandler.handleRequest(service, req, res));
+                registerHandler.handleRequest(req, res));
         Spark.post("/session", (req, res) ->
-                loginHandler.handleRequest(service, req, res));
+                loginHandler.handleRequest(req, res));
         Spark.delete("/session", (req, res) ->
-                logoutHandler.handleRequest(service, req, res));
+                logoutHandler.handleRequest(req, res));
         Spark.get("/game", (req, res) ->
-                listGameHandler.handleRequest(service, req, res));
+                listGameHandler.handleRequest(req, res));
         Spark.post("/game", (req, res) ->
-                createGameHandler.handleRequest(service, req, res));
+                createGameHandler.handleRequest(req, res));
         Spark.put("/game", (req, res) ->
-                joinGameHandler.handleRequest(service, req, res));
+                joinGameHandler.handleRequest(req, res));
     }
 }
