@@ -12,6 +12,7 @@ public class ClearHandler {
     }
 
     public Object handleRequest(Request req, Response res) {
+        service.clear();
         return "";
     }
 }
