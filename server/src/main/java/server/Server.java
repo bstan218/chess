@@ -1,5 +1,10 @@
 package server;
 
+import dataaccess.*;
+
+import service.ClearService;
+import service.GameService;
+import service.UserService;
 import spark.*;
 import handler.*;
 
@@ -10,16 +15,24 @@ public class Server {
     private static LogoutHandler logoutHandler;
     private static ListGameHandler listGameHandler;
     private static CreateGameHandler createGameHandler;
-    private  static JoinGameHandler joinGameHandler;
+    private static JoinGameHandler joinGameHandler;
 
     public Server() {
-        clearHandler = new ClearHandler();
-        registerHandler = new RegisterHandler();
-        loginHandler = new LoginHandler();
-        logoutHandler = new LogoutHandler();
-        listGameHandler = new ListGameHandler();
-        createGameHandler = new CreateGameHandler();
-        joinGameHandler = new JoinGameHandler();
+        UserDAO userDAO = new MemoryUserDAO();
+        AuthDAO authDAO = new MemoryAuthDAO();
+        GameDAO gameDAO = new MemoryGameDAO();
+
+        ClearService clearService = new ClearService(userDAO, authDAO, gameDAO);
+        GameService gameService = new GameService(userDAO, authDAO, gameDAO);
+        UserService userService = new UserService(userDAO, authDAO, gameDAO);
+
+        clearHandler = new ClearHandler(clearService);
+        registerHandler = new RegisterHandler(userService);
+        loginHandler = new LoginHandler(userService);
+        logoutHandler = new LogoutHandler(userService);
+        listGameHandler = new ListGameHandler(gameService);
+        createGameHandler = new CreateGameHandler(gameService);
+        joinGameHandler = new JoinGameHandler(gameService);
     }
 
     public int run(int desiredPort) {
