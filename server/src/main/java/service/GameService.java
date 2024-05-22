@@ -6,9 +6,15 @@ import model.GameData;
 import java.util.ArrayList;
 
 public class GameService {
-    private static final AuthDAO authDAO = new MemoryAuthDAO();
-    private static final UserDAO userDAO = new MemoryUserDAO();
-    private static final GameDAO gameDAO = new MemoryGameDAO();
+    private UserDAO userDAO;
+    private AuthDAO authDAO;
+    private GameDAO gameDAO;
+
+    public GameService(UserDAO userDAO, AuthDAO authDAO, GameDAO gameDAO) {
+        this.userDAO = userDAO;
+        this.authDAO = authDAO;
+        this.gameDAO = gameDAO;
+    }
 
     public GameData createGame(AuthData auth, GameData game) {}
     public ArrayList<GameData> listGames(AuthData auth) {}

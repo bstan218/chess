@@ -4,9 +4,15 @@ import dataaccess.*;
 import model.*;
 
 public class UserService {
-    private static final AuthDAO authDAO = new MemoryAuthDAO();
-    private static final UserDAO userDAO = new MemoryUserDAO();
-    private static final GameDAO gameDAO = new MemoryGameDAO();
+    private UserDAO userDAO;
+    private AuthDAO authDAO;
+    private GameDAO gameDAO;
+
+    public UserService(UserDAO userDAO, AuthDAO authDAO, GameDAO gameDAO) {
+        this.userDAO = userDAO;
+        this.authDAO = authDAO;
+        this.gameDAO = gameDAO;
+    }
 
     public AuthData register(UserData user) {
 
