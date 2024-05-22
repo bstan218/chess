@@ -1,5 +1,8 @@
 package handler;
 
+import com.google.gson.Gson;
+import model.AuthData;
+import model.UserData;
 import service.UserService;
 import spark.Request;
 import spark.Response;
@@ -12,6 +15,8 @@ public class LoginHandler {
     }
 
     public Object handleRequest(Request req, Response res) {
-        return "";
+        UserData loginRequest = new Gson().fromJson(req.body(), UserData.class);
+        AuthData result = service.login(loginRequest);
+        return new Gson().toJson(result);
     }
 }
