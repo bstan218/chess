@@ -16,7 +16,11 @@ public class GameService {
         this.gameDAO = gameDAO;
     }
 
-    public GameData createGame(AuthData auth, GameData game) {}
-    public ArrayList<GameData> listGames(AuthData auth) {}
+    public GameData createGame(AuthData auth, GameData game) {
+        return null;
+    }
+    public ArrayList<GameData> listGames(AuthData auth) {
+        return null;
+    }
     public void joinGame(AuthData auth, GameData game) {}
 }

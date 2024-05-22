@@ -24,7 +24,7 @@ public class Server {
 
         ClearService clearService = new ClearService(userDAO, authDAO, gameDAO);
         GameService gameService = new GameService(userDAO, authDAO, gameDAO);
-        UserService userService = new UserService(userDAO, authDAO, gameDAO);
+        UserService userService = new UserService(userDAO, authDAO);
 
         clearHandler = new ClearHandler(clearService);
         registerHandler = new RegisterHandler(userService);
