@@ -2,6 +2,10 @@ package server;
 
 import dataaccess.*;
 
+import handler.utils.FromJson;
+import handler.utils.FromJsonG;
+import handler.utils.ToJson;
+import handler.utils.ToJsonG;
 import service.ClearService;
 import service.GameService;
 import service.UserService;
@@ -26,13 +30,16 @@ public class Server {
         GameService gameService = new GameService(userDAO, authDAO, gameDAO);
         UserService userService = new UserService(userDAO, authDAO);
 
+        FromJson fromJson = new FromJsonG();
+        ToJson toJson = new ToJsonG();
+
         clearHandler = new ClearHandler(clearService);
-        registerHandler = new RegisterHandler(userService);
-        loginHandler = new LoginHandler(userService);
-        logoutHandler = new LogoutHandler(userService);
-        listGameHandler = new ListGameHandler(gameService);
-        createGameHandler = new CreateGameHandler(gameService);
-        joinGameHandler = new JoinGameHandler(gameService);
+        registerHandler = new RegisterHandler(userService, fromJson, toJson);
+        loginHandler = new LoginHandler(userService, fromJson, toJson);
+        logoutHandler = new LogoutHandler(userService, fromJson, toJson);
+        listGameHandler = new ListGameHandler(gameService, fromJson, toJson);
+        createGameHandler = new CreateGameHandler(gameService, fromJson, toJson);
+        joinGameHandler = new JoinGameHandler(gameService, fromJson, toJson);
     }
 
     public int run(int desiredPort) {
