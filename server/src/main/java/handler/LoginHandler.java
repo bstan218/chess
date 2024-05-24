@@ -22,7 +22,7 @@ public class LoginHandler {
 
     public Object handleRequest(Request req, Response res) {
         UserData LoginRequest = fromJson.fromJsonToUser(req.body());
-        UserResponse result = service.register(LoginRequest);
+        UserResponse result = service.login(LoginRequest, res);
         return toJson.fromResponse(result);
     }
 }

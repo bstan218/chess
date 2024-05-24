@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import model.AuthData;
 
+
 public class MemoryAuthDAO implements AuthDAO {
     private HashMap<String, AuthData> auths = new HashMap<>(); //key is authToken
 
@@ -14,7 +15,8 @@ public class MemoryAuthDAO implements AuthDAO {
     }
 
     @Override
-    public AuthData createAuth(String username) {
+    public AuthData createAuth(String username) throws DataAccessException {
+        if (auths.containsKey(username)) throw new DataAccessException("Error: user already logged in");
         String authToken = UUID.randomUUID().toString();
         AuthData authorization = new AuthData(authToken, username);
         auths.put(authToken, authorization);

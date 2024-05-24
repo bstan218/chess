@@ -3,8 +3,6 @@ package dataaccess;
 import java.util.HashMap;
 import model.UserData;
 
-import javax.xml.crypto.Data;
-
 public class MemoryUserDAO implements UserDAO{
     private HashMap<String, UserData> users = new HashMap<>();
 
@@ -24,6 +22,7 @@ public class MemoryUserDAO implements UserDAO{
     @Override
     public void createUser(UserData userData) throws DataAccessException {
         if (users.containsKey(userData.username()))  throw new DataAccessException("Error: User already in database");
+        if (userData.password() == null || userData.email() == null) throw new DataAccessException("Error: email or password missing");
         users.put(userData.username(), userData);
     }
 }

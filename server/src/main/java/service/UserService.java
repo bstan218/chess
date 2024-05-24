@@ -19,12 +19,24 @@ public class UserService {
         try {
             userDAO.createUser(user);
         } catch (DataAccessException e) {
-            res.status(401);
+            if (user.password() == null || user.email() == null) {
+                res.status(400);
+            } else {
+                res.status(403);
+            }
+                return new UserResponse(e.getMessage(), null, null);
+        }
+
+        AuthData authData;
+        try {
+            authData = authDAO.createAuth(user.username());
+        } catch (DataAccessException e) {
+            res.status(402);
             return new UserResponse(e.getMessage(), null, null);
         }
-        AuthData authData = authDAO.createAuth(user.username());
         return new UserResponse(null, authData.username(), authData.authToken());
     }
+
     public UserResponse login(UserData user, Response res) {
         UserData dbUser;
         try {
@@ -33,16 +45,18 @@ public class UserService {
             res.status(401);
             return new UserResponse(e.getMessage(), null, null);
         }
+
         if (!user.password().equals(dbUser.password())) {
-            res.status(402);
+            res.status(401);
             return new UserResponse("Error: incorrect password", null, null);
         }
 
         AuthData authData;
         try {
-            authDAO.createAuth(user.username());
+            authData = authDAO.createAuth(user.username());
         } catch (DataAccessException e) {
-
+            res.status(403);
+            return new UserResponse(e.getMessage(), null, null);
         }
         return new UserResponse("", authData.username(), authData.authToken());
     }

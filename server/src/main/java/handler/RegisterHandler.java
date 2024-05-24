@@ -21,7 +21,7 @@ public class RegisterHandler {
 
     public Object handleRequest(Request req, Response res) {
         UserData registerRequest = fromJson.fromJsonToUser(req.body());
-        UserResponse result = service.register(registerRequest);
+        UserResponse result = service.register(registerRequest, res);
         return toJson.fromResponse(result);
     }
 }
