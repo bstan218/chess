@@ -29,4 +29,8 @@ public class MemoryUserDAO implements UserDAO{
         if (userData.password() == null || userData.email() == null) throw new DataAccessException("Error: email or password missing");
         users.put(userData.username(), userData);
     }
+
+    public boolean usersIsEmpty() {
+        return users.isEmpty();
+    }
 }

@@ -17,6 +17,7 @@ public class GameServiceTests {
 
     private static UserService userService;
     private static GameService gameService;
+    private static ClearService clearService;
 
     private static UserData existingUser;
     private static String exisitingAuthToken;
@@ -33,6 +34,7 @@ public class GameServiceTests {
 
         userService = new UserService(userDAO, authDAO);
         gameService = new GameService(userDAO, authDAO, gameDAO);
+        clearService = new ClearService(userDAO, authDAO, gameDAO);
 
     }
 
@@ -126,6 +128,15 @@ public class GameServiceTests {
         gameService.joinGame(existingAuthorization, newJoinGameRequest, dummyResponseStub);
 
         Assertions.assertEquals(403, dummyResponseStub.status());
+    }
+
+    @Test
+    @Order(7)
+    @DisplayName("clear test")
+    public void successClear() {
+        clearService.clear();
+
+        Assertions.assertTrue(userDAO.usersIsEmpty());
     }
 
 
