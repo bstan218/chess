@@ -9,7 +9,6 @@ import java.util.Set;
 
 public interface FromJson {
     UserData fromJsonToUser(String body);
-    AuthData fromJsonToAuth(String body);
     GameData fromJsonToGame(String body);
     AuthData fromHeaderToAuth(String authToken);
     JoinGameRequest fromJsonToJoinGameRequest(String body);

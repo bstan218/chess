@@ -20,9 +20,6 @@ public class FromJsonG implements FromJson {
     public GameData fromJsonToGame(String body) {
         return gson.fromJson(body, GameData.class);
     }
-    public AuthData fromJsonToAuth(String body) {
-        return gson.fromJson(body, AuthData.class);
-    }
     public AuthData fromHeaderToAuth(String authToken) { return new AuthData(authToken, null); }
     public JoinGameRequest fromJsonToJoinGameRequest(String body) { return gson.fromJson(body, JoinGameRequest.class); }
 }
