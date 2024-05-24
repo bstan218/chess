@@ -107,30 +107,28 @@ public class PieceMovesCalculator {
 
         for (ChessPosition newPosition : new ChessPosition[]{forward1, forward2}) {
             if (validateMove(newPosition) && !validateCapture(newPosition)) {
-                if (newPosition.getRow() != (teamColor == ChessGame.TeamColor.WHITE ? 8 : 1))
-                    chessMoves.add(new ChessMove(currentPosition, newPosition, null));
-                else {
-                    for (ChessPiece.PieceType type : ChessPiece.PieceType.values()) {
-                        if (type != ChessPiece.PieceType.PAWN && type != ChessPiece.PieceType.KING)
-                            chessMoves.add(new ChessMove(currentPosition, newPosition, type));
-                    }
-                }
+                addPawnMovesHelper(chessMoves, teamColor, newPosition);
             } else break;if (currentPosition.getRow() != (teamColor == ChessGame.TeamColor.WHITE ? 2 : 7)) break;
 
         }
         for (ChessPosition newPosition : new ChessPosition[]{left1, right1}) {
             if (validateCapture(newPosition)) {
-                if (newPosition.getRow() != (teamColor == ChessGame.TeamColor.WHITE ? 8 : 1))
-                    chessMoves.add(new ChessMove(currentPosition, newPosition, null));
-                else {
-                    for (ChessPiece.PieceType type : ChessPiece.PieceType.values()) {
-                        if (type != ChessPiece.PieceType.PAWN && type != ChessPiece.PieceType.KING)
-                            chessMoves.add(new ChessMove(currentPosition, newPosition, type));
-                    }
-                }
+                addPawnMovesHelper(chessMoves, teamColor, newPosition);
             }
         }
     }
+
+    private void addPawnMovesHelper(ArrayList<ChessMove> chessMoves, ChessGame.TeamColor teamColor, ChessPosition newPosition) {
+        if (newPosition.getRow() != (teamColor == ChessGame.TeamColor.WHITE ? 8 : 1))
+            chessMoves.add(new ChessMove(currentPosition, newPosition, null));
+        else {
+            for (ChessPiece.PieceType type : ChessPiece.PieceType.values()) {
+                if (type != ChessPiece.PieceType.PAWN && type != ChessPiece.PieceType.KING)
+                    chessMoves.add(new ChessMove(currentPosition, newPosition, type));
+            }
+        }
+    }
+
 
     public void addKnightMoves(ArrayList<ChessMove> chessMoves) {
         ChessPosition[] knightPositions =
