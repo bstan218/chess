@@ -14,6 +14,7 @@ public class UserServiceTests {
 
     private static UserData existingUser;
     private static String exisitingAuthToken;
+    private static AuthData existingAuthorization;
 
     private static DummyResponseStub dummyResponseStub;
 
@@ -38,6 +39,7 @@ public class UserServiceTests {
 
         UserResponse userResponse = userService.register(existingUser, new DummyResponseStub());
         exisitingAuthToken = userResponse.authToken();
+        existingAuthorization = new AuthData(exisitingAuthToken, userResponse.username());
 
         dummyResponseStub = new DummyResponseStub();
     }
@@ -80,6 +82,26 @@ public class UserServiceTests {
         UserData passwordlessUserData = new UserData("Existing User", null, null);
 
         userService.login(passwordlessUserData, dummyResponseStub);
+
+        Assertions.assertEquals(401, dummyResponseStub.status());
+    }
+
+    @Test
+    @Order(5)
+    @DisplayName("Successful logout existing user")
+    public void successLogout() {
+        userService.logout(existingAuthorization, dummyResponseStub);
+
+        Assertions.assertEquals(200, dummyResponseStub.status());
+    }
+
+    @Test
+    @Order(6)
+    @DisplayName("No auth token")
+    public void failLogout() {
+        AuthData tokenlessAuthData = new AuthData(null, null);
+
+        userService.logout(tokenlessAuthData, dummyResponseStub);
 
         Assertions.assertEquals(401, dummyResponseStub.status());
     }
