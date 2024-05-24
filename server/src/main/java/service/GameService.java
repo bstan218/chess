@@ -1,7 +1,10 @@
 package service;
 
+import chess.ChessGame;
 import dataaccess.*;
+import handler.request.JoinGameRequest;
 import handler.response.CreateGameResponse;
+import handler.response.EmptyResponse;
 import model.AuthData;
 import model.GameData;
 import spark.Response;
@@ -35,8 +38,58 @@ public class GameService {
         return new CreateGameResponse(null, gameID);
 
     }
+
+    public EmptyResponse joinGame(AuthData auth, JoinGameRequest joinGameRequest, Response res) {
+        AuthData authData;
+        try {
+            authData = authDAO.getAuth(auth.authToken());
+        } catch (DataAccessException e) {
+            res.status(401);
+            return new EmptyResponse(e.getMessage());
+        }
+
+        if (joinGameRequest.playerColor() == null) {
+            res.status(400);
+            return new EmptyResponse("Error: Must specify color as 'Black' or 'White'.");
+        }
+
+        GameData gameData;
+        try {
+            gameData = gameDAO.getGame(joinGameRequest.gameID());
+        } catch (DataAccessException e) {
+            res.status(400);
+            return new EmptyResponse(e.getMessage());
+        }
+
+        GameData newGameData;
+        if (joinGameRequest.playerColor() == ChessGame.TeamColor.WHITE) {
+            if (gameData.whiteUsername() != null) {
+                res.status(403);
+                return new EmptyResponse("Error: Color already taken");
+            } else {
+                newGameData = new GameData(gameData.gameID(), authData.username(), gameData.blackUsername(), gameData.gameName(), gameData.game());
+            }
+        } else {
+            if (gameData.blackUsername() != null) {
+                res.status(403);
+                return new EmptyResponse("Error: Color already taken");
+            } else {
+                newGameData = new GameData(gameData.gameID(), gameData.whiteUsername(), authData.username(), gameData.gameName(), gameData.game());
+            }
+        }
+
+        try {
+            gameDAO.updateGame(gameData.gameID(), newGameData);
+        } catch (DataAccessException e) {
+            res.status(400);
+            return new EmptyResponse(e.getMessage());
+        }
+
+        return new EmptyResponse(null);
+    }
+
     public ArrayList<GameData> listGames(AuthData auth) {
         return null;
     }
-    public void joinGame(AuthData auth, GameData game) {}
 }
+
