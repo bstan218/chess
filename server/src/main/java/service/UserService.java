@@ -47,6 +47,11 @@ public class UserService {
             return new UserResponse(e.getMessage(), null, null);
         }
 
+        if (user.password() == null) {
+            res.status(401);
+            return new UserResponse("Error: Please enter your password", null, null);
+        }
+
         if (!user.password().equals(dbUser.password())) {
             res.status(401);
             return new UserResponse("Error: incorrect password", null, null);

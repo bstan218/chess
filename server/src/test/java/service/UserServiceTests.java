@@ -15,6 +15,8 @@ public class UserServiceTests {
     private static UserData existingUser;
     private static String exisitingAuthToken;
 
+    private static DummyResponseStub dummyResponseStub;
+
     @BeforeAll
     public static void init() {
         userDAO = new MemoryUserDAO();
@@ -36,14 +38,14 @@ public class UserServiceTests {
 
         UserResponse userResponse = userService.register(existingUser, new DummyResponseStub());
         exisitingAuthToken = userResponse.authToken();
+
+        dummyResponseStub = new DummyResponseStub();
     }
 
     @Test
     @Order(1)
     @DisplayName("Normal Register")
     public void successRegister() {
-        DummyResponseStub dummyResponseStub = new DummyResponseStub();
-
         UserData newUser = new UserData("New User", "1234", "1234@gmail.com");
 
         userService.register(newUser, dummyResponseStub);
@@ -55,13 +57,31 @@ public class UserServiceTests {
     @Order(2)
     @DisplayName("Register with existing username")
     public void failRegister() {
-        DummyResponseStub dummyResponseStub = new DummyResponseStub();
-
         UserData newUser = new UserData("Existing User", "1234", "1234@gmail.com");
 
         userService.register(newUser, dummyResponseStub);
 
         Assertions.assertEquals(403, dummyResponseStub.status());
+    }
+
+    @Test
+    @Order(3)
+    @DisplayName("Normal Login")
+    public void successLogin() {
+        userService.login(existingUser, dummyResponseStub);
+
+        Assertions.assertEquals(200, dummyResponseStub.status());
+    }
+
+    @Test
+    @Order(4)
+    @DisplayName("Login with no password")
+    public void failLogin() {
+        UserData passwordlessUserData = new UserData("Existing User", null, null);
+
+        userService.login(passwordlessUserData, dummyResponseStub);
+
+        Assertions.assertEquals(401, dummyResponseStub.status());
     }
 
 }
