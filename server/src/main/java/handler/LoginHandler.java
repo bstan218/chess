@@ -20,8 +20,8 @@ public class LoginHandler {
     }
 
     public Object handleRequest(Request req, Response res) {
-        UserData LoginRequest = fromJson.fromJsonToUser(req.body());
-        UserResponse userResponse = service.login(LoginRequest, res);
+        UserData loginRequest = fromJson.fromJsonToUser(req.body());
+        UserResponse userResponse = service.login(loginRequest, res);
         return toJson.fromResponse(userResponse);
     }
 }
