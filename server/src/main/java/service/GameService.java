@@ -1,23 +1,39 @@
 package service;
 
 import dataaccess.*;
+import handler.response.CreateGameResponse;
 import model.AuthData;
 import model.GameData;
+import spark.Response;
+
 import java.util.ArrayList;
 
 public class GameService {
-    private UserDAO userDAO;
-    private AuthDAO authDAO;
-    private GameDAO gameDAO;
+    private final AuthDAO authDAO;
+    private final GameDAO gameDAO;
 
     public GameService(UserDAO userDAO, AuthDAO authDAO, GameDAO gameDAO) {
-        this.userDAO = userDAO;
         this.authDAO = authDAO;
         this.gameDAO = gameDAO;
     }
 
-    public GameData createGame(AuthData auth, GameData game) {
-        return null;
+    public CreateGameResponse createGame(AuthData auth, GameData gameData, Response res) {
+        try {
+            authDAO.getAuth(auth.authToken());
+        } catch (DataAccessException e) {
+            res.status(401);
+            return new CreateGameResponse(e.getMessage(), null);
+        }
+
+        int gameID;
+        try {
+            gameID = gameDAO.createGame(gameData.gameName());
+        } catch (DataAccessException e) {
+            res.status(400);
+            return new CreateGameResponse(e.getMessage(), null);
+        }
+        return new CreateGameResponse(null, gameID);
+
     }
     public ArrayList<GameData> listGames(AuthData auth) {
         return null;

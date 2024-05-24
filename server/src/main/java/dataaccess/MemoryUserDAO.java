@@ -4,7 +4,11 @@ import java.util.HashMap;
 import model.UserData;
 
 public class MemoryUserDAO implements UserDAO{
-    private HashMap<String, UserData> users = new HashMap<>();
+    private HashMap<String, UserData> users;
+
+    public MemoryUserDAO () {
+           this.users = new HashMap<>();
+    }
 
 
     @Override

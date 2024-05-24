@@ -1,14 +1,44 @@
 package dataaccess;
 
 import model.GameData;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MemoryGameDAO implements GameDAO {
-    private HashMap<String, GameData> games = new HashMap<>();
+    private HashMap<Integer, GameData> games;
+    private int nextID;
+
+    public MemoryGameDAO() {
+        this.games = new HashMap<>();
+        this.nextID = 1;
+    }
+
+    @Override
+    public int createGame(String gameName) throws DataAccessException {
+        if (gameName == null) throw new DataAccessException("Error: no game name provided");
+        return addGameToGames(gameName);
+    }
+
+    @Override
+    public ArrayList<GameData> listGames() {
+        return null;
+    }
+
+    @Override
+    public void updateGame(int gameID, String gameString) {
+
+    }
 
     @Override
     public void deleteAllGames() {
         games.clear();
     }
+
+    private int addGameToGames(String gameName) {
+        GameData newGame = new GameData(nextID, null, null, gameName, null);
+        nextID += 1;
+        games.put(newGame.gameID(), newGame);
+        return newGame.gameID();
+    }
+
 }
