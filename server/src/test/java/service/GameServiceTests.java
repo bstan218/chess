@@ -123,7 +123,7 @@ public class GameServiceTests {
         gameService.joinGame(existingAuthorization, joinGameRequest, dummyResponseStub);
 
         JoinGameRequest newJoinGameRequest = new JoinGameRequest(ChessGame.TeamColor.BLACK, existingGame.gameID());
-        gameService.joinGame(existingAuthorization, joinGameRequest, dummyResponseStub);
+        gameService.joinGame(existingAuthorization, newJoinGameRequest, dummyResponseStub);
 
         Assertions.assertEquals(403, dummyResponseStub.status());
     }
