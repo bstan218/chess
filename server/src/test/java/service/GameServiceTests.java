@@ -85,5 +85,30 @@ public class GameServiceTests {
 
     }
 
+    @Test
+    @Order(3)
+    @DisplayName("Successfully list games")
+    public void successListGames() {
+        gameService.listGames(existingAuthorization, dummyResponseStub);
+
+        Assertions.assertEquals(200, dummyResponseStub.status());
+    }
+
+    @Test
+    @Order(4)
+    @DisplayName("try to list games without auth token")
+    public void failListGames() {
+        gameService.listGames(new AuthData(null, null), dummyResponseStub);
+
+        Assertions.assertEquals(401, dummyResponseStub.status());
+    }
+
+    @Test
+    @Order(5)
+    @DisplayName("Successfully join game")
+    public void successJoinGame() {
+
+    }
+
 
 }
