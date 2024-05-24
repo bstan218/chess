@@ -3,11 +3,11 @@ package handler.json;
 import com.google.gson.Gson;
 
 public class ToJsonG implements ToJson {
-    private static final Gson gson = new Gson();
+    private static final Gson Gson = new Gson();
 
     @Override
     public String fromResponse(Object result) {
-        String json = gson.toJson(result);
+        String json = Gson.toJson(result);
         return json;
     }
 }
