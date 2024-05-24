@@ -1,6 +1,8 @@
 package service;
 
+import chess.ChessGame;
 import dataaccess.*;
+import handler.request.JoinGameRequest;
 import handler.response.CreateGameResponse;
 import handler.response.UserResponse;
 import model.AuthData;
@@ -107,7 +109,23 @@ public class GameServiceTests {
     @Order(5)
     @DisplayName("Successfully join game")
     public void successJoinGame() {
+        JoinGameRequest joinGameRequest = new JoinGameRequest(ChessGame.TeamColor.BLACK, existingGame.gameID());
+        gameService.joinGame(existingAuthorization, joinGameRequest, dummyResponseStub);
 
+        Assertions.assertEquals(200, dummyResponseStub.status());
+    }
+
+    @Test
+    @Order(6)
+    @DisplayName("Trying to join as taken color")
+    public void failJoinGame() {
+        JoinGameRequest joinGameRequest = new JoinGameRequest(ChessGame.TeamColor.BLACK, existingGame.gameID());
+        gameService.joinGame(existingAuthorization, joinGameRequest, dummyResponseStub);
+
+        JoinGameRequest newJoinGameRequest = new JoinGameRequest(ChessGame.TeamColor.BLACK, existingGame.gameID());
+        gameService.joinGame(existingAuthorization, joinGameRequest, dummyResponseStub);
+
+        Assertions.assertEquals(403, dummyResponseStub.status());
     }
 
 
