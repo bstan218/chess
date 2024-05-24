@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import model.AuthData;
 
-
 public class MemoryAuthDAO implements AuthDAO {
     private HashMap<String, AuthData> auths = new HashMap<>(); //key is authToken
 
@@ -24,8 +23,14 @@ public class MemoryAuthDAO implements AuthDAO {
     }
 
     @Override
-    public AuthData getAuth(String authToken) {
+    public AuthData getAuth(String authToken) throws DataAccessException {
+        if (!auths.containsKey(authToken)) throw new DataAccessException("Error: Invalid authToken");
         return auths.get(authToken);
+    }
+
+    @Override
+    public void deleteAuth(String authToken) {
+        auths.remove(authToken);
     }
 
 }

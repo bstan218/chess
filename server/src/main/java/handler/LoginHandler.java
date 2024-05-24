@@ -3,7 +3,6 @@ package handler;
 import handler.json.FromJson;
 import handler.json.ToJson;
 import handler.response.UserResponse;
-import model.AuthData;
 import model.UserData;
 import service.UserService;
 import spark.Request;
@@ -22,7 +21,7 @@ public class LoginHandler {
 
     public Object handleRequest(Request req, Response res) {
         UserData LoginRequest = fromJson.fromJsonToUser(req.body());
-        UserResponse result = service.login(LoginRequest, res);
-        return toJson.fromResponse(result);
+        UserResponse userResponse = service.login(LoginRequest, res);
+        return toJson.fromResponse(userResponse);
     }
 }

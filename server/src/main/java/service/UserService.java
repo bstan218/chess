@@ -1,6 +1,7 @@
 package service;
 
 import dataaccess.*;
+import handler.response.EmptyResponse;
 import handler.response.UserResponse;
 import model.*;
 import spark.Response;
@@ -60,5 +61,15 @@ public class UserService {
         }
         return new UserResponse("", authData.username(), authData.authToken());
     }
-    public void logout(AuthData auth) {}
+
+    public EmptyResponse logout(AuthData auth, Response res) {
+        try {
+            authDAO.getAuth(auth.authToken());
+        } catch (DataAccessException e) {
+            res.status(401);
+            return new EmptyResponse(e.getMessage());
+        }
+        authDAO.deleteAuth(auth.authToken());
+        return new EmptyResponse(null);
+    }
 }

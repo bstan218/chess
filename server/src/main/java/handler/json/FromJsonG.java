@@ -5,6 +5,9 @@ import model.AuthData;
 import model.GameData;
 import model.UserData;
 
+import java.io.Reader;
+import java.util.Set;
+
 public class FromJsonG implements FromJson {
     private Gson gson;
 
@@ -20,6 +23,9 @@ public class FromJsonG implements FromJson {
     }
     public AuthData fromJsonToAuth(String string) {
         return gson.fromJson(string, AuthData.class);
+    }
+    public AuthData fromHeaderToAuth(String authToken) {
+        return new AuthData(authToken, null);
     }
 
 }
