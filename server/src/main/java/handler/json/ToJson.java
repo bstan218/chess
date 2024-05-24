@@ -1,7 +1,8 @@
 package handler.json;
 
+import handler.response.UserResponse;
 import model.AuthData;
 
 public interface ToJson {
-    Object toJsonFromAuthData(AuthData result);
+    String fromResponse(Object result);
 }

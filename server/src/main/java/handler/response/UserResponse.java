@@ -1,3 +1,3 @@
 package handler.response;
 
-public record UserResponse(String message, String username, String AuthToken) {}
+public record UserResponse(String message, String username, String authToken) {}

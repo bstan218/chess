@@ -1,32 +1,50 @@
 package service;
 
 import dataaccess.*;
+import handler.response.UserResponse;
 import model.*;
-
+import spark.Response;
 import java.util.Objects;
 
 public class UserService {
-    private UserDAO userDAO;
-    private AuthDAO authDAO;
+    private final UserDAO userDAO;
+    private final AuthDAO authDAO;
 
     public UserService(UserDAO userDAO, AuthDAO authDAO) {
         this.userDAO = userDAO;
         this.authDAO = authDAO;
     }
 
-    public AuthData register(UserData user) {
-        if (userDAO.getUser(user.username()) != null) {
-            //error case
+    public UserResponse register(UserData user, Response res) {
+        try {
+            userDAO.createUser(user);
+        } catch (DataAccessException e) {
+            res.status(401);
+            return new UserResponse(e.getMessage(), null, null);
         }
-        userDAO.createUser(user);
-        return authDAO.createAuth(user.username());
+        AuthData authData = authDAO.createAuth(user.username());
+        return new UserResponse(null, authData.username(), authData.authToken());
     }
-    public AuthData login(UserData user) {
-        UserData dbUser = userDAO.getUser(user.username());
-        if (!Objects.equals(dbUser.password(), user.password())) {
-            //incorrect username or password
+    public UserResponse login(UserData user, Response res) {
+        UserData dbUser;
+        try {
+            dbUser = userDAO.getUser(user.username());
+        } catch (DataAccessException e) {
+            res.status(401);
+            return new UserResponse(e.getMessage(), null, null);
         }
-        return authDAO.createAuth(user.username());
+        if (!user.password().equals(dbUser.password())) {
+            res.status(402);
+            return new UserResponse("Error: incorrect password", null, null);
+        }
+
+        AuthData authData;
+        try {
+            authDAO.createAuth(user.username());
+        } catch (DataAccessException e) {
+
+        }
+        return new UserResponse("", authData.username(), authData.authToken());
     }
     public void logout(AuthData auth) {}
 }

@@ -1,8 +1,8 @@
 package handler;
 
-import com.google.gson.Gson;
-import handler.utils.FromJson;
-import handler.utils.ToJson;
+import handler.json.FromJson;
+import handler.json.ToJson;
+import handler.response.UserResponse;
 import model.AuthData;
 import model.UserData;
 import service.UserService;
@@ -21,8 +21,8 @@ public class LoginHandler {
     }
 
     public Object handleRequest(Request req, Response res) {
-        UserData loginRequest = new Gson().fromJson(req.body(), UserData.class);
-        AuthData result = service.login(loginRequest);
-        return new Gson().toJson(result);
+        UserData LoginRequest = fromJson.fromJsonToUser(req.body());
+        UserResponse result = service.register(LoginRequest);
+        return toJson.fromResponse(result);
     }
 }

@@ -1,7 +1,7 @@
 package handler;
 
-import handler.utils.FromJson;
-import handler.utils.ToJson;
+import handler.json.FromJson;
+import handler.json.ToJson;
 import service.UserService;
 import spark.Request;
 import spark.Response;

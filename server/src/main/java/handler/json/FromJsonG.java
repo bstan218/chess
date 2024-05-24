@@ -1,4 +1,4 @@
-package handler.utils;
+package handler.json;
 
 import com.google.gson.Gson;
 import model.AuthData;
@@ -6,15 +6,19 @@ import model.GameData;
 import model.UserData;
 
 public class FromJsonG implements FromJson {
-    private static final Gson gson = new Gson();
+    private Gson gson;
 
-    public static UserData fromJsonToUser(String string) {
+    public FromJsonG() {
+        this.gson = new Gson();
+    }
+
+    public UserData fromJsonToUser(String string) {
         return gson.fromJson(string, UserData.class);
     }
-    public static GameData fromJsonToGame(String string) {
+    public GameData fromJsonToGame(String string) {
         return gson.fromJson(string, GameData.class);
     }
-    public static AuthData fromJsonToAuth(String string) {
+    public AuthData fromJsonToAuth(String string) {
         return gson.fromJson(string, AuthData.class);
     }
 

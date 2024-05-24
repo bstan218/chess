@@ -1,10 +1,8 @@
 package handler;
 
-import com.google.gson.Gson;
-import handler.utils.FromJson;
-import handler.utils.ToJson;
-import handler.utils.ToJsonG;
-import model.AuthData;
+import handler.json.FromJson;
+import handler.json.ToJson;
+import handler.response.UserResponse;
 import service.UserService;
 import spark.Request;
 import spark.Response;
@@ -22,8 +20,8 @@ public class RegisterHandler {
     }
 
     public Object handleRequest(Request req, Response res) {
-        UserData registerRequest = fromJson.(req.body(), UserData.class);
-        AuthData result = service.register(registerRequest);
-        return ToJsonG.toJson(result);
+        UserData registerRequest = fromJson.fromJsonToUser(req.body());
+        UserResponse result = service.register(registerRequest);
+        return toJson.fromResponse(result);
     }
 }
