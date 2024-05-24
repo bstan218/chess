@@ -5,6 +5,7 @@ import dataaccess.*;
 import handler.request.JoinGameRequest;
 import handler.response.CreateGameResponse;
 import handler.response.EmptyResponse;
+import handler.response.ListGameResponse;
 import model.AuthData;
 import model.GameData;
 import spark.Response;
@@ -88,8 +89,16 @@ public class GameService {
         return new EmptyResponse(null);
     }
 
-    public ArrayList<GameData> listGames(AuthData auth) {
-        return null;
+    public ListGameResponse listGames(AuthData auth, Response res) {
+        try {
+            authDAO.getAuth(auth.authToken());
+        } catch (DataAccessException e) {
+            res.status(401);
+            return new ListGameResponse(e.getMessage(), null);
+        }
+
+        ArrayList<GameData> gamesList = gameDAO.listGames();
+        return new ListGameResponse(null, gamesList);
     }
 }
 
