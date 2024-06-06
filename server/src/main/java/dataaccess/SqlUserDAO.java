@@ -2,6 +2,7 @@ package dataaccess;
 
 import model.UserData;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
@@ -77,13 +78,22 @@ public class SqlUserDAO implements UserDAO {
             try (var ps = conn.prepareStatement(statement)) {
                 ps.setString(1, username);
                 try(var rs = ps.executeQuery()) {
-                    if (rs.next())
+                    if (rs.next()) {
+                        return readUser(rs);
+                    }
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return null;
+    }
 
+    private UserData readUser(ResultSet rs) throws SQLException {
+        var username = rs.getString("username");
+        var password = rs.getString("password");
+        var email = rs.getString("email");
+        return new UserData(username, password, email);
     }
 
     @Override
@@ -91,15 +101,14 @@ public class SqlUserDAO implements UserDAO {
         try {
             getUser(userData.username());
         } catch (DataAccessException e) {
-            throw new DataAccessException("User already in database");
+            var statement = "INSERT INTO user (username, password, email) VALUES (?, ?, ?)";
+            try {
+                executeUpdate(statement, userData.username(), userData.password(), userData.email());
+            } catch (Exception ne) {
+                throw new DataAccessException("Error: Unable to insert user into database");
+            }
         }
-
-        var statement = "INSERT INTO user (username, password, email) VALUES (?, ?, ?)";
-        try {
-            executeUpdate(statement, userData.username(), userData.password(), userData.email());
-        } catch (Exception e) {
-            throw new DataAccessException("Error: Unable to insert user into database");
-        }
+        throw new DataAccessException("User already in database");
     }
 
     @Override
