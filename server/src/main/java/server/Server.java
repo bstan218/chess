@@ -22,7 +22,7 @@ public class Server {
     private static JoinGameHandler joinGameHandler;
 
     public Server() {
-        UserDAO userDAO = new MemoryUserDAO();
+        UserDAO userDAO = new SqlUserDAO();
         AuthDAO authDAO = new MemoryAuthDAO();
         GameDAO gameDAO = new MemoryGameDAO();
 

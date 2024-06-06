@@ -10,8 +10,12 @@ import static java.sql.Types.NULL;
 
 public class SqlUserDAO implements UserDAO {
 
-    public SqlUserDAO() throws DataAccessException {
-        configureDatabase();
+    public SqlUserDAO() {
+        try  {
+            configureDatabase();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private final String[] createStatements = {
@@ -68,13 +72,34 @@ public class SqlUserDAO implements UserDAO {
 
     @Override
     public UserData getUser(String username) throws DataAccessException {
-        return null;
+        try (var conn = DatabaseManager.getConnection()) {
+            var statement = "SELECT username FROM user WHERE username=?";
+            try (var ps = conn.prepareStatement(statement)) {
+                ps.setString(1, username);
+                try(var rs = ps.executeQuery()) {
+                    if (rs.next())
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
     public void createUser(UserData userData) throws DataAccessException {
+        try {
+            getUser(userData.username());
+        } catch (DataAccessException e) {
+            throw new DataAccessException("User already in database");
+        }
+
         var statement = "INSERT INTO user (username, password, email) VALUES (?, ?, ?)";
-        executeUpdate(statement, userData.username(), userData.password(), userData.email());
+        try {
+            executeUpdate(statement, userData.username(), userData.password(), userData.email());
+        } catch (Exception e) {
+            throw new DataAccessException("Error: Unable to insert user into database");
+        }
     }
 
     @Override
