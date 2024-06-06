@@ -5,7 +5,7 @@ import model.UserData;
 import javax.xml.crypto.Data;
 
 public interface UserDAO {
-    void deleteAllUsers();
+    void deleteAllUsers() throws DataAccessException;
 
     UserData getUser(String username) throws DataAccessException;
 

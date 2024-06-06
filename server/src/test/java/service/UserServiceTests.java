@@ -29,7 +29,11 @@ public class UserServiceTests {
 
     @BeforeEach
     public void setup() {
-        userDAO.deleteAllUsers();
+        try {
+            userDAO.deleteAllUsers();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
         authDAO.deleteAllAuths();
 
         existingUser = new UserData("Existing User",

@@ -40,7 +40,11 @@ public class GameServiceTests {
 
     @BeforeEach
     public void setup() {
-        userDAO.deleteAllUsers();
+        try {
+            userDAO.deleteAllUsers();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
         authDAO.deleteAllAuths();
         gameDAO.deleteAllGames();
 
