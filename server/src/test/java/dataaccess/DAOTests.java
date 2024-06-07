@@ -4,13 +4,16 @@ import handler.response.UserResponse;
 import org.junit.jupiter.api.*;
 import model.*;
 import service.DummyResponseStub;
+import service.GameService;
 import service.UserService;
 
-public class UserDAOTests {
+public class DAOTests {
     private static UserDAO userDAO;
     private static AuthDAO authDAO;
+    private static GameDAO gameDAO;
 
     private static UserService userService;
+    private static GameService gameService;
 
     private static UserData existingUser;
     private static String exisitingAuthToken;
@@ -22,8 +25,10 @@ public class UserDAOTests {
     public static void init() {
         userDAO = new SqlUserDAO();
         authDAO = new SqlAuthDAO();
+        gameDAO = new SqlGameDAO();
 
         userService = new UserService(userDAO, authDAO);
+        gameService = new GameService(userDAO, authDAO, gameDAO);
 
     }
 
@@ -111,5 +116,81 @@ public class UserDAOTests {
     public void successClearDB() throws DataAccessException {
         userDAO.deleteAllUsers();
     }
+
+    @Test
+    @Order(6)
+    @DisplayName("success delete db")
+    public void deleteAuths() throws DataAccessException {
+        authDAO.deleteAllAuths();
+    }
+
+    @Test
+    @Order(7)
+    @DisplayName("success create auth")
+    public void successCreateAuth() throws DataAccessException {
+        authDAO.createAuth("username");
+    }
+
+    @Test
+    @Order(8)
+    @DisplayName("fail create auth")
+    public void failCreateAuth() {
+        try {
+            authDAO.createAuth(null);
+            throw new RuntimeException();
+        } catch (Exception ignored) {
+
+        }
+    }
+
+    @Test
+    @Order(9)
+    @DisplayName("success get auth")
+    public void successGetAuth() throws DataAccessException {
+        authDAO.getAuth(exisitingAuthToken);
+    }
+
+    @Test
+    @Order(10)
+    @DisplayName("fail get auth")
+    public void failGetAuth() {
+        try {
+            authDAO.getAuth(null);
+            throw new RuntimeException();
+        } catch (DataAccessException ignored) {
+        }
+    }
+
+    @Test
+    @Order(11)
+    @DisplayName("success delete auth")
+    public void successDeleteAuth() {
+        authDAO.deleteAuth(exisitingAuthToken);
+    }
+
+    @Test
+    @Order(12)
+    @DisplayName("fail delete auth")
+    public void failDeleteAuth() {
+        try {
+            authDAO.deleteAuth(null);
+            throw new DataAccessException("didnt fail");
+        } catch (Exception ignored) {
+
+        }
+    }
+
+    @Test
+    @Order(13)
+    @DisplayName("Success delete games")
+    public void deleteGames() throws DataAccessException {
+        gameDAO.deleteAllGames();
+    }
+
+    @Test
+    @Order(14)
+    @DisplayName("success create game")
+
+
 }
 
