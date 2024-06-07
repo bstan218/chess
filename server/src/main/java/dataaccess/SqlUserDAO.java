@@ -25,9 +25,7 @@ public class SqlUserDAO implements UserDAO {
               `username` varchar(256) NOT NULL,
               `password` varchar(256) NOT NULL,
               `email` varchar(256) NOT NULL,
-              PRIMARY KEY (`username`),
-              INDEX(password),
-              INDEX(email)
+              PRIMARY KEY (`username`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
             """
     };
@@ -75,19 +73,20 @@ public class SqlUserDAO implements UserDAO {
     @Override
     public UserData getUser(String username) throws DataAccessException {
         try (var conn = DatabaseManager.getConnection()) {
-            var statement = "SELECT username FROM user WHERE username=?";
+            var statement = "SELECT username, password, email FROM user WHERE username=?";
             try (var ps = conn.prepareStatement(statement)) {
                 ps.setString(1, username);
                 try(var rs = ps.executeQuery()) {
                     if (rs.next()) {
                         return readUser(rs);
+                    } else {
+                        throw new DataAccessException("Error: No user with that username");
                     }
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     private UserData readUser(ResultSet rs) throws SQLException {
@@ -109,7 +108,6 @@ public class SqlUserDAO implements UserDAO {
                 throw new DataAccessException("Error: Unable to insert user into database");
             }
         }
-        throw new DataAccessException("User already in database");
     }
 
     @Override
