@@ -79,8 +79,5 @@ public class SqlUserDAO implements UserDAO {
         } throw new DataAccessException("Error: User already in database");
     }
 
-    @Override
-    public boolean usersIsEmpty() {
-        return false;
-    }
+
 }
