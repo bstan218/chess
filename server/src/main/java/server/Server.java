@@ -23,7 +23,7 @@ public class Server {
 
     public Server() {
         UserDAO userDAO = new SqlUserDAO();
-        AuthDAO authDAO = new MemoryAuthDAO();
+        AuthDAO authDAO = new SqlAuthDAO();
         GameDAO gameDAO = new MemoryGameDAO();
 
         ClearService clearService = new ClearService(userDAO, authDAO, gameDAO);
