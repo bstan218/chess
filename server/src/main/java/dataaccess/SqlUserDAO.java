@@ -13,7 +13,7 @@ public class SqlUserDAO implements UserDAO {
 
     public SqlUserDAO() {
         try  {
-            configureDatabase();
+            DatabaseManager.configureDatabase(createStatements);
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }
@@ -30,44 +30,11 @@ public class SqlUserDAO implements UserDAO {
             """
     };
 
-    private void configureDatabase() throws DataAccessException {
-        try {
-            DatabaseManager.createDatabase();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
-
-        try (var conn = DatabaseManager.getConnection()) {
-            for (var statement : createStatements) {
-                try (var preparedStatement = conn.prepareStatement(statement)) {
-                    preparedStatement.executeUpdate();
-                }
-            }
-        } catch (SQLException e) {
-            throw new DataAccessException(String.format("Unable to configure database: %s", e.getMessage()));
-        }
-    }
-
-    private void executeUpdate(String statement, Object... params) throws DataAccessException {
-        try (var conn = DatabaseManager.getConnection()) {
-            try (var ps = conn.prepareStatement(statement, RETURN_GENERATED_KEYS)) {
-                for (var i = 0; i < params.length; i++) {
-                    var param = params[i];
-                    if (param instanceof String p) ps.setString(i + 1, p);
-                    else if (param instanceof Integer p) ps.setInt(i + 1, p);
-                    else if (param == null) ps.setNull(i + 1, NULL);
-                }
-                ps.executeUpdate();
-            }
-        } catch (SQLException e) {
-            throw new DataAccessException(String.format("unable to update database: %s, %s", statement, e.getMessage()));
-        }
-    }
 
     @Override
     public void deleteAllUsers() throws DataAccessException {
         var statement = "TRUNCATE user";
-        executeUpdate(statement);
+        DatabaseManager.executeUpdate(statement);
     }
 
     @Override
@@ -103,11 +70,12 @@ public class SqlUserDAO implements UserDAO {
         } catch (DataAccessException e) {
             var statement = "INSERT INTO user (username, password, email) VALUES (?, ?, ?)";
             try {
-                executeUpdate(statement, userData.username(), userData.password(), userData.email());
+                DatabaseManager.executeUpdate(statement, userData.username(), userData.password(), userData.email());
+                return;
             } catch (Exception ne) {
                 throw new DataAccessException("Error: Unable to insert user into database");
             }
-        }
+        } throw new DataAccessException("Error: User already in database");
     }
 
     @Override
