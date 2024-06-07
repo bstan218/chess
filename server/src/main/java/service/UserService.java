@@ -4,6 +4,7 @@ import dataaccess.*;
 import handler.response.EmptyResponse;
 import handler.response.UserResponse;
 import model.*;
+import org.mindrot.jbcrypt.BCrypt;
 import spark.Response;
 import java.util.Objects;
 
@@ -52,7 +53,7 @@ public class UserService {
             return new UserResponse("Error: Please enter your password", null, null);
         }
 
-        if (!user.password().equals(dbUser.password())) {
+        if (!BCrypt.checkpw(user.password(), dbUser.password())) {
             res.status(401);
             return new UserResponse("Error: incorrect password", null, null);
         }
