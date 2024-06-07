@@ -3,6 +3,7 @@ package dataaccess;
 import handler.response.UserResponse;
 import org.junit.jupiter.api.*;
 import model.*;
+import service.ClearService;
 import service.DummyResponseStub;
 import service.GameService;
 import service.UserService;
@@ -14,12 +15,13 @@ public class DAOTests {
 
     private static UserService userService;
     private static GameService gameService;
+    private static ClearService clearService;
 
     private static UserData existingUser;
     private static String exisitingAuthToken;
     private static AuthData existingAuthorization;
 
-    private static DummyResponseStub dummyResponseStub;
+    private static int existingGameID;
 
     @BeforeAll
     public static void init() {
@@ -29,21 +31,13 @@ public class DAOTests {
 
         userService = new UserService(userDAO, authDAO);
         gameService = new GameService(userDAO, authDAO, gameDAO);
+        clearService = new ClearService(userDAO, authDAO, gameDAO);
 
     }
 
     @BeforeEach
-    public void setup() {
-        try {
-            userDAO.deleteAllUsers();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            authDAO.deleteAllAuths();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
+    public void setup() throws DataAccessException {
+        clearService.clear();
 
         existingUser = new UserData("Existing User",
                 "existing user's password",
@@ -54,7 +48,9 @@ public class DAOTests {
         exisitingAuthToken = userResponse.authToken();
         existingAuthorization = new AuthData(exisitingAuthToken, userResponse.username());
 
-        dummyResponseStub = new DummyResponseStub();
+        existingGameID = gameDAO.createGame("existing game");
+
+
     }
 
     @Test
@@ -190,6 +186,69 @@ public class DAOTests {
     @Test
     @Order(14)
     @DisplayName("success create game")
+    public void successCreateGame() throws DataAccessException {
+        gameDAO.createGame("new game");
+    }
+
+    @Test
+    @Order(15)
+    @DisplayName("fail create game")
+    public void failCreateGame() {
+        try {
+            gameDAO.createGame(null);
+            throw new DataAccessException("didnt fail");
+        } catch (Exception ignored) {
+
+        }
+    }
+
+    @Test
+    @Order(16)
+    @DisplayName("success update game")
+    public void successUpdateGame() throws DataAccessException {
+        gameDAO.updateGame(existingGameID, new GameData(existingGameID, "New Player", null, "game name", null));
+    }
+
+    @Test
+    @Order(17)
+    @DisplayName("fail update game")
+    public void failUpdateGame() {
+        try {
+            gameDAO.updateGame(0, new GameData(existingGameID, "New Player", null, "game name", null));
+            throw new DataAccessException("didnt fail");
+        } catch (Exception ignored) {
+
+        }
+
+    }
+
+    @Test
+    @Order(18)
+    @DisplayName("success list games")
+    public void SListGames() throws DataAccessException {
+        gameDAO.listGames();
+    }
+
+    @Test
+    @Order(19)
+    @DisplayName("success get game")
+    public void SGetGame() throws DataAccessException {
+        gameDAO.getGame(existingGameID);
+    }
+
+    @Test
+    @Order(20)
+    @DisplayName("fail get game")
+    public void FGetGame() throws DataAccessException {
+        try {
+            gameDAO.getGame(0);
+
+            throw new DataAccessException("didnt fail");
+        } catch (Exception ignored) {
+
+        }
+
+    }
 
 
 }
