@@ -40,21 +40,7 @@ public class GameServiceTests {
 
     @BeforeEach
     public void setup() {
-        try {
-            userDAO.deleteAllUsers();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            authDAO.deleteAllAuths();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            gameDAO.deleteAllGames();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
+        clearService.clear();
 
         existingUser = new UserData("Existing User",
                 "existing user's password",

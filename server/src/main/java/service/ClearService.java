@@ -20,12 +20,12 @@ public class ClearService {
             throw new RuntimeException(e);
         }
         try {
-            authDAO.deleteAllAuths();
+            gameDAO.deleteAllGames();
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }
         try {
-            gameDAO.deleteAllGames();
+            authDAO.deleteAllAuths();
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }
