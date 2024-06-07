@@ -223,21 +223,21 @@ public class DAOTests {
     @Test
     @Order(18)
     @DisplayName("success list games")
-    public void SListGames() throws DataAccessException {
+    public void sListGames() throws DataAccessException {
         gameDAO.listGames();
     }
 
     @Test
     @Order(19)
     @DisplayName("success get game")
-    public void SGetGame() throws DataAccessException {
+    public void sGetGame() throws DataAccessException {
         gameDAO.getGame(existingGameID);
     }
 
     @Test
     @Order(20)
     @DisplayName("fail get game")
-    public void FGetGame() throws DataAccessException {
+    public void fGetGame() throws DataAccessException {
         try {
             gameDAO.getGame(0);
 
