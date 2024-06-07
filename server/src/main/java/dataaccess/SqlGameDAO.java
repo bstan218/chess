@@ -112,7 +112,8 @@ public class SqlGameDAO implements GameDAO {
     }
 
     @Override
-    public void deleteAllGames() {
-
+    public void deleteAllGames() throws DataAccessException {
+        var statement = "TRUNCATE game";
+        DatabaseManager.executeUpdate(statement);
     }
 }
