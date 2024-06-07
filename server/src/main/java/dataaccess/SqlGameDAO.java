@@ -2,6 +2,7 @@ package dataaccess;
 
 import chess.ChessGame;
 import com.google.gson.Gson;
+import handler.json.ToJson;
 import model.GameData;
 
 import java.sql.ResultSet;
@@ -107,8 +108,19 @@ public class SqlGameDAO implements GameDAO {
         try {
             getGame(gameID);
         } catch (DataAccessException e) {
-
+            throw new DataAccessException(e.getMessage());
         }
+
+        var statement = "UPDATE game SET (whiteUsername=?, blackUsername=?, json=?) WHERE gameID=?";
+
+        String game = new Gson().toJson(gameData.game());
+
+        try {
+            DatabaseManager.executeUpdate(statement, gameData.whiteUsername(), gameData.blackUsername(), game, gameID);
+        } catch (Exception ne) {
+            throw new DataAccessException("Error: Unable to insert game into database");
+        }
+
     }
 
     @Override
