@@ -14,12 +14,10 @@ public class DAOTests {
     private static GameDAO gameDAO;
 
     private static UserService userService;
-    private static GameService gameService;
     private static ClearService clearService;
 
     private static UserData existingUser;
     private static String exisitingAuthToken;
-    private static AuthData existingAuthorization;
 
     private static int existingGameID;
 
@@ -30,7 +28,7 @@ public class DAOTests {
         gameDAO = new SqlGameDAO();
 
         userService = new UserService(userDAO, authDAO);
-        gameService = new GameService(userDAO, authDAO, gameDAO);
+        GameService gameService = new GameService(userDAO, authDAO, gameDAO);
         clearService = new ClearService(userDAO, authDAO, gameDAO);
 
     }
@@ -46,7 +44,7 @@ public class DAOTests {
 
         UserResponse userResponse = userService.register(existingUser, new DummyResponseStub());
         exisitingAuthToken = userResponse.authToken();
-        existingAuthorization = new AuthData(exisitingAuthToken, userResponse.username());
+        AuthData existingAuthorization = new AuthData(exisitingAuthToken, userResponse.username());
 
         existingGameID = gameDAO.createGame("existing game");
 
