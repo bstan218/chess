@@ -97,7 +97,13 @@ public class GameService {
             return new ListGameResponse(e.getMessage(), null);
         }
 
-        ArrayList<GameData> gamesList = gameDAO.listGames();
+        ArrayList<GameData> gamesList = null;
+        try {
+            gamesList = gameDAO.listGames();
+        } catch (DataAccessException e) {
+            res.status(500);
+            return new ListGameResponse(e.getMessage(), null);
+        }
         return new ListGameResponse(null, gamesList);
     }
 }

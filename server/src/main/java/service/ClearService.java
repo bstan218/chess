@@ -24,6 +24,10 @@ public class ClearService {
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }
-        gameDAO.deleteAllGames();
+        try {
+            gameDAO.deleteAllGames();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

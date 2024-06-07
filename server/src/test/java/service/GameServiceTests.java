@@ -50,7 +50,11 @@ public class GameServiceTests {
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }
-        gameDAO.deleteAllGames();
+        try {
+            gameDAO.deleteAllGames();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
 
         existingUser = new UserData("Existing User",
                 "existing user's password",
