@@ -45,7 +45,11 @@ public class GameServiceTests {
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }
-        authDAO.deleteAllAuths();
+        try {
+            authDAO.deleteAllAuths();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
         gameDAO.deleteAllGames();
 
         existingUser = new UserData("Existing User",

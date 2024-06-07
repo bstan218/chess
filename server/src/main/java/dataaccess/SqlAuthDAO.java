@@ -4,6 +4,7 @@ import model.AuthData;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class SqlAuthDAO implements AuthDAO {
 
@@ -33,7 +34,14 @@ public class SqlAuthDAO implements AuthDAO {
 
     @Override
     public AuthData createAuth(String username) throws DataAccessException {
-        return null;
+        String authToken = UUID.randomUUID().toString();
+        var statement = "INSERT INTO auth (authToken, username) VALUES (?, ?)";
+        try {
+            DatabaseManager.executeUpdate(statement, authToken, username);
+            return new AuthData(authToken, username);
+        } catch (Exception ne) {
+            throw new DataAccessException("Error: Unable to insert user into database");
+        }
     }
 
     @Override

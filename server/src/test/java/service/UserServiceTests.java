@@ -34,7 +34,11 @@ public class UserServiceTests {
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }
-        authDAO.deleteAllAuths();
+        try {
+            authDAO.deleteAllAuths();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
 
         existingUser = new UserData("Existing User",
                 "existing user's password",
