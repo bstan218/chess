@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="implemented getUser">
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataaccess/SqlUserDAO.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;bstan218&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/bstan218/chess.git",
+    "accountId": "99b1630b-f7e5-4bde-9de7-072369884ef5"
+  }
+}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2ZdeZEoo0WsXUuIH3zHpGaPMMFj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.BishopMoveTests.bishopMoveUntilEdge.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BishopMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessBoardTests.defaultGameBoard.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessBoardTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessBoardTests.getAddPiece.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessBoardTests.pieceMoveAllPieces.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessMoveTests.equalsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessMoveTests.hashSetTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessMoveTests.hashTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessPositionTests.equalsTest.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessPositionTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessPositionTests.hashSetTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessPositionTests.hashTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DatabaseTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DatabaseTests.persistenceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FullGameTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FullGameTest.scholarsMate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.failCreateGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.failJoinGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.failListGames.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.successClear.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.successCreateGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.successJoinGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.successListGames.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.blackCheck.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.blackTeamPawnCheckmate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.noGameStatuses.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.whiteCheck.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.whiteTeamCheckmate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KingMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KingMoveTests.kingBlocked.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KingMoveTests.kingCaptureEnemy.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KingMoveTests.kingMoveUntilEdge.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KnightMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KnightMoveTests.knightMiddleOfBoardWhite.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.invalidMakeMoveInCheck.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.invalidMakeMoveNoPiece.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.invalidMakeMoveThroughPiece.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.makeValidKingMove.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.promotionMoves.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.pawnAdvanceBlockedDoubleMoveBlack.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.pawnAdvanceBlockedWhite.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.pawnInitialMoveBlack.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.pawnInitialMoveWhite.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.pawnMiddleOfBoardWhite.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.PawnMoveTests.pawnPromotionWhite.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.QueenMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RookMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RookMoveTests.rookBlocked.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RookMoveTests.rookCaptureEnemy.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RookMoveTests.rookMoveUntilEdge.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.badAuthCreate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.badAuthJoin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.badColorJoin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.failLogout.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.failRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.goodCreate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.goodJoin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.loginInvalidUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.loginWrongPassword.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.registerTwice.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.staticFiles.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.successLogin.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.StandardAPITests.successLogout.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.successRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.uniqueAuthorizationTokens.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.failLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.failLogout.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.failRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.successLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.successLogout.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.successRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValidMovesTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValidMovesTests.forcedMove.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValidMovesTests.kingInDanger.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValidMovesTests.noPutSelfInDanger.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.passoff.chess in shared.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bstan/OneDrive/Desktop/cs240/chess&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.34252873&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="handler.utils" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.DatabaseTests.persistenceTest">
+    <configuration name="DatabaseTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.DatabaseTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseTests.persistenceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.DatabaseTests" />
+      <option name="METHOD_NAME" value="persistenceTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameServiceTests.failJoinGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.GameServiceTests" />
+      <option name="METHOD_NAME" value="failJoinGame" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameServiceTests.successClear" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.GameServiceTests" />
+      <option name="METHOD_NAME" value="successClear" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameServiceTests.successJoinGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.GameServiceTests" />
+      <option name="METHOD_NAME" value="successJoinGame" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DatabaseTests.persistenceTest" />
+        <item itemvalue="JUnit.DatabaseTests" />
+        <item itemvalue="JUnit.GameServiceTests.successClear" />
+        <item itemvalue="JUnit.GameServiceTests.failJoinGame" />
+        <item itemvalue="JUnit.GameServiceTests.successJoinGame" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="" />
+      <created>1702756436549</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702756436549</updated>
+    </task>
+    <task id="LOCAL-00023" summary="implemented getAllPieces method">
+      <option name="closed" value="true" />
+      <created>1715620925205</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1715620925205</updated>
+    </task>
+    <task id="LOCAL-00024" summary="implemented findKingPosition method">
+      <option name="closed" value="true" />
+      <created>1715621702302</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1715621702302</updated>
+    </task>
+    <task id="LOCAL-00025" summary="removed &quot;throws&quot; from findKingPosition method">
+      <option name="closed" value="true" />
+      <created>1715621754690</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1715621754690</updated>
+    </task>
+    <task id="LOCAL-00026" summary="findKingPosition -&gt; getKingPosition">
+      <option name="closed" value="true" />
+      <created>1715622148772</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1715622148772</updated>
+    </task>
+    <task id="LOCAL-00027" summary="implemented makeMove and isInCheck">
+      <option name="closed" value="true" />
+      <created>1715622989173</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1715622989173</updated>
+    </task>
+    <task id="LOCAL-00028" summary="implemented makeDeepCopy">
+      <option name="closed" value="true" />
+      <created>1715639214335</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1715639214335</updated>
+    </task>
+    <task id="LOCAL-00029" summary="implemented validMoves">
+      <option name="closed" value="true" />
+      <created>1715648781118</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1715648781118</updated>
+    </task>
+    <task id="LOCAL-00030" summary="implemented setPieceType">
+      <option name="closed" value="true" />
+      <created>1715648804904</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1715648804904</updated>
+    </task>
+    <task id="LOCAL-00031" summary="implemented isStaleMate">
+      <option name="closed" value="true" />
+      <created>1715650061190</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1715650061190</updated>
+    </task>
+    <task id="LOCAL-00032" summary="removed getAllPieces - not used">
+      <option name="closed" value="true" />
+      <created>1715650269811</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1715650269811</updated>
+    </task>
+    <task id="LOCAL-00033" summary="started implementing DeleteHandler">
+      <option name="closed" value="true" />
+      <created>1716397661548</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1716397661549</updated>
+    </task>
+    <task id="LOCAL-00034" summary="started implementing RegisterHandler">
+      <option name="closed" value="true" />
+      <created>1716397878564</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1716397878564</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Created all handler stems">
+      <option name="closed" value="true" />
+      <created>1716398592094</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1716398592094</updated>
+    </task>
+    <task id="LOCAL-00036" summary="pluggled handlers into Server.java,&#10;DeleteHandler -&gt; ClearHandler.java">
+      <option name="closed" value="true" />
+      <created>1716399011986</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1716399011986</updated>
+    </task>
+    <task id="LOCAL-00037" summary="created UserData, GameData, and AuthData records">
+      <option name="closed" value="true" />
+      <created>1716400637616</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1716400637616</updated>
+    </task>
+    <task id="LOCAL-00038" summary="removed space">
+      <option name="closed" value="true" />
+      <created>1716400655468</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1716400655468</updated>
+    </task>
+    <task id="LOCAL-00039" summary="created Service class stems">
+      <option name="closed" value="true" />
+      <created>1716402852722</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1716402852722</updated>
+    </task>
+    <task id="LOCAL-00040" summary="added clear method to ClearService.java">
+      <option name="closed" value="true" />
+      <created>1716402904593</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1716402904593</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Created DAOs">
+      <option name="closed" value="true" />
+      <created>1716406754417</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1716406754417</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Created to/from json classes with interfaces">
+      <option name="closed" value="true" />
+      <created>1716479660687</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1716479660687</updated>
+    </task>
+    <task id="LOCAL-00043" summary="fromJson and toJson initialization now in Server.java">
+      <option name="closed" value="true" />
+      <created>1716499027687</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1716499027687</updated>
+    </task>
+    <task id="LOCAL-00044" summary="created response records">
+      <option name="closed" value="true" />
+      <created>1716500957531</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1716500957531</updated>
+    </task>
+    <task id="LOCAL-00045" summary="started implementing trycatch, fixed a bunch of other stuff.">
+      <option name="closed" value="true" />
+      <created>1716508819319</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1716508819319</updated>
+    </task>
+    <task id="LOCAL-00046" summary="register and login paths fully implemented including error cases">
+      <option name="closed" value="true" />
+      <created>1716516508215</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1716516508215</updated>
+    </task>
+    <task id="LOCAL-00047" summary="logout path fully implemented">
+      <option name="closed" value="true" />
+      <created>1716569132866</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1716569132866</updated>
+    </task>
+    <task id="LOCAL-00048" summary="createGame path fully implemented">
+      <option name="closed" value="true" />
+      <created>1716572937019</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1716572937019</updated>
+    </task>
+    <task id="LOCAL-00049" summary="created JoinGameRequest.java">
+      <option name="closed" value="true" />
+      <created>1716573079927</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1716573079927</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Implemented getGame GameDAO method">
+      <option name="closed" value="true" />
+      <created>1716576043543</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1716576043543</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Implemented joinGame pathway">
+      <option name="closed" value="true" />
+      <created>1716580441064</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1716580441064</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Implemented listGames pathway">
+      <option name="closed" value="true" />
+      <created>1716581285905</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1716581285905</updated>
+    </task>
+    <task id="LOCAL-00053" summary="ClearService.java instance variables final">
+      <option name="closed" value="true" />
+      <created>1716581353382</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1716581353382</updated>
+    </task>
+    <task id="LOCAL-00054" summary="ClearService.java instance variables final">
+      <option name="closed" value="true" />
+      <created>1716581688937</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1716581688937</updated>
+    </task>
+    <task id="LOCAL-00055" summary="editing for autograder code conventions">
+      <option name="closed" value="true" />
+      <created>1716581944171</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1716581944171</updated>
+    </task>
+    <task id="LOCAL-00056" summary="editing for autograder code conventions">
+      <option name="closed" value="true" />
+      <created>1716582016607</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1716582016607</updated>
+    </task>
+    <task id="LOCAL-00057" summary="moved pieceMoves logic into new class PieceMovesCalculator.java">
+      <option name="closed" value="true" />
+      <created>1716584357912</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1716584357912</updated>
+    </task>
+    <task id="LOCAL-00058" summary="moved repeat code into addPawnMovesHelper">
+      <option name="closed" value="true" />
+      <created>1716584777007</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1716584777007</updated>
+    </task>
+    <task id="LOCAL-00059" summary="removed fromJsonToAuth method">
+      <option name="closed" value="true" />
+      <created>1716584819858</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1716584819858</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Implemented unit tests for register in UserService">
+      <option name="closed" value="true" />
+      <created>1716587522741</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1716587522741</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Implemented unit tests for login in UserService">
+      <option name="closed" value="true" />
+      <created>1716588213560</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1716588213560</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Implemented unit tests for logout in UserService">
+      <option name="closed" value="true" />
+      <created>1716588591065</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1716588591066</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Implemented unit tests for create game in GameService">
+      <option name="closed" value="true" />
+      <created>1716589644672</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1716589644672</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Implemented unit tests for list games in GameService">
+      <option name="closed" value="true" />
+      <created>1716589816526</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1716589816526</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Implemented unit tests for joinGame in GameService">
+      <option name="closed" value="true" />
+      <created>1716590013655</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1716590013655</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Implemented unit tests for joinGame in GameService">
+      <option name="closed" value="true" />
+      <created>1716590033669</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1716590033669</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Added starter files for phase 4">
+      <option name="closed" value="true" />
+      <created>1716664229441</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1716664229441</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Added SQL DAO stubs">
+      <option name="closed" value="true" />
+      <created>1717438140469</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1717438140469</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Started creating SqlUserDAO.java configureDatabase method">
+      <option name="closed" value="true" />
+      <created>1717613307527</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1717613307527</updated>
+    </task>
+    <task id="LOCAL-00070" summary="implemented executeUpdate">
+      <option name="closed" value="true" />
+      <created>1717631671018</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1717631671018</updated>
+    </task>
+    <task id="LOCAL-00071" summary="implemented getUser">
+      <option name="closed" value="true" />
+      <created>1717704280583</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1717704280583</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="created response records" />
+    <MESSAGE value="started implementing trycatch, fixed a bunch of other stuff." />
+    <MESSAGE value="register and login paths fully implemented including error cases" />
+    <MESSAGE value="logout path fully implemented" />
+    <MESSAGE value="createGame path fully implemented" />
+    <MESSAGE value="created JoinGameRequest.java" />
+    <MESSAGE value="Implemented getGame GameDAO method" />
+    <MESSAGE value="Implemented joinGame pathway" />
+    <MESSAGE value="Implemented listGames pathway" />
+    <MESSAGE value="ClearService.java instance variables final" />
+    <MESSAGE value="editing for autograder code conventions" />
+    <MESSAGE value="moved pieceMoves logic into new class PieceMovesCalculator.java" />
+    <MESSAGE value="moved repeat code into addPawnMovesHelper" />
+    <MESSAGE value="removed fromJsonToAuth method" />
+    <MESSAGE value="Implemented unit tests for register in UserService" />
+    <MESSAGE value="Implemented unit tests for login in UserService" />
+    <MESSAGE value="Implemented unit tests for logout in UserService" />
+    <MESSAGE value="Implemented unit tests for create game in GameService" />
+    <MESSAGE value="Implemented unit tests for list games in GameService" />
+    <MESSAGE value="Implemented unit tests for joinGame in GameService" />
+    <MESSAGE value="Added starter files for phase 4" />
+    <MESSAGE value="Added SQL DAO stubs" />
+    <MESSAGE value="Started creating SqlUserDAO.java configureDatabase method" />
+    <MESSAGE value="implemented executeUpdate" />
+    <MESSAGE value="implemented getUser" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented getUser" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/shared/src/test/java/passoff/chess/ChessBoardTests.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/shared/src/test/java/passoff/chess/TestUtilities.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/handler/LogoutHandler.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/handler/LoginHandler.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/handler/JoinGameHandler.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="((String)set.toArray()[1]).value" custom="java.lang.String" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
