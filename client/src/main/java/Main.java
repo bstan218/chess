@@ -1,6 +1,4 @@
-import chess.*;
 import client.ChessClient;
-import client.Repl;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,6 +7,6 @@ public class Main {
             serverUrl = args[0];
         }
 
-        new Repl(serverUrl).run();
+        new ChessClient(serverUrl).run();
     }
 }
