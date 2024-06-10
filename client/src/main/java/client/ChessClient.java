@@ -119,19 +119,27 @@ public class ChessClient {
 
     private String registerRequest() {
         requestState = RequestState.REGISTER;
+        return "Enter: <username> <password> <email>";
     }
 
     private String loginRequest() {
         requestState = RequestState.LOGIN;
+        return "Enter: <username> <password>";
     }
 
     private String createGameRequest() {
+        requestState = RequestState.CREATEGAME;
+        return "Enter the name of the game you would like to create:";
     }
 
     private String playGameRequest() {
+        requestState = RequestState.PLAYGAME;
+        return "Enter the listed number of the game you would like to join:";
     }
 
     private String observeGameRequest() {
+        requestState = RequestState.OBSERVEGAME;
+        return "Enter the listed number of the game you would like to join:";
     }
 
 
