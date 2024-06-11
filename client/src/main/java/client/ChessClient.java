@@ -34,7 +34,6 @@ public class ChessClient {
             try {
                 result = eval(line);
                 System.out.print(SET_TEXT_COLOR_BLUE + result);
-                System.out.print(SET_TEXT_COLOR_BLUE + eval("help"));
             } catch (Throwable e) {
                 var msg = e.toString();
                 System.out.print(msg);
@@ -103,7 +102,15 @@ public class ChessClient {
                 case "2" -> facade.listGames();
                 case "3" -> playGameRequest();
                 case "4" -> observeGameRequest();
-                case "5" -> facade.logout();
+                case "5" -> {
+                    try {
+                        facade.logout(this.authToken);
+                        this.signInState = SignInState.SIGNEDOUT;
+                        yield "logout successful";
+                    } catch (ResponseException e) {
+                        yield e.getMessage();
+                    }
+                }
                 default -> help();
             };
         } catch (Exception ex) {

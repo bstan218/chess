@@ -48,8 +48,9 @@ public class ServerFacade {
         return "not implemented";
     }
 
-    public String logout() {
-        return "not implemented";
+    public void logout(String authToken) throws ResponseException {
+        httpCommunicator.makeRequest("DELETE", "/session", null,
+                                    authToken, null);
     }
 
 }
