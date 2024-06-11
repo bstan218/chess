@@ -34,6 +34,7 @@ public class ChessClient {
             try {
                 result = eval(line);
                 System.out.print(SET_TEXT_COLOR_BLUE + result);
+                System.out.print(SET_TEXT_COLOR_BLUE + eval("help"));
             } catch (Throwable e) {
                 var msg = e.toString();
                 System.out.print(msg);
@@ -58,6 +59,8 @@ public class ChessClient {
                 requestState = null;
                 try {
                     this.authToken = facade.login(params);
+                    signInState = SignInState.SIGNEDIN;
+                    return "Successfully logged in!";
 
                 } catch (ResponseException e) {
                     return e.getMessage();
@@ -65,7 +68,14 @@ public class ChessClient {
             }
             else if (requestState == RequestState.REGISTER) {
                 requestState = null;
-                return facade.register(params);
+                try {
+                    this.authToken = facade.register(params);
+                    signInState = SignInState.SIGNEDIN;
+                    return "Successfully registered!";
+
+                } catch (ResponseException e) {
+                    return e.getMessage();
+                }
             }
             else if (requestState == RequestState.CREATEGAME) {
                 requestState = null;

@@ -5,11 +5,9 @@ import model.AuthData;
 import java.util.Map;
 
 public class ServerFacade {
-    private final String serverUrl;
     private final HttpCommunicator httpCommunicator;
 
     public ServerFacade(String url) {
-        serverUrl = url;
         httpCommunicator = new HttpCommunicator(url);
     }
 
@@ -18,13 +16,20 @@ public class ServerFacade {
         var reqBody = Map.of("username", params[0],
                             "password", params[1]);
 
-            AuthData authData = httpCommunicator.makeRequest("POST", "/user", reqBody,
+            AuthData authData = httpCommunicator.makeRequest("POST", "/session", reqBody,
                                                             null, AuthData.class);
             return authData.authToken();
     }
 
-    public String register(String[] params) {
-        return "not implemented";
+    public String register(String[] params) throws ResponseException {
+        var reqBody = Map.of("username", params[0],
+                            "password", params[1],
+                            "email", params[2]);
+
+        AuthData authData = httpCommunicator.makeRequest("POST", "/user", reqBody,
+                                            null, AuthData.class);
+        return authData.authToken();
+
     }
 
     public String createGame(String[] params) {
