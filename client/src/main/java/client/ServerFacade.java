@@ -1,5 +1,7 @@
 package client;
 
+import java.util.Map;
+
 public class ServerFacade {
     private final String serverUrl;
     private final HttpCommunicator httpCommunicator;
@@ -11,6 +13,9 @@ public class ServerFacade {
 
 
     public String login(String[] params) {
+        var reqBody = Map.of("username", params[0],
+                            "password", params[1]);
+        httpCommunicator.makeRequest("POST", "/user", reqBody, )
     }
 
     public String register(String[] params) {

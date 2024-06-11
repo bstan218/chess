@@ -44,11 +44,6 @@ public class ChessClient {
     }
 
 
-
-
-
-
-
     public String eval(String input) {
         try {
             var tokens = input.split(" ");
@@ -75,7 +70,6 @@ public class ChessClient {
                 requestState = null;
                 return facade.observeGame(params);
             }
-
 
             if (signInState.equals(SignInState.SIGNEDOUT)) {
                 return switch (cmd) {
