@@ -75,13 +75,20 @@ public class ChessClient {
                     facade.createGame(params, authToken);
                     yield "created game successfully!\n" + help();
                 }
-                case PLAYGAME -> null;
-                case OBSERVEGAME -> null;
+                case PLAYGAME -> {
+                    facade.playGame(params, gameList, authToken);
+                    yield "joined game successfully." + printGameBoard();
+                }
+                case OBSERVEGAME -> printGameBoard();
             };
 
         } catch (Exception e) {
             return e.getMessage();
         }
+    }
+
+    private String printGameBoard() {
+
     }
 
 
@@ -151,17 +158,18 @@ public class ChessClient {
 
     private String createGameRequest() {
         requestState = RequestState.CREATEGAME;
-        return "Enter the name of the game you would like to create:";
+        return "Enter the name of the game:";
     }
 
     private String playGameRequest() {
         requestState = RequestState.PLAYGAME;
-        return "Enter the listed number of the game you would like to join:\n" + gameListAsString();
+        return "Enter the number of the game you would like to join\n" +
+                "and what color you want to play as: <number> <white/black>\n" + gameListAsString();
     }
 
     private String observeGameRequest() {
         requestState = RequestState.OBSERVEGAME;
-        return "Enter the listed number of the game you would like to join:\n" + gameListAsString();
+        return "Enter the number of the game you would like to observe:\n" + gameListAsString();
     }
 
 

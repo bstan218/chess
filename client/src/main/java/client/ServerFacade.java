@@ -32,7 +32,6 @@ public class ServerFacade {
         AuthData authData = httpCommunicator.makeRequest("POST", "/user", reqBody,
                                             null, AuthData.class);
         return authData.authToken();
-
     }
 
     public void createGame(String[] params, String authToken) throws ResponseException {
@@ -41,13 +40,13 @@ public class ServerFacade {
         httpCommunicator.makeRequest("POST", "/game", reqBody, authToken, null);
     }
 
-    public String playGame(String[] params) {
-        return "not implemented";
+    public void playGame(String[] params, List<GameData> gameList, String authToken) throws ResponseException {
+        int gameID = gameList.get(Integer.parseInt(params[0])-1).gameID();
+        var reqBody = Map.of("playerColor", params[1].toUpperCase(), "gameID", gameID);
+        httpCommunicator.makeRequest("PUT", "/game", reqBody, authToken, null);
     }
 
-    public String observeGame(String[] params) {
-        return "not implemented";
-    }
+    //public String observeGame(String[] params) {return "not implemented";}
 
     public List<GameData> listGames(String authToken) throws ResponseException {
         ListGameResponse listGameResponse = httpCommunicator.makeRequest("GET", "/game", null, authToken, ListGameResponse.class);
