@@ -1,7 +1,10 @@
 package client;
 
+import handler.response.ListGameResponse;
 import model.AuthData;
+import model.GameData;
 
+import java.util.List;
 import java.util.Map;
 
 public class ServerFacade {
@@ -32,8 +35,10 @@ public class ServerFacade {
 
     }
 
-    public String createGame(String[] params) {
-        return "not implemented";
+    public void createGame(String[] params, String authToken) throws ResponseException {
+        var reqBody = Map.of("gameName", String.join(" ", params));
+
+        httpCommunicator.makeRequest("POST", "/game", reqBody, authToken, null);
     }
 
     public String playGame(String[] params) {
@@ -44,8 +49,9 @@ public class ServerFacade {
         return "not implemented";
     }
 
-    public String listGames() {
-        return "not implemented";
+    public List<GameData> listGames(String authToken) throws ResponseException {
+        ListGameResponse listGameResponse = httpCommunicator.makeRequest("GET", "/game", null, authToken, ListGameResponse.class);
+        return  listGameResponse.games();
     }
 
     public void logout(String authToken) throws ResponseException {

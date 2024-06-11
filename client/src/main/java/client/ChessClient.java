@@ -1,8 +1,9 @@
 package client;
 
-import model.AuthData;
+import model.GameData;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import static ui.EscapeSequences.*;
@@ -12,6 +13,7 @@ public class ChessClient {
     private SignInState signInState;
     private RequestState requestState;
     private String authToken;
+    private List<GameData> gameList;
 
     public ChessClient(String serverUrl) {
         facade = new ServerFacade(serverUrl);
@@ -59,17 +61,20 @@ public class ChessClient {
             requestState = null;
 
             return switch (currentRequestState) {
-                case RequestState.LOGIN -> {
+                case LOGIN -> {
                     this.authToken = facade.login(params);
                     signInState = SignInState.SIGNEDIN;
-                    yield "Successfully logged in!";
+                    yield "Successfully logged in!\n" + help();
                 }
                 case REGISTER -> {
                     this.authToken = facade.register(params);
                     signInState = SignInState.SIGNEDIN;
-                    yield "Successfully registered!";
+                    yield "Successfully registered!\n" + help();
                 }
-                case CREATEGAME -> null;
+                case CREATEGAME -> {
+                    facade.createGame(params, authToken);
+                    yield "created game successfully!\n" + help();
+                }
                 case PLAYGAME -> null;
                 case OBSERVEGAME -> null;
             };
@@ -80,7 +85,7 @@ public class ChessClient {
     }
 
 
-    private String loginUiOptions(String cmd) {
+    private String loginUiOptions(String cmd) throws ResponseException {
         if (signInState == SignInState.SIGNEDOUT) {
             return switch (cmd) {
                 case "1" -> loginRequest();
@@ -91,17 +96,16 @@ public class ChessClient {
         }
         return switch (cmd) {
             case "1" -> createGameRequest();
-            case "2" -> facade.listGames();
+            case "2" -> {
+                this.gameList = facade.listGames(authToken);
+                yield gameListAsString();
+            }
             case "3" -> playGameRequest();
             case "4" -> observeGameRequest();
             case "5" -> {
-                try {
-                    facade.logout(this.authToken);
-                    this.signInState = SignInState.SIGNEDOUT;
-                    yield "logout successful";
-                } catch (ResponseException e) {
-                    yield e.getMessage();
-                }
+                facade.logout(this.authToken);
+                this.signInState = SignInState.SIGNEDOUT;
+                yield "logout successful\n" + help();
             }
             default -> help();
         };
@@ -126,6 +130,15 @@ public class ChessClient {
                 """;
     }
 
+    private String gameListAsString() {
+        StringBuilder returnList = new StringBuilder();
+        for (int i = 0; i < gameList.size(); i++) {
+            GameData currentGame = gameList.get(i);
+            returnList.append(String.format("%d. %s: white- %s, black- %s\n", i + 1, currentGame.gameName(), currentGame.whiteUsername(), currentGame.blackUsername()));
+        }
+        return returnList.toString();
+    }
+
     private String registerRequest() {
         requestState = RequestState.REGISTER;
         return "Enter: <username> <password> <email>";
@@ -143,12 +156,12 @@ public class ChessClient {
 
     private String playGameRequest() {
         requestState = RequestState.PLAYGAME;
-        return "Enter the listed number of the game you would like to join:";
+        return "Enter the listed number of the game you would like to join:\n" + gameListAsString();
     }
 
     private String observeGameRequest() {
         requestState = RequestState.OBSERVEGAME;
-        return "Enter the listed number of the game you would like to join:";
+        return "Enter the listed number of the game you would like to join:\n" + gameListAsString();
     }
 
 
