@@ -23,7 +23,9 @@ public class HttpCommunicator {
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
             http.setRequestMethod(method);
             http.setDoOutput(true);
-
+            if (headerAuthToken != null) {
+                writeHeader("authorization", headerAuthToken, http);
+            }
             writeBody(requestBody, http);
             http.connect();
             throwIfNotSuccessful(http);
@@ -33,7 +35,9 @@ public class HttpCommunicator {
         }
     }
 
-    private static void writeHeader()
+    private void writeHeader(String header, String property, HttpURLConnection http) {
+        http.addRequestProperty(header, property);
+    }
 
     private static void writeBody(Object request, HttpURLConnection http) throws IOException {
         if (request != null) {

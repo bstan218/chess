@@ -1,5 +1,7 @@
 package client;
 
+import model.AuthData;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -9,11 +11,13 @@ public class ChessClient {
     private ServerFacade facade;
     private SignInState signInState;
     private RequestState requestState;
+    private String authToken;
 
     public ChessClient(String serverUrl) {
         facade = new ServerFacade(serverUrl);
         signInState = SignInState.SIGNEDOUT;
         requestState = null;
+        authToken = null;
 
     }
 
@@ -50,28 +54,33 @@ public class ChessClient {
             var cmd = (tokens.length > 0) ? tokens[0] : "help";
             var params = Arrays.copyOfRange(tokens, 0, tokens.length);
 
-            if (requestState.equals(RequestState.LOGIN)) {
+            if (requestState == RequestState.LOGIN) {
                 requestState = null;
-                return facade.login(params);
+                try {
+                    this.authToken = facade.login(params);
+
+                } catch (ResponseException e) {
+                    return e.getMessage();
+                }
             }
-            else if (requestState.equals(RequestState.REGISTER)) {
+            else if (requestState == RequestState.REGISTER) {
                 requestState = null;
                 return facade.register(params);
             }
-            else if (requestState.equals(RequestState.CREATEGAME)) {
+            else if (requestState == RequestState.CREATEGAME) {
                 requestState = null;
                 return facade.createGame(params);
             }
-            else if (requestState.equals(RequestState.PLAYGAME)) {
+            else if (requestState == RequestState.PLAYGAME) {
                 requestState = null;
                 return facade.playGame(params);
             }
-            else if (requestState.equals(RequestState.OBSERVEGAME)) {
+            else if (requestState == RequestState.OBSERVEGAME) {
                 requestState = null;
                 return facade.observeGame(params);
             }
 
-            if (signInState.equals(SignInState.SIGNEDOUT)) {
+            if (signInState == SignInState.SIGNEDOUT) {
                 return switch (cmd) {
                     case "1" -> loginRequest();
                     case "2" -> registerRequest();
