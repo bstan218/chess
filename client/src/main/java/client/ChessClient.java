@@ -54,68 +54,57 @@ public class ChessClient {
             var cmd = (tokens.length > 0) ? tokens[0] : "help";
             var params = Arrays.copyOfRange(tokens, 0, tokens.length);
 
-            if (requestState == RequestState.LOGIN) {
-                requestState = null;
-                try {
+            RequestState currentRequestState = requestState;
+            if (requestState == null) { return loginUiOptions(cmd); }
+            requestState = null;
+
+            return switch (currentRequestState) {
+                case RequestState.LOGIN -> {
                     this.authToken = facade.login(params);
                     signInState = SignInState.SIGNEDIN;
-                    return "Successfully logged in!";
-
-                } catch (ResponseException e) {
-                    return e.getMessage();
+                    yield "Successfully logged in!";
                 }
-            }
-            else if (requestState == RequestState.REGISTER) {
-                requestState = null;
-                try {
+                case REGISTER -> {
                     this.authToken = facade.register(params);
                     signInState = SignInState.SIGNEDIN;
-                    return "Successfully registered!";
-
-                } catch (ResponseException e) {
-                    return e.getMessage();
+                    yield "Successfully registered!";
                 }
-            }
-            else if (requestState == RequestState.CREATEGAME) {
-                requestState = null;
-                return facade.createGame(params);
-            }
-            else if (requestState == RequestState.PLAYGAME) {
-                requestState = null;
-                return facade.playGame(params);
-            }
-            else if (requestState == RequestState.OBSERVEGAME) {
-                requestState = null;
-                return facade.observeGame(params);
-            }
+                case CREATEGAME -> null;
+                case PLAYGAME -> null;
+                case OBSERVEGAME -> null;
+            };
 
-            if (signInState == SignInState.SIGNEDOUT) {
-                return switch (cmd) {
-                    case "1" -> loginRequest();
-                    case "2" -> registerRequest();
-                    case "4" -> "quit";
-                    default -> help();
-                };
-            }
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+
+    private String loginUiOptions(String cmd) {
+        if (signInState == SignInState.SIGNEDOUT) {
             return switch (cmd) {
-                case "1" -> createGameRequest();
-                case "2" -> facade.listGames();
-                case "3" -> playGameRequest();
-                case "4" -> observeGameRequest();
-                case "5" -> {
-                    try {
-                        facade.logout(this.authToken);
-                        this.signInState = SignInState.SIGNEDOUT;
-                        yield "logout successful";
-                    } catch (ResponseException e) {
-                        yield e.getMessage();
-                    }
-                }
+                case "1" -> loginRequest();
+                case "2" -> registerRequest();
+                case "4" -> "quit";
                 default -> help();
             };
-        } catch (Exception ex) {
-            return ex.getMessage();
         }
+        return switch (cmd) {
+            case "1" -> createGameRequest();
+            case "2" -> facade.listGames();
+            case "3" -> playGameRequest();
+            case "4" -> observeGameRequest();
+            case "5" -> {
+                try {
+                    facade.logout(this.authToken);
+                    this.signInState = SignInState.SIGNEDOUT;
+                    yield "logout successful";
+                } catch (ResponseException e) {
+                    yield e.getMessage();
+                }
+            }
+            default -> help();
+        };
     }
 
     public String help() {
