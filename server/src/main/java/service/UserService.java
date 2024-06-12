@@ -1,12 +1,11 @@
 package service;
 
 import dataaccess.*;
-import handler.response.EmptyResponse;
-import handler.response.UserResponse;
+import chess.response.EmptyResponse;
+import chess.response.UserResponse;
 import model.*;
 import org.mindrot.jbcrypt.BCrypt;
 import spark.Response;
-import java.util.Objects;
 
 public class UserService {
     private final UserDAO userDAO;

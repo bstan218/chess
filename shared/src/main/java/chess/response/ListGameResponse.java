@@ -1,4 +1,4 @@
-package handler.response;
+package chess.response;
 
 import model.GameData;
 

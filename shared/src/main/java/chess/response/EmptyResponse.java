@@ -1,3 +1,3 @@
-package handler.response;
+package chess.response;
 
 public record EmptyResponse(String message) {}

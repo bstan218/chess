@@ -1,6 +1,6 @@
 package client;
 
-import handler.response.ListGameResponse;
+import chess.response.ListGameResponse;
 import model.AuthData;
 import model.GameData;
 

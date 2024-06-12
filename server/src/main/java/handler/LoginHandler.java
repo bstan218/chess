@@ -2,7 +2,7 @@ package handler;
 
 import handler.json.FromJson;
 import handler.json.ToJson;
-import handler.response.UserResponse;
+import chess.response.UserResponse;
 import model.UserData;
 import service.UserService;
 import spark.Request;

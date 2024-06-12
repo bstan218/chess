@@ -2,7 +2,7 @@ package handler;
 
 import handler.json.FromJson;
 import handler.json.ToJson;
-import handler.response.CreateGameResponse;
+import chess.response.CreateGameResponse;
 import model.AuthData;
 import model.GameData;
 import service.GameService;

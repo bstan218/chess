@@ -1,4 +1,4 @@
-package handler.response;
+package chess.response;
 
 public record CreateGameResponse(String message, Integer gameID) {
 }

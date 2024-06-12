@@ -1,7 +1,7 @@
 package service;
 
 import dataaccess.*;
-import handler.response.UserResponse;
+import chess.response.UserResponse;
 import org.junit.jupiter.api.*;
 import model.*;
 
