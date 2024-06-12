@@ -1,7 +1,9 @@
 package client;
 
+import client.websocket.ServerMessageObserver;
 import model.GameData;
 import ui.ChessBoardUi;
+import websocket.messages.ServerMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.Scanner;
 
 import static ui.EscapeSequences.*;
 
-public class ChessClient {
+public class ChessClient implements ServerMessageObserver  {
     private final ServerFacade facade;
     private SignInState signInState;
     private RequestState requestState;
@@ -18,12 +20,11 @@ public class ChessClient {
     private final ChessBoardUi chessBoardUi;
 
     public ChessClient(String serverUrl) {
-        facade = new ServerFacade(serverUrl);
+        facade = new ServerFacade(serverUrl, this);
         signInState = SignInState.SIGNEDOUT;
         requestState = null;
         authToken = null;
         chessBoardUi = new ChessBoardUi();
-
     }
 
     public void run() {
@@ -180,4 +181,12 @@ public class ChessClient {
     }
 
 
+    @Override
+    public void notify(ServerMessage message) {
+        switch (message.getServerMessageType()) {
+            case NOTIFICATION -> displayNotification(((NotificationMessage) message).getMessage());
+            case ERROR -> displayError(((ErrorMessage) message).getErrorMessage());
+            case LOAD_GAME -> loadGame(((LoadGameMessage) message).getGame());
+        }
+    }
 }

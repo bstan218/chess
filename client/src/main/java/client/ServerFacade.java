@@ -1,6 +1,7 @@
 package client;
 
 import chess.response.ListGameResponse;
+import client.websocket.ServerMessageObserver;
 import model.AuthData;
 import model.GameData;
 
@@ -10,7 +11,7 @@ import java.util.Map;
 public class ServerFacade {
     private final HttpCommunicator httpCommunicator;
 
-    public ServerFacade(String url) {
+    public ServerFacade(String url, ServerMessageObserver serverMessageObserver) {
         httpCommunicator = new HttpCommunicator(url);
     }
 

@@ -75,5 +75,6 @@ public class Server {
                 createGameHandler.handleRequest(req, res));
         Spark.put("/game", (req, res) ->
                 joinGameHandler.handleRequest(req, res));
+        Spark.webSocket();
     }
 }

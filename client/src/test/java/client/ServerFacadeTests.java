@@ -1,7 +1,9 @@
 package client;
 
+import client.websocket.ServerMessageObserver;
 import org.junit.jupiter.api.*;
 import server.Server;
+import websocket.messages.ServerMessage;
 
 
 public class ServerFacadeTests {
@@ -20,7 +22,12 @@ public class ServerFacadeTests {
         httpCommunicator = new HttpCommunicator("http://localhost:" + port);
         httpCommunicator.makeRequest("DELETE", "/db", null, null, null);
 
-        serverFacade = new ServerFacade("http://localhost:" + port);
+        serverFacade = new ServerFacade("http://localhost:" + port, new ServerMessageObserver() {
+            @Override
+            public void notify(ServerMessage message) {
+
+            }
+        });
 
 
     }
