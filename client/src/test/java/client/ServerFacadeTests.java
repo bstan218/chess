@@ -14,13 +14,13 @@ public class ServerFacadeTests {
     @BeforeAll
     public static void init() throws ResponseException {
         server = new Server();
-        var port = server.run(8080);
+        var port = server.run(0);
         System.out.println("Started test HTTP server on " + port);
 
-        httpCommunicator = new HttpCommunicator("http://localhost:8080");
+        httpCommunicator = new HttpCommunicator("http://localhost:" + port);
         httpCommunicator.makeRequest("DELETE", "/db", null, null, null);
 
-        serverFacade = new ServerFacade("http://localhost:8080");
+        serverFacade = new ServerFacade("http://localhost:" + port);
 
 
     }
