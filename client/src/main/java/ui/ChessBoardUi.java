@@ -7,7 +7,6 @@ import chess.ChessPosition;
 
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Random;
 
 import static ui.EscapeSequences.*;
 
@@ -167,17 +166,10 @@ public class ChessBoardUi {
         };
     }
 
-
     private static void setWhite(PrintStream out) {
         out.print(SET_BG_COLOR_WHITE);
         out.print(SET_TEXT_COLOR_WHITE);
     }
-
-    private static void setRed(PrintStream out) {
-        out.print(SET_BG_COLOR_RED);
-        out.print(SET_TEXT_COLOR_RED);
-    }
-
 
     private static void setBlack(PrintStream out) {
         out.print(SET_BG_COLOR_BLACK);
