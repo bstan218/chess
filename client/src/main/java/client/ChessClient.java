@@ -1,6 +1,7 @@
 package client;
 
 import model.GameData;
+import ui.ChessBoardUi;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,17 +10,19 @@ import java.util.Scanner;
 import static ui.EscapeSequences.*;
 
 public class ChessClient {
-    private ServerFacade facade;
+    private final ServerFacade facade;
     private SignInState signInState;
     private RequestState requestState;
     private String authToken;
     private List<GameData> gameList;
+    private ChessBoardUi chessBoardUi;
 
     public ChessClient(String serverUrl) {
         facade = new ServerFacade(serverUrl);
         signInState = SignInState.SIGNEDOUT;
         requestState = null;
         authToken = null;
+        chessBoardUi = new ChessBoardUi();
 
     }
 
@@ -88,7 +91,7 @@ public class ChessClient {
     }
 
     private String printGameBoard() {
-
+        return "not implemented";
     }
 
 
