@@ -15,7 +15,7 @@ public class ChessClient {
     private RequestState requestState;
     private String authToken;
     private List<GameData> gameList;
-    private ChessBoardUi chessBoardUi;
+    private final ChessBoardUi chessBoardUi;
 
     public ChessClient(String serverUrl) {
         facade = new ServerFacade(serverUrl);
@@ -80,9 +80,13 @@ public class ChessClient {
                 }
                 case PLAYGAME -> {
                     facade.playGame(params, gameList, authToken);
-                    yield "joined game successfully." + printGameBoard();
+                    printGameBoard();
+                    yield "joined game successfully.";
                 }
-                case OBSERVEGAME -> printGameBoard();
+                case OBSERVEGAME -> {
+                    printGameBoard();
+                    yield "now observing game";
+                }
             };
 
         } catch (Exception e) {
@@ -90,8 +94,8 @@ public class ChessClient {
         }
     }
 
-    private String printGameBoard() {
-        return "not implemented";
+    private void printGameBoard() {
+        chessBoardUi.drawBothGames();
     }
 
 
