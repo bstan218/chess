@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="refactoring in ChessClient" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Record" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;bstan218&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/bstan218/chess.git&quot;,
+    &quot;accountId&quot;: &quot;99b1630b-f7e5-4bde-9de7-072369884ef5&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2ZdeZEoo0WsXUuIH3zHpGaPMMFj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.AuthDAOTests.deleteAuths.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BishopMoveTests.bishopMoveUntilEdge.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BishopMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessBoardTests.defaultGameBoard.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessBoardTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessBoardTests.getAddPiece.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessBoardTests.pieceMoveAllPieces.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessMoveTests.equalsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessMoveTests.hashSetTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessMoveTests.hashTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessPositionTests.equalsTest.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessPositionTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessPositionTests.hashSetTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessPositionTests.hashTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.FGetGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.SGetGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.SListGames.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.failCreateAuth.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.failCreateGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.failDeleteAuth.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.failGetAuth.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.failUpdateGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.successCreateAuth.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.successCreateGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.successDeleteAuth.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.successGetAuth.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DAOTests.successUpdateGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DatabaseTests.bcrypt.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DatabaseTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DatabaseTests.persistenceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FullGameTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FullGameTest.scholarsMate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.failCreateGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.failJoinGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.failListGames.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.successClear.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.successCreateGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.successJoinGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.successListGames.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.blackCheck.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.blackTeamPawnCheckmate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.noGameStatuses.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.whiteCheck.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameStatusTests.whiteTeamCheckmate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KingMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KingMoveTests.kingBlocked.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KingMoveTests.kingCaptureEnemy.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KingMoveTests.kingMoveUntilEdge.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KnightMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KnightMoveTests.knightMiddleOfBoardWhite.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.invalidMakeMoveInCheck.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.invalidMakeMoveNoPiece.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.invalidMakeMoveThroughPiece.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.makeValidKingMove.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MakeMoveTests.promotionMoves.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.pawnAdvanceBlockedDoubleMoveBlack.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.pawnAdvanceBlockedWhite.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.pawnInitialMoveBlack.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.pawnInitialMoveWhite.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.pawnMiddleOfBoardWhite.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.PawnMoveTests.pawnPromotionWhite.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.QueenMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RookMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RookMoveTests.rookBlocked.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RookMoveTests.rookCaptureEnemy.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RookMoveTests.rookMoveUntilEdge.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ServerFacadeTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.badAuthCreate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.badAuthJoin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.badColorJoin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.failLogout.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.failRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.goodCreate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.goodJoin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.loginInvalidUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.loginWrongPassword.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.registerTwice.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.staticFiles.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.successLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.successLogout.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.successRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.uniqueAuthorizationTokens.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserDAOTests.deleteAuths.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserDAOTests.failCreateUser.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.UserDAOTests.failGetUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserDAOTests.successClearDB.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserDAOTests.successCreateUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserDAOTests.successGetUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.failLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.failLogout.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.failRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.successLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.successLogout.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTests.successRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValidMovesTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValidMovesTests.forcedMove.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValidMovesTests.kingInDanger.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValidMovesTests.noPutSelfInDanger.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.passoff.chess in shared.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bstan/OneDrive/Desktop/cs240/chess&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.34252873&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="client" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bstan\OneDrive\Desktop\cs240\chess\client\src\test\java\client" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="handler.utils" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="client" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="client" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Server">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="client" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DAOTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dataaccess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dataaccess" />
+      <option name="MAIN_CLASS_NAME" value="dataaccess.DAOTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service" />
+      <option name="MAIN_CLASS_NAME" value="service.GameServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerFacadeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="client" />
+      <option name="MAIN_CLASS_NAME" value="client.ServerFacadeTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
+      <item itemvalue="JUnit.DAOTests" />
+      <item itemvalue="JUnit.GameServiceTests" />
+      <item itemvalue="JUnit.ServerFacadeTests" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Client" />
+        <item itemvalue="JUnit.ServerFacadeTests" />
+        <item itemvalue="JUnit.GameServiceTests" />
+        <item itemvalue="JUnit.DAOTests" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="" />
+      <created>1702756436549</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702756436549</updated>
+    </task>
+    <task id="LOCAL-00059" summary="removed fromJsonToAuth method">
+      <option name="closed" value="true" />
+      <created>1716584819858</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1716584819858</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Implemented unit tests for register in UserService">
+      <option name="closed" value="true" />
+      <created>1716587522741</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1716587522741</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Implemented unit tests for login in UserService">
+      <option name="closed" value="true" />
+      <created>1716588213560</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1716588213560</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Implemented unit tests for logout in UserService">
+      <option name="closed" value="true" />
+      <created>1716588591065</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1716588591066</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Implemented unit tests for create game in GameService">
+      <option name="closed" value="true" />
+      <created>1716589644672</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1716589644672</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Implemented unit tests for list games in GameService">
+      <option name="closed" value="true" />
+      <created>1716589816526</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1716589816526</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Implemented unit tests for joinGame in GameService">
+      <option name="closed" value="true" />
+      <created>1716590013655</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1716590013655</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Implemented unit tests for joinGame in GameService">
+      <option name="closed" value="true" />
+      <created>1716590033669</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1716590033669</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Added starter files for phase 4">
+      <option name="closed" value="true" />
+      <created>1716664229441</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1716664229441</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Added SQL DAO stubs">
+      <option name="closed" value="true" />
+      <created>1717438140469</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1717438140469</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Started creating SqlUserDAO.java configureDatabase method">
+      <option name="closed" value="true" />
+      <created>1717613307527</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1717613307527</updated>
+    </task>
+    <task id="LOCAL-00070" summary="implemented executeUpdate">
+      <option name="closed" value="true" />
+      <created>1717631671018</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1717631671018</updated>
+    </task>
+    <task id="LOCAL-00071" summary="implemented getUser">
+      <option name="closed" value="true" />
+      <created>1717704280583</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1717704280583</updated>
+    </task>
+    <task id="LOCAL-00072" summary="created readUser method">
+      <option name="closed" value="true" />
+      <created>1717707876339</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1717707876339</updated>
+    </task>
+    <task id="LOCAL-00073" summary="wrote other methods in SqlUserDAO.java">
+      <option name="closed" value="true" />
+      <created>1717708306798</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1717708306798</updated>
+    </task>
+    <task id="LOCAL-00074" summary="fixed getUser method statement in SqlUserDAO.java">
+      <option name="closed" value="true" />
+      <created>1717720085499</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1717720085499</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Moved configureDatabase and executeUpdate into DatabaseManager.java">
+      <option name="closed" value="true" />
+      <created>1717720906015</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1717720906015</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Implemented SqlAuthDAO constructor and deleteAllAuths method">
+      <option name="closed" value="true" />
+      <created>1717721433645</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1717721433645</updated>
+    </task>
+    <task id="LOCAL-00077" summary="added readAuth and getAuth methods to SqlAuthDAO">
+      <option name="closed" value="true" />
+      <created>1717721711702</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1717721711702</updated>
+    </task>
+    <task id="LOCAL-00078" summary="added createAuth method to SqlAuthDAO">
+      <option name="closed" value="true" />
+      <created>1717723398630</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1717723398630</updated>
+    </task>
+    <task id="LOCAL-00079" summary="implemented deleteAuth method to SqlAuthDAO">
+      <option name="closed" value="true" />
+      <created>1717723845686</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1717723845686</updated>
+    </task>
+    <task id="LOCAL-00080" summary="created constructor and createStatements for SqlGameDAO">
+      <option name="closed" value="true" />
+      <created>1717724562066</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1717724562066</updated>
+    </task>
+    <task id="LOCAL-00081" summary="added getGame and readGame methods for SqlGameDAO">
+      <option name="closed" value="true" />
+      <created>1717725131526</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1717725131526</updated>
+    </task>
+    <task id="LOCAL-00082" summary="added createGame and getGameFromName methods for SqlGameDAO">
+      <option name="closed" value="true" />
+      <created>1717726171279</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1717726171279</updated>
+    </task>
+    <task id="LOCAL-00083" summary="added deleteAllGames method for SqlGameDAO">
+      <option name="closed" value="true" />
+      <created>1717726238953</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1717726238953</updated>
+    </task>
+    <task id="LOCAL-00084" summary="added updateGame method for SqlGameDAO">
+      <option name="closed" value="true" />
+      <created>1717726795323</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1717726795323</updated>
+    </task>
+    <task id="LOCAL-00085" summary="added listGames method for SqlGameDAO">
+      <option name="closed" value="true" />
+      <created>1717727120923</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1717727120923</updated>
+    </task>
+    <task id="LOCAL-00086" summary=" SqlGameDAO fully implemented">
+      <option name="closed" value="true" />
+      <created>1717729097679</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1717729097679</updated>
+    </task>
+    <task id="LOCAL-00087" summary="added two .xml files">
+      <option name="closed" value="true" />
+      <created>1717729117399</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1717729117399</updated>
+    </task>
+    <task id="LOCAL-00088" summary="password hashing">
+      <option name="closed" value="true" />
+      <created>1717729964025</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1717729964025</updated>
+    </task>
+    <task id="LOCAL-00089" summary="code decomp">
+      <option name="closed" value="true" />
+      <created>1717730167454</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1717730167455</updated>
+    </task>
+    <task id="LOCAL-00090" summary="implemented UserDAOTests">
+      <option name="closed" value="true" />
+      <created>1717732092965</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1717732092965</updated>
+    </task>
+    <task id="LOCAL-00091" summary="began implementing AuthDAOTests">
+      <option name="closed" value="true" />
+      <created>1717732242298</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1717732242298</updated>
+    </task>
+    <task id="LOCAL-00092" summary="implemented AuthDAOTests">
+      <option name="closed" value="true" />
+      <created>1717733221975</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1717733221975</updated>
+    </task>
+    <task id="LOCAL-00093" summary="implemented GameDAOTests">
+      <option name="closed" value="true" />
+      <created>1717733929779</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1717733929779</updated>
+    </task>
+    <task id="LOCAL-00094" summary="implemented GameDAOTests">
+      <option name="closed" value="true" />
+      <created>1717733989329</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1717733989329</updated>
+    </task>
+    <task id="LOCAL-00095" summary="added phase 5 starter files">
+      <option name="closed" value="true" />
+      <created>1717777179101</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1717777179102</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Began implementing Repl class">
+      <option name="closed" value="true" />
+      <created>1717985671371</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1717985671371</updated>
+    </task>
+    <task id="LOCAL-00097" summary="fixed server main">
+      <option name="closed" value="true" />
+      <created>1718046331270</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1718046331270</updated>
+    </task>
+    <task id="LOCAL-00098" summary="ChessClient and ServerFacade stubs">
+      <option name="closed" value="true" />
+      <created>1718052802484</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1718052802484</updated>
+    </task>
+    <task id="LOCAL-00099" summary="began populating ChessClient methods">
+      <option name="closed" value="true" />
+      <created>1718054647861</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1718054647861</updated>
+    </task>
+    <task id="LOCAL-00100" summary="removed repl, moved functionality into ChessClient">
+      <option name="closed" value="true" />
+      <created>1718054845343</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1718054845343</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Populated eval method in ChessClient">
+      <option name="closed" value="true" />
+      <created>1718057687765</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1718057687765</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Populated private methods in ChessClient">
+      <option name="closed" value="true" />
+      <created>1718057917212</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1718057917212</updated>
+    </task>
+    <task id="LOCAL-00103" summary="Populated methods in HttpCommunicator">
+      <option name="closed" value="true" />
+      <created>1718065987470</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1718065987470</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Implemented login client pathway">
+      <option name="closed" value="true" />
+      <created>1718067471660</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1718067471660</updated>
+    </task>
+    <task id="LOCAL-00105" summary="Implemented register client pathway">
+      <option name="closed" value="true" />
+      <created>1718068426945</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1718068426945</updated>
+    </task>
+    <task id="LOCAL-00106" summary="Implemented logout client pathway">
+      <option name="closed" value="true" />
+      <created>1718077524336</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1718077524336</updated>
+    </task>
+    <task id="LOCAL-00107" summary="refactoring in ChessClient">
+      <option name="closed" value="true" />
+      <created>1718132422809</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1718132422809</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added createGame and getGameFromName methods for SqlGameDAO" />
+    <MESSAGE value="added deleteAllGames method for SqlGameDAO" />
+    <MESSAGE value="added updateGame method for SqlGameDAO" />
+    <MESSAGE value="added listGames method for SqlGameDAO" />
+    <MESSAGE value=" SqlGameDAO fully implemented" />
+    <MESSAGE value="added two .xml files" />
+    <MESSAGE value="password hashing" />
+    <MESSAGE value="code decomp" />
+    <MESSAGE value="implemented UserDAOTests" />
+    <MESSAGE value="began implementing AuthDAOTests" />
+    <MESSAGE value="implemented AuthDAOTests" />
+    <MESSAGE value="implemented GameDAOTests" />
+    <MESSAGE value="added phase 5 starter files" />
+    <MESSAGE value="Began implementing Repl class" />
+    <MESSAGE value="fixed server main" />
+    <MESSAGE value="ChessClient and ServerFacade stubs" />
+    <MESSAGE value="began populating ChessClient methods" />
+    <MESSAGE value="removed repl, moved functionality into ChessClient" />
+    <MESSAGE value="Populated eval method in ChessClient" />
+    <MESSAGE value="Populated private methods in ChessClient" />
+    <MESSAGE value="Populated methods in HttpCommunicator" />
+    <MESSAGE value="Implemented login client pathway" />
+    <MESSAGE value="Implemented register client pathway" />
+    <MESSAGE value="Implemented logout client pathway" />
+    <MESSAGE value="refactoring in ChessClient" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring in ChessClient" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/shared/src/test/java/passoff/chess/ChessBoardTests.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/shared/src/test/java/passoff/chess/TestUtilities.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/handler/LogoutHandler.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="((String)set.toArray()[1]).value" custom="java.lang.String" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/chess$StandardAPITests_successLogin.ic" NAME="StandardAPITests.successLogin Coverage Results" MODIFIED="1717718074570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>passoff.server.*</FILTER>
+    </SUITE>
+  </component>
+</project>
