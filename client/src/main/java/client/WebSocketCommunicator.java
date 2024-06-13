@@ -2,6 +2,7 @@ package client;
 
 import client.websocket.ServerMessageObserver;
 import com.google.gson.Gson;
+import websocket.messages.ErrorMessage;
 import websocket.messages.ServerMessage;
 
 import javax.websocket.*;
@@ -29,7 +30,7 @@ public class WebSocketCommunicator extends Endpoint {
                         gson.fromJson(message, ServerMessage.class);
                     observer.notify(serverMessage);
                 } catch (Exception ex) {
-                    observer.notify(new ErrorMessage(ex.getMessage()));
+                    observer.notify(new ErrorMessage(ServerMessage.ServerMessageType.ERROR, ex.getMessage()));
                 }
             }
         });

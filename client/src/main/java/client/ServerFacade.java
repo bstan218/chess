@@ -62,4 +62,11 @@ public class ServerFacade {
                                     authToken, null);
     }
 
+    public String leaveGame() {
+        return "not implemented";
+    }
+
+    public String resign() {
+        return "not implemented";
+    }
 }

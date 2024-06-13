@@ -64,47 +64,52 @@ public class ChessClient implements ServerMessageObserver  {
             var cmd = (tokens.length > 0) ? tokens[0] : "help";
             var params = Arrays.copyOfRange(tokens, 0, tokens.length);
 
-            RequestState currentRequestState = requestState;
-
             if (requestState == null) {
                 if (playState == PlayState.INGAME) {
                     return gameUiOptions(cmd);
+                } else {
+                    return loginUiOptions(cmd);
                 }
-                return loginUiOptions(cmd);
             }
-            requestState = null;
 
-            return switch (currentRequestState) {
-                case LOGIN -> {
-                    this.authToken = facade.login(params);
-                    signInState = SignInState.SIGNEDIN;
-                    yield "Successfully logged in!\n" + help();
-                }
-                case REGISTER -> {
-                    this.authToken = facade.register(params);
-                    signInState = SignInState.SIGNEDIN;
-                    yield "Successfully registered!\n" + help();
-                }
-                case CREATEGAME -> {
-                    facade.createGame(params, authToken);
-                    yield "created game successfully!\n" + help();
-                }
-                case PLAYGAME -> {
-                    facade.playGame(params, gameList, authToken);
-                    playState = PlayState.INGAME;
-
-                    printGameBoard();
-                    yield "joined game successfully.";
-                }
-                case OBSERVEGAME -> {
-                    printGameBoard();
-                    yield "now observing game";
-                }
-            };
+            return executeRequest(params);
 
         } catch (Exception e) {
-            return e.getMessage();
+            return e.getMessage() + "\n" + help();
         }
+    }
+
+    private String executeRequest(String[] params) throws ResponseException {
+        RequestState currentRequestState = requestState;
+        requestState = null;
+
+        return switch (currentRequestState) {
+            case LOGIN -> {
+                this.authToken = facade.login(params);
+                signInState = SignInState.SIGNEDIN;
+                yield "Successfully logged in!\n" + help();
+            }
+            case REGISTER -> {
+                this.authToken = facade.register(params);
+                signInState = SignInState.SIGNEDIN;
+                yield "Successfully registered!\n" + help();
+            }
+            case CREATEGAME -> {
+                facade.createGame(params, authToken);
+                yield "created game successfully!\n" + help();
+            }
+            case PLAYGAME -> {
+                facade.playGame(params, gameList, authToken);
+                playState = PlayState.INGAME;
+
+                printGameBoard();
+                yield "joined game successfully.";
+            }
+            case OBSERVEGAME -> {
+                printGameBoard();
+                yield "now observing game";
+            }
+        };
     }
 
     private void printGameBoard() {
@@ -112,7 +117,24 @@ public class ChessClient implements ServerMessageObserver  {
     }
 
     private String gameUiOptions(String cmd) {
+        return switch(cmd) {
+            case "1" -> makeMoveRequest();
+            case "2" -> {
+                printGameBoard();
+                yield "";
+            }
+            case "3" -> highlightMoveRequest();
+            case "4" -> facade.leaveGame();
+            case "5" -> facade.resign();
+            default -> help();
+        };
+    }
 
+    private String makeMoveRequest() {
+
+    }
+
+    private String highlightMoveRequest() {
     }
 
 
@@ -146,9 +168,9 @@ public class ChessClient implements ServerMessageObserver  {
     public String help() {
         if (playState == PlayState.INGAME) {
             return """
-                    1. Make Move <start position> <end position>
+                    1. Make Move
                     2. Redraw Chess Board
-                    3. Highlight legal moves <piece>
+                    3. Highlight legal moves
                     4. Leave
                     5. Resign
                     6. Help
@@ -227,6 +249,6 @@ public class ChessClient implements ServerMessageObserver  {
     }
 
     private void loadGame(ChessGame chessGame) {
-        
+
     }
 }
