@@ -1,7 +1,9 @@
 package handler;
 
+import dataaccess.DataAccessException;
 import handler.json.FromJson;
 import handler.json.ToJson;
+import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
@@ -40,13 +42,17 @@ public class WebSocketHandler {
                 case LEAVE -> leaveGame(session, username, (LeaveGameCommand) command);
                 case RESIGN -> resign(session, username, (ResignCommand) command);
             }
-        } catch (UnauthorizedException ex) {
+        } catch (DataAccessException ex) {
             // Serializes and sends the error message
             sendMessage(session.getRemote(), new ErrorMessage("Error: unauthorized"));
         } catch (Exception ex) {
             ex.printStackTrace();
             sendMessage(session.getRemote(), new ErrorMessage("Error: " + ex.getMessage()));
         }
+    }
+
+    private void sendMessage(RemoteEndpoint remote, ErrorMessage errorMessage) {
+        // Serializes and sends the error message
     }
 
     private void resign(Session session, String username, ResignCommand command) {

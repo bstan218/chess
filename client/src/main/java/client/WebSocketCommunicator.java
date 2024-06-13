@@ -21,22 +21,21 @@ public class WebSocketCommunicator extends Endpoint {
         this.gson = new Gson();
         this.container = ContainerProvider.getWebSocketContainer();
         this.session = container.connectToServer(this, uri);
-        this.session.addMessageHandler();
-
-    }
-
-    public void onMessage(String message) {
-        try {
-            ServerMessage serverMessage =
-                    gson.fromJson(message, ServerMessage.class);
-            observer.notify(serverMessage);
-        } catch(Exception ex) {
-            observer.notify(new ErrorMessage(ex.getMessage()));
-        }
+        this.session.addMessageHandler(new MessageHandler.Whole<String>() {
+            @Override
+            public void onMessage(String message) {
+                try {
+                    ServerMessage serverMessage =
+                        gson.fromJson(message, ServerMessage.class);
+                    observer.notify(serverMessage);
+                } catch (Exception ex) {
+                    observer.notify(new ErrorMessage(ex.getMessage()));
+                }
+            }
+        });
     }
 
     @Override
     public void onOpen(Session session, EndpointConfig endpointConfig) {
-
     }
 }

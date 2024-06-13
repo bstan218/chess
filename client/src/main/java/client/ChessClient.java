@@ -1,10 +1,11 @@
 package client;
 
+import chess.ChessGame;
 import client.state.*;
 import client.websocket.ServerMessageObserver;
 import model.GameData;
 import ui.ChessBoardUi;
-import websocket.messages.ServerMessage;
+import websocket.messages.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -215,5 +216,17 @@ public class ChessClient implements ServerMessageObserver  {
             case ERROR -> displayError(((ErrorMessage) message).getErrorMessage());
             case LOAD_GAME -> loadGame(((LoadGameMessage) message).getGame());
         }
+    }
+
+    private void displayNotification(String message) {
+
+    }
+
+    private void displayError(String errorMessage) {
+
+    }
+
+    private void loadGame(ChessGame chessGame) {
+        
     }
 }
