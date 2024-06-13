@@ -1,4 +1,4 @@
-package client;
+package client.state;
 
 public enum RequestState {
     LOGIN,

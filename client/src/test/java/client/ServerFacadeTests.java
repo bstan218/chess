@@ -5,6 +5,8 @@ import org.junit.jupiter.api.*;
 import server.Server;
 import websocket.messages.ServerMessage;
 
+import java.net.URISyntaxException;
+
 
 public class ServerFacadeTests {
 
@@ -14,7 +16,7 @@ public class ServerFacadeTests {
     private String authToken;
 
     @BeforeAll
-    public static void init() throws ResponseException {
+    public static void init() throws ResponseException, URISyntaxException {
         server = new Server();
         var port = server.run(0);
         System.out.println("Started test HTTP server on " + port);

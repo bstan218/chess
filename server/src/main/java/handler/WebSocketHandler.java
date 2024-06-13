@@ -1,25 +1,36 @@
 package handler;
 
+import handler.json.FromJson;
+import handler.json.ToJson;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
-
-
-import javax.websocket.OnMessage;
+import service.GameService;
+import service.UserService;
+import websocket.commands.UserGameCommand;
 
 @WebSocket
 public class WebSocketHandler {
+    private GameService gameService;
+    private UserService userService;
+    private FromJson fromJson;
+    private ToJson toJson;
 
 
-
+    public WebSocketHandler(UserService userService, GameService gameService, FromJson fromJson, ToJson toJson) {
+        this.userService = userService;
+        this.gameService = gameService;
+        this.fromJson = fromJson;
+        this.toJson = toJson;
+    }
 
     @OnWebSocketMessage
-    public void onMessage(Session session, String msg) {
+    public void onMessage(Session session, String message) {
         try {
-            UserGameCommand command = Serializer.fromJson(message, UserGameCommand.class);
+            UserGameCommand command = fromJson.fromJson(message, UserGameCommand.class);
 
             // Throws a custom UnauthorizedException. Yours may work differently.
-            String username = getUsername(command.getAuthString());
+            String username = userService.getUsernameFromAuthToken(command.getAuthString());
 
             saveSession(command.getGameID(), session);
 
@@ -36,5 +47,17 @@ public class WebSocketHandler {
             ex.printStackTrace();
             sendMessage(session.getRemote(), new ErrorMessage("Error: " + ex.getMessage()));
         }
+    }
+
+    private void resign(Session session, String username, ResignCommand command) {
+    }
+
+    private void leaveGame(Session session, String username, LeaveGameCommand command) {
+    }
+
+    private void makeMove(Session session, String username, MakeMoveCommand command) {
+    }
+
+    private void connect(Session session, String username, ConnectCommand command) {
     }
 }

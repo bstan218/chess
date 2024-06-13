@@ -20,6 +20,7 @@ public class Server {
     private static ListGameHandler listGameHandler;
     private static CreateGameHandler createGameHandler;
     private static JoinGameHandler joinGameHandler;
+    private static WebSocketHandler webSocketHandler;
 
     public Server() {
         UserDAO userDAO = new SqlUserDAO();
@@ -40,6 +41,7 @@ public class Server {
         listGameHandler = new ListGameHandler(gameService, fromJson, toJson);
         createGameHandler = new CreateGameHandler(gameService, fromJson, toJson);
         joinGameHandler = new JoinGameHandler(gameService, fromJson, toJson);
+        webSocketHandler = new WebSocketHandler(userService, gameService, fromJson, toJson);
     }
 
     public int run(int desiredPort) {
@@ -75,6 +77,7 @@ public class Server {
                 createGameHandler.handleRequest(req, res));
         Spark.put("/game", (req, res) ->
                 joinGameHandler.handleRequest(req, res));
-        Spark.webSocket();
+
+        Spark.webSocket("/ws", webSocketHandler);
     }
 }

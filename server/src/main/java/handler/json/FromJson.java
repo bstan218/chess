@@ -8,6 +8,7 @@ import model.UserData;
 import java.util.Set;
 
 public interface FromJson {
+    <T> T fromJson(String body, Class<T> tClass);
     UserData fromJsonToUser(String body);
     GameData fromJsonToGame(String body);
     AuthData fromHeaderToAuth(String authToken);

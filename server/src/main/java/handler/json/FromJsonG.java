@@ -16,6 +16,7 @@ public class FromJsonG implements FromJson {
         this.gson = new Gson();
     }
 
+    public <T> T fromJson(String body, Class<T> tClass) { return gson.fromJson(body, tClass); }
     public UserData fromJsonToUser(String body) { return gson.fromJson(body, UserData.class); }
     public GameData fromJsonToGame(String body) {
         return gson.fromJson(body, GameData.class);

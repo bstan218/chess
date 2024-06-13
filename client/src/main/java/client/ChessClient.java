@@ -1,5 +1,6 @@
 package client;
 
+import client.state.*;
 import client.websocket.ServerMessageObserver;
 import model.GameData;
 import ui.ChessBoardUi;
@@ -15,14 +16,16 @@ public class ChessClient implements ServerMessageObserver  {
     private final ServerFacade facade;
     private SignInState signInState;
     private RequestState requestState;
+    private PlayState playState;
     private String authToken;
     private List<GameData> gameList;
     private final ChessBoardUi chessBoardUi;
 
-    public ChessClient(String serverUrl) {
+    public ChessClient(String serverUrl) throws Exception {
         facade = new ServerFacade(serverUrl, this);
         signInState = SignInState.SIGNEDOUT;
         requestState = null;
+        playState = PlayState.OUTOFGAME;
         authToken = null;
         chessBoardUi = new ChessBoardUi();
     }
@@ -61,7 +64,13 @@ public class ChessClient implements ServerMessageObserver  {
             var params = Arrays.copyOfRange(tokens, 0, tokens.length);
 
             RequestState currentRequestState = requestState;
-            if (requestState == null) { return loginUiOptions(cmd); }
+
+            if (requestState == null) {
+                if (playState == PlayState.INGAME) {
+                    return gameUiOptions(cmd);
+                }
+                return loginUiOptions(cmd);
+            }
             requestState = null;
 
             return switch (currentRequestState) {
@@ -81,6 +90,8 @@ public class ChessClient implements ServerMessageObserver  {
                 }
                 case PLAYGAME -> {
                     facade.playGame(params, gameList, authToken);
+                    playState = PlayState.INGAME;
+
                     printGameBoard();
                     yield "joined game successfully.";
                 }
@@ -99,6 +110,10 @@ public class ChessClient implements ServerMessageObserver  {
         chessBoardUi.drawBothGames();
     }
 
+    private String gameUiOptions(String cmd) {
+
+    }
+
 
     private String loginUiOptions(String cmd) throws ResponseException {
         if (signInState == SignInState.SIGNEDOUT) {
@@ -109,6 +124,7 @@ public class ChessClient implements ServerMessageObserver  {
                 default -> help();
             };
         }
+
         return switch (cmd) {
             case "1" -> createGameRequest();
             case "2" -> {
@@ -127,6 +143,17 @@ public class ChessClient implements ServerMessageObserver  {
     }
 
     public String help() {
+        if (playState == PlayState.INGAME) {
+            return """
+                    1. Make Move <start position> <end position>
+                    2. Redraw Chess Board
+                    3. Highlight legal moves <piece>
+                    4. Leave
+                    5. Resign
+                    6. Help
+                    """;
+        }
+
         if (signInState == SignInState.SIGNEDOUT) {
             return """
                     1. Login

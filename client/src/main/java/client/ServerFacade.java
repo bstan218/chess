@@ -5,14 +5,17 @@ import client.websocket.ServerMessageObserver;
 import model.AuthData;
 import model.GameData;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
 public class ServerFacade {
     private final HttpCommunicator httpCommunicator;
+    private final WebSocketCommunicator webSocketCommunicator;
 
-    public ServerFacade(String url, ServerMessageObserver serverMessageObserver) {
+    public ServerFacade(String url, ServerMessageObserver serverMessageObserver) throws Exception {
         httpCommunicator = new HttpCommunicator(url);
+        webSocketCommunicator = new WebSocketCommunicator(url, serverMessageObserver);
     }
 
 
