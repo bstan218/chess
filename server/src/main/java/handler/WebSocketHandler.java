@@ -9,7 +9,8 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import service.GameService;
 import service.UserService;
-import websocket.commands.UserGameCommand;
+import websocket.commands.*;
+import websocket.messages.ErrorMessage;
 
 @WebSocket
 public class WebSocketHandler {
