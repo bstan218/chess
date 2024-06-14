@@ -14,6 +14,10 @@ public class UserGameCommand {
         this.authToken = authToken;
     }
 
+    public Object getGameID() {
+        return this.gameID;
+    }
+
     public enum CommandType {
         CONNECT,
         MAKE_MOVE,
@@ -22,6 +26,8 @@ public class UserGameCommand {
     }
 
     protected CommandType commandType;
+
+    protected Integer gameID;
 
     private final String authToken;
 
