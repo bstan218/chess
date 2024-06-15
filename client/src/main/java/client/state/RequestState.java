@@ -2,5 +2,10 @@ package client.state;
 
 public enum RequestState {
     LOGIN,
-    REGISTER, CREATEGAME, PLAYGAME, OBSERVEGAME,
+    REGISTER,
+    CREATEGAME,
+    PLAYGAME,
+    OBSERVEGAME,
+    MAKEMOVE,
+    HIGHLIGHTMOVE
 }

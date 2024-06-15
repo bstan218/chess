@@ -15,12 +15,16 @@ import static ui.EscapeSequences.*;
 
 public class ChessClient implements ServerMessageObserver  {
     private final ServerFacade facade;
+    private final ChessBoardUi chessBoardUi;
+
     private SignInState signInState;
     private RequestState requestState;
     private PlayState playState;
+
     private String authToken;
     private List<GameData> gameList;
-    private final ChessBoardUi chessBoardUi;
+    private ChessGame chessGame = null;
+
 
     public ChessClient(String serverUrl) throws Exception {
         facade = new ServerFacade(serverUrl, this);
@@ -109,7 +113,18 @@ public class ChessClient implements ServerMessageObserver  {
                 printGameBoard();
                 yield "now observing game";
             }
+            case MAKEMOVE -> {
+                facade.makeMove(params, authToken);
+                yield "";
+            }
+            case HIGHLIGHTMOVE -> {
+                highlightMove(params, authToken);
+                yield "";
+            }
         };
+    }
+
+    private void highlightMove(String[] params, String authToken) {
     }
 
     private void printGameBoard() {
@@ -131,12 +146,14 @@ public class ChessClient implements ServerMessageObserver  {
     }
 
     private String makeMoveRequest() {
-
+        requestState = RequestState.MAKEMOVE;
+        return "enter: <starting position> <ending position>";
     }
 
     private String highlightMoveRequest() {
+        requestState = RequestState.HIGHLIGHTMOVE;
+        return "enter: <piece position>";
     }
-
 
     private String loginUiOptions(String cmd) throws ResponseException {
         if (signInState == SignInState.SIGNEDOUT) {

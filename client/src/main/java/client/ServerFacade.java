@@ -67,6 +67,9 @@ public class ServerFacade {
     }
 
     public String resign() {
-        return "not implemented";
+        return null;
+    }
+
+    public void makeMove(String[] params, String authToken) {
     }
 }
