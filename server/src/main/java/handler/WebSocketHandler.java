@@ -11,6 +11,7 @@ import service.GameService;
 import service.UserService;
 import websocket.commands.*;
 import websocket.messages.ErrorMessage;
+import websocket.messages.ServerMessage;
 
 @WebSocket
 public class WebSocketHandler {
@@ -50,6 +51,9 @@ public class WebSocketHandler {
             ex.printStackTrace();
             sendMessage(session.getRemote(), new ErrorMessage("Error: " + ex.getMessage()));
         }
+    }
+
+    private void saveSession(Object gameID, Session session) {
     }
 
     private void sendMessage(RemoteEndpoint remote, ErrorMessage errorMessage) {

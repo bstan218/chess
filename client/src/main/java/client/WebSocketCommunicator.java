@@ -6,9 +6,7 @@ import websocket.messages.ErrorMessage;
 import websocket.messages.ServerMessage;
 
 import javax.websocket.*;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 public class WebSocketCommunicator extends Endpoint {
     private final ServerMessageObserver observer;
@@ -30,7 +28,7 @@ public class WebSocketCommunicator extends Endpoint {
                         gson.fromJson(message, ServerMessage.class);
                     observer.notify(serverMessage);
                 } catch (Exception ex) {
-                    observer.notify(new ErrorMessage(ServerMessage.ServerMessageType.ERROR, ex.getMessage()));
+                    observer.notify(new ErrorMessage(ex.getMessage()));
                 }
             }
         });

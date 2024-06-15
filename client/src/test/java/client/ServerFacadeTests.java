@@ -16,7 +16,7 @@ public class ServerFacadeTests {
     private String authToken;
 
     @BeforeAll
-    public static void init() throws ResponseException, URISyntaxException {
+    public static void init() throws Exception {
         server = new Server();
         var port = server.run(0);
         System.out.println("Started test HTTP server on " + port);
