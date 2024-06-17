@@ -1,13 +1,10 @@
-package handler.json;
+package json;
 
 import com.google.gson.Gson;
 import handler.request.JoinGameRequest;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
-
-import java.io.Reader;
-import java.util.Set;
 
 public class FromJsonG implements FromJson {
     private Gson gson;

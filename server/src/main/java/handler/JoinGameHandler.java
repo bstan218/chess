@@ -1,7 +1,7 @@
 package handler;
 
-import handler.json.FromJson;
-import handler.json.ToJson;
+import json.FromJson;
+import json.ToJson;
 import handler.request.JoinGameRequest;
 import chess.response.EmptyResponse;
 import model.AuthData;

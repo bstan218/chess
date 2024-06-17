@@ -1,4 +1,4 @@
-package handler.json;
+package json;
 
 import handler.request.JoinGameRequest;
 import model.AuthData;

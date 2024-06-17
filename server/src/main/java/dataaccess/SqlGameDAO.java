@@ -2,11 +2,9 @@ package dataaccess;
 
 import chess.ChessGame;
 import com.google.gson.Gson;
-import handler.json.ToJson;
-import handler.json.ToJsonG;
+import json.ToJsonG;
 import model.GameData;
 
-import javax.xml.crypto.Data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

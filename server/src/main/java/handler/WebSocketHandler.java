@@ -1,8 +1,8 @@
 package handler;
 
 import dataaccess.DataAccessException;
-import handler.json.FromJson;
-import handler.json.ToJson;
+import json.FromJson;
+import json.ToJson;
 import handler.websocket.ConnectionManager;
 import model.GameData;
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;

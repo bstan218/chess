@@ -1,4 +1,4 @@
-package handler.json;
+package json;
 
 import com.google.gson.Gson;
 

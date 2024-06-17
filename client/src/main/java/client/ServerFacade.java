@@ -1,11 +1,9 @@
 package client;
 
-import chess.ChessGame;
 import chess.response.ListGameResponse;
 import client.websocket.ServerMessageObserver;
-import handler.json.FromJson;
-import handler.json.ToJson;
-import handler.json.ToJsonG;
+import json.ToJson;
+import json.ToJsonG;
 import model.AuthData;
 import model.GameData;
 

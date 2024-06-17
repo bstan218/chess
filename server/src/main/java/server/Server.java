@@ -2,10 +2,10 @@ package server;
 
 import dataaccess.*;
 
-import handler.json.FromJson;
-import handler.json.FromJsonG;
-import handler.json.ToJson;
-import handler.json.ToJsonG;
+import json.FromJson;
+import json.FromJsonG;
+import json.ToJson;
+import json.ToJsonG;
 import service.ClearService;
 import service.GameService;
 import service.UserService;
