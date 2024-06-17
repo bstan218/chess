@@ -92,6 +92,15 @@ public class GameService {
         return new EmptyResponse(null);
     }
 
+    //can update either player name or game string
+    public void updateGame(Integer gameID, GameData gameData) throws DataAccessException {
+
+        GameData currentGameData = getGame(gameID);
+
+        gameDAO.updateGame(gameID, new GameData(gameID, gameData.whiteUsername(), gameData.blackUsername(),
+                            currentGameData.gameName(), gameData.game()));
+    }
+
     public ListGameResponse listGames(AuthData auth, Response res) {
         try {
             authDAO.getAuth(auth.authToken());

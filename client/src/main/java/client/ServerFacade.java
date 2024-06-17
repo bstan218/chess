@@ -43,16 +43,18 @@ public class ServerFacade {
         httpCommunicator.makeRequest("POST", "/game", reqBody, authToken, null);
     }
 
-    public void playGame(String[] params, List<GameData> gameList, String authToken) throws ResponseException {
+    public int playGame(String[] params, List<GameData> gameList, String authToken) throws ResponseException {
         int gameID = gameList.get(Integer.parseInt(params[0])-1).gameID();
         var reqBody = Map.of("playerColor", params[1].toUpperCase(), "gameID", gameID);
         httpCommunicator.makeRequest("PUT", "/game", reqBody, authToken, null);
         webSocketCommunicator.connectToGame(authToken, gameID);
+        return gameID;
     }
 
-    public void observeGame(String[] params, List<GameData> gameList, String authToken) {
+    public int observeGame(String[] params, List<GameData> gameList, String authToken) {
         int gameID = gameList.get(Integer.parseInt(params[0])-1).gameID();
         webSocketCommunicator.connectToGame(authToken, gameID);
+        return gameID;
     }
 
     public List<GameData> listGames(String authToken) throws ResponseException {
@@ -65,11 +67,11 @@ public class ServerFacade {
                                     authToken, null);
     }
 
-    public String leaveGame(String authToken) {
-        return "not implemented";
+    public void leaveGame(String authToken, int currentGameID) {
+        webSocketCommunicator.leaveGame(authToken, currentGameID);
     }
 
-    public String resign(String authToken) {
+    public String resign(String authToken, int currentGameID) {
         return null;
     }
 

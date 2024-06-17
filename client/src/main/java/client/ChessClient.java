@@ -20,10 +20,12 @@ public class ChessClient implements ServerMessageObserver  {
     private SignInState signInState;
     private RequestState requestState;
     private PlayState playState;
+    private boolean observerState;
 
     private String authToken;
     private List<GameData> gameList;
     private ChessGame chessGame = null;
+    private int currentGameID;
 
 
     public ChessClient(String serverUrl) throws Exception {
@@ -33,6 +35,7 @@ public class ChessClient implements ServerMessageObserver  {
         playState = PlayState.OUTOFGAME;
         authToken = null;
         chessBoardUi = new ChessBoardUi();
+        observerState = false;
     }
 
     public void run() {
@@ -103,14 +106,16 @@ public class ChessClient implements ServerMessageObserver  {
                 yield "created game successfully!\n" + help();
             }
             case PLAYGAME -> {
-                facade.playGame(params, gameList, authToken);
+                currentGameID = facade.playGame(params, gameList, authToken);
                 playState = PlayState.INGAME;
 
                 printGameBoard();
                 yield "joined game successfully.";
             }
             case OBSERVEGAME -> {
-                facade.observeGame(params, gameList, authToken);
+                currentGameID = facade.observeGame(params, gameList, authToken);
+                playState = PlayState.INGAME;
+                observerState = true;
 
                 printGameBoard();
                 yield "now observing game.";
@@ -141,8 +146,20 @@ public class ChessClient implements ServerMessageObserver  {
                 yield "";
             }
             case "3" -> highlightMoveRequest();
-            case "4" -> facade.leaveGame(authToken);
-            case "5" -> facade.resign(authToken);
+            case "4" -> {
+                facade.leaveGame(authToken, currentGameID);
+                currentGameID = 0;
+                playState = PlayState.OUTOFGAME;
+                observerState = false;
+                yield "you have left the game\n" + help();
+            }
+            case "5" -> {
+                if (observerState) {
+                    yield "you are observer, you can't resign";
+                }
+                facade.resign(authToken, currentGameID);
+                yield help();
+            }
             default -> help();
         };
     }
@@ -266,10 +283,10 @@ public class ChessClient implements ServerMessageObserver  {
     }
 
     private void displayError(String errorMessage) {
-
+        System.out.print(SET_TEXT_COLOR_RED + errorMessage);
     }
 
     private void loadGame(ChessGame chessGame) {
-
+        this.chessGame = chessGame;
     }
 }
