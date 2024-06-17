@@ -22,7 +22,7 @@ public class JoinGameHandler {
 
     public Object handleRequest(Request req, Response res) {
         AuthData authData = fromJson.fromHeaderToAuth(req.headers("Authorization"));
-        JoinGameRequest joinGameRequest = fromJson.fromJsonToJoinGameRequest(req.body());
+        JoinGameRequest joinGameRequest = fromJson.fromJson(req.body(), JoinGameRequest.class);
         EmptyResponse emptyResponse = service.joinGame(authData, joinGameRequest, res);
         return toJson.fromResponse(emptyResponse);
     }

@@ -1,7 +1,6 @@
 package json;
 
 import com.google.gson.Gson;
-import handler.request.JoinGameRequest;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
@@ -19,5 +18,4 @@ public class FromJsonG implements FromJson {
         return gson.fromJson(body, GameData.class);
     }
     public AuthData fromHeaderToAuth(String authToken) { return new AuthData(authToken, null); }
-    public JoinGameRequest fromJsonToJoinGameRequest(String body) { return gson.fromJson(body, JoinGameRequest.class); }
 }
