@@ -115,11 +115,11 @@ public class ChessClient implements ServerMessageObserver  {
             }
             case MAKEMOVE -> {
                 facade.makeMove(params, authToken);
-                yield "";
+                yield "something";
             }
             case HIGHLIGHTMOVE -> {
                 highlightMove(params, authToken);
-                yield "";
+                yield "something";
             }
         };
     }
