@@ -16,7 +16,7 @@ public class Main {
             System.out.printf("Unable to start server: %s%n", ex.getMessage());
         }
         System.out.println("""
-                Pet Server:
+                Chess Server:
                 java ServerMain <port> [<dburl> <dbuser> <dbpassword> <dbname>]
                 """);
     }
