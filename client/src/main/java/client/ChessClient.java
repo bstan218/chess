@@ -110,16 +110,18 @@ public class ChessClient implements ServerMessageObserver  {
                 yield "joined game successfully.";
             }
             case OBSERVEGAME -> {
+                facade.observeGame(params, gameList, authToken);
+
                 printGameBoard();
-                yield "now observing game";
+                yield "now observing game.";
             }
             case MAKEMOVE -> {
                 facade.makeMove(params, authToken);
-                yield "something";
+                yield "";
             }
             case HIGHLIGHTMOVE -> {
                 highlightMove(params, authToken);
-                yield "something";
+                yield "";
             }
         };
     }
@@ -139,8 +141,8 @@ public class ChessClient implements ServerMessageObserver  {
                 yield "";
             }
             case "3" -> highlightMoveRequest();
-            case "4" -> facade.leaveGame();
-            case "5" -> facade.resign();
+            case "4" -> facade.leaveGame(authToken);
+            case "5" -> facade.resign(authToken);
             default -> help();
         };
     }
@@ -236,14 +238,16 @@ public class ChessClient implements ServerMessageObserver  {
         return "Enter the name of the game:";
     }
 
-    private String playGameRequest() {
+    private String playGameRequest() throws ResponseException {
         requestState = RequestState.PLAYGAME;
+        this.gameList = facade.listGames(authToken);
         return "Enter the number of the game you would like to join\n" +
                 "and what color you want to play as: <number> <white/black>\n" + gameListAsString();
     }
 
-    private String observeGameRequest() {
+    private String observeGameRequest() throws ResponseException {
         requestState = RequestState.OBSERVEGAME;
+        this.gameList = facade.listGames(authToken);
         return "Enter the number of the game you would like to observe:\n" + gameListAsString();
     }
 
@@ -258,7 +262,7 @@ public class ChessClient implements ServerMessageObserver  {
     }
 
     private void displayNotification(String message) {
-
+        System.out.print(SET_TEXT_COLOR_BLUE + message);
     }
 
     private void displayError(String errorMessage) {

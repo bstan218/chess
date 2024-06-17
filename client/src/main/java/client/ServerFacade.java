@@ -5,7 +5,6 @@ import client.websocket.ServerMessageObserver;
 import model.AuthData;
 import model.GameData;
 
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
@@ -66,11 +65,11 @@ public class ServerFacade {
                                     authToken, null);
     }
 
-    public String leaveGame() {
+    public String leaveGame(String authToken) {
         return "not implemented";
     }
 
-    public String resign() {
+    public String resign(String authToken) {
         return null;
     }
 
