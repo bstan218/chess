@@ -48,9 +48,13 @@ public class ServerFacade {
         int gameID = gameList.get(Integer.parseInt(params[0])-1).gameID();
         var reqBody = Map.of("playerColor", params[1].toUpperCase(), "gameID", gameID);
         httpCommunicator.makeRequest("PUT", "/game", reqBody, authToken, null);
+        webSocketCommunicator.connectToGame(authToken, gameID);
     }
 
-    //public String observeGame(String[] params) {return "not implemented";}
+    public void observeGame(String[] params, List<GameData> gameList, String authToken) {
+        int gameID = gameList.get(Integer.parseInt(params[0])-1).gameID();
+        webSocketCommunicator.connectToGame(authToken, gameID);
+    }
 
     public List<GameData> listGames(String authToken) throws ResponseException {
         ListGameResponse listGameResponse = httpCommunicator.makeRequest("GET", "/game", null, authToken, ListGameResponse.class);

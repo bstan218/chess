@@ -63,6 +63,8 @@ public class Server {
 
     private static void createRoutes() {
         //Spark.get("/db", (req, res) -> "Hello BYU!");
+        Spark.webSocket("/ws", webSocketHandler);
+
         Spark.delete("/db", (req, res) ->
                 clearHandler.handleRequest(req, res));
         Spark.post("/user", (req, res) ->
@@ -78,6 +80,5 @@ public class Server {
         Spark.put("/game", (req, res) ->
                 joinGameHandler.handleRequest(req, res));
 
-        Spark.webSocket("/ws", webSocketHandler);
     }
 }

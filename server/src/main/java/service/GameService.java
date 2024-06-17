@@ -37,7 +37,10 @@ public class GameService {
             return new CreateGameResponse(e.getMessage(), null);
         }
         return new CreateGameResponse(null, gameID);
+    }
 
+    public GameData getGame(int gameID) throws DataAccessException {
+        return gameDAO.getGame(gameID);
     }
 
     public EmptyResponse joinGame(AuthData auth, JoinGameRequest joinGameRequest, Response res) {

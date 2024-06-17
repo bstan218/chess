@@ -3,6 +3,7 @@ package handler;
 import dataaccess.DataAccessException;
 import handler.json.FromJson;
 import handler.json.ToJson;
+import handler.websocket.ConnectionManager;
 import org.eclipse.jetty.websocket.api.RemoteEndpoint;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
@@ -20,12 +21,16 @@ public class WebSocketHandler {
     private FromJson fromJson;
     private ToJson toJson;
 
+    private ConnectionManager connectionManager;
+
 
     public WebSocketHandler(UserService userService, GameService gameService, FromJson fromJson, ToJson toJson) {
         this.userService = userService;
         this.gameService = gameService;
         this.fromJson = fromJson;
         this.toJson = toJson;
+
+        this.connectionManager = new ConnectionManager();
     }
 
     @OnWebSocketMessage
@@ -36,7 +41,7 @@ public class WebSocketHandler {
             // Throws a custom UnauthorizedException. Yours may work differently.
             String username = userService.getUsernameFromAuthToken(command.getAuthString());
 
-            saveSession(command.getGameID(), session);
+            connectionManager.saveSession(command.getGameID(), session);
 
             switch (command.getCommandType()) {
                 case CONNECT -> connect(session, username, (ConnectCommand) command);
@@ -53,8 +58,6 @@ public class WebSocketHandler {
         }
     }
 
-    private void saveSession(Object gameID, Session session) {
-    }
 
     private void sendMessage(RemoteEndpoint remote, ErrorMessage errorMessage) {
         // Serializes and sends the error message
@@ -70,5 +73,6 @@ public class WebSocketHandler {
     }
 
     private void connect(Session session, String username, ConnectCommand command) {
+
     }
 }

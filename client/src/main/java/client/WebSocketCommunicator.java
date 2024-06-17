@@ -2,23 +2,26 @@ package client;
 
 import client.websocket.ServerMessageObserver;
 import com.google.gson.Gson;
+import websocket.commands.ConnectCommand;
+import websocket.commands.UserGameCommand;
 import websocket.messages.ErrorMessage;
 import websocket.messages.ServerMessage;
 
 import javax.websocket.*;
+import java.io.IOException;
 import java.net.URI;
 
 public class WebSocketCommunicator extends Endpoint {
     private final ServerMessageObserver observer;
     private final Gson gson;
-    private WebSocketContainer container;
     private Session session;
 
     public WebSocketCommunicator(String url, ServerMessageObserver serverMessageObserver) throws Exception {
-        URI uri = new URI(url + "/wb");
+        url = url.replace("http", "ws");
+        URI uri = new URI(url + "/ws");
         this.observer = serverMessageObserver;
         this.gson = new Gson();
-        this.container = ContainerProvider.getWebSocketContainer();
+        WebSocketContainer container = ContainerProvider.getWebSocketContainer();
         this.session = container.connectToServer(this, uri);
         this.session.addMessageHandler(new MessageHandler.Whole<String>() {
             @Override
@@ -36,5 +39,14 @@ public class WebSocketCommunicator extends Endpoint {
 
     @Override
     public void onOpen(Session session, EndpointConfig endpointConfig) {
+    }
+
+    public void connectToGame(String authToken, Integer gameID) {
+        try {
+            var command = new ConnectCommand(authToken, gameID);
+            this.session.getBasicRemote().sendText(gson.toJson(command));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

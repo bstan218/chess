@@ -14,7 +14,7 @@ public class UserGameCommand {
         this.authToken = authToken;
     }
 
-    public Object getGameID() {
+    public Integer getGameID() {
         return this.gameID;
     }
 
