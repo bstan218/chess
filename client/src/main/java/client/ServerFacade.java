@@ -1,7 +1,11 @@
 package client;
 
+import chess.ChessGame;
 import chess.response.ListGameResponse;
 import client.websocket.ServerMessageObserver;
+import handler.json.FromJson;
+import handler.json.ToJson;
+import handler.json.ToJsonG;
 import model.AuthData;
 import model.GameData;
 
@@ -11,10 +15,13 @@ import java.util.Map;
 public class ServerFacade {
     private final HttpCommunicator httpCommunicator;
     private final WebSocketCommunicator webSocketCommunicator;
+    private final ToJson toJson = new ToJsonG();
 
     public ServerFacade(String url, ServerMessageObserver serverMessageObserver) throws Exception {
         httpCommunicator = new HttpCommunicator(url);
         webSocketCommunicator = new WebSocketCommunicator(url, serverMessageObserver);
+
+
     }
 
 

@@ -3,6 +3,7 @@ package dataaccess;
 import chess.ChessGame;
 import com.google.gson.Gson;
 import handler.json.ToJson;
+import handler.json.ToJsonG;
 import model.GameData;
 
 import javax.xml.crypto.Data;
@@ -40,9 +41,9 @@ public class SqlGameDAO implements GameDAO {
         try {
             getGameFromName(gameName);
         } catch (DataAccessException e) {
-            var statement = "INSERT INTO game (gameName) VALUES (?)";
+            var statement = "INSERT INTO game (gameName, json) VALUES (?, ?)";
             try {
-                DatabaseManager.executeUpdate(statement, gameName);
+                DatabaseManager.executeUpdate(statement, gameName, new ToJsonG().fromResponse(new ChessGame()));
             } catch (Exception ne) {
                 throw new DataAccessException("Error: Unable to insert game into database");
             }
