@@ -17,15 +17,6 @@ public class ChessBoardUi {
 
     public ChessBoardUi() {}
 
-
-
-    public void drawBothGames() {
-        ChessBoard chessBoard = new ChessBoard();
-        chessBoard.resetBoard();
-        drawGame(chessBoard, ChessGame.TeamColor.WHITE);
-        drawGame(chessBoard, ChessGame.TeamColor.BLACK);
-    }
-
     public void drawGame(ChessBoard chessBoard, ChessGame.TeamColor teamColor) {
         var out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
 

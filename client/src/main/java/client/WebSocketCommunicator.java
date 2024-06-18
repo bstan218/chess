@@ -61,7 +61,7 @@ public class WebSocketCommunicator extends Endpoint {
         try {
             var command = new LeaveGameCommand(authToken, gameID);
             this.session.getBasicRemote().sendText(gson.toJson(command));
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
