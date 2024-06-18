@@ -22,6 +22,11 @@ public class ConnectionManager {
             connections.put(gameID, newSet);
         }
     }
+
+    public void removeConnection(Integer gameID, Session session) {
+        connections.get(gameID).remove(session);
+    }
+
     public void broadcast(Integer gameID, Session excludeRootSession, String serverMessage) throws IOException {
         var removeList = new ArrayList<Session>();
         for (var s : connections.get(gameID)) {

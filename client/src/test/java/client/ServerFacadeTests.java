@@ -5,8 +5,6 @@ import org.junit.jupiter.api.*;
 import server.Server;
 import websocket.messages.ServerMessage;
 
-import java.net.URISyntaxException;
-
 
 public class ServerFacadeTests {
 
@@ -151,14 +149,14 @@ public class ServerFacadeTests {
     @Order(11)
     @Test
     public void successPlayGame() throws ResponseException {
-        serverFacade.playGame(new String[]{"1", "white"}, serverFacade.listGames(authToken), authToken);
+        serverFacade.playGame(new String[]{"1", "white"}, serverFacade.listGames(authToken), authToken, playState);
     }
 
     @Order(12)
     @Test
     public void failPlayGame(){
         try {
-            serverFacade.playGame(new String[]{"2", "white"}, serverFacade.listGames(authToken), authToken);
+            serverFacade.playGame(new String[]{"2", "white"}, serverFacade.listGames(authToken), authToken, playState);
             throw new RuntimeException();
         } catch (Exception ignored) {}
     }

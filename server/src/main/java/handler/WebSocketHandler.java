@@ -91,6 +91,8 @@ public class WebSocketHandler {
 
         ServerMessage serverMessage = new NotificationMessage(String.format("%s has left the game \n", username));
         connectionManager.broadcast(command.getGameID(), session, toJson.fromResponse(serverMessage));
+
+        connectionManager.removeConnection(command.getGameID(), session);
     }
 
     private void makeMove(Session session, String username, MakeMoveCommand command) {

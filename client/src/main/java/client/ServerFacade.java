@@ -1,6 +1,7 @@
 package client;
 
 import chess.response.ListGameResponse;
+import client.state.PlayState;
 import client.websocket.ServerMessageObserver;
 import json.ToJson;
 import json.ToJsonG;
@@ -48,11 +49,16 @@ public class ServerFacade {
         httpCommunicator.makeRequest("POST", "/game", reqBody, authToken, null);
     }
 
-    public int playGame(String[] params, List<GameData> gameList, String authToken) throws ResponseException {
+    public int playGame(String[] params, List<GameData> gameList, String authToken, PlayState playState) throws ResponseException {
         int gameID = gameList.get(Integer.parseInt(params[0])-1).gameID();
         var reqBody = Map.of("playerColor", params[1].toUpperCase(), "gameID", gameID);
         httpCommunicator.makeRequest("PUT", "/game", reqBody, authToken, null);
         webSocketCommunicator.connectToGame(authToken, gameID);
+
+        if (params[1].toUpperCase().equals("WHITE")) {
+            playState = PlayState.WHITE;
+        } else if (params[1].toUpperCase().equals("BLACK"))
+            playState = PlayState.BLACK;
         return gameID;
     }
 

@@ -26,7 +26,7 @@ public class ChessBoardUi {
         drawGame(chessBoard, ChessGame.TeamColor.BLACK);
     }
 
-    public static void drawGame(ChessBoard chessBoard, ChessGame.TeamColor teamColor) {
+    public void drawGame(ChessBoard chessBoard, ChessGame.TeamColor teamColor) {
         var out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
 
         out.print(ERASE_SCREEN);

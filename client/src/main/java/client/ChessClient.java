@@ -72,7 +72,7 @@ public class ChessClient implements ServerMessageObserver  {
             var params = Arrays.copyOfRange(tokens, 0, tokens.length);
 
             if (requestState == null) {
-                if (playState == PlayState.INGAME) {
+                if (playState != PlayState.OUTOFGAME) {
                     return gameUiOptions(cmd);
                 } else {
                     return loginUiOptions(cmd);
@@ -103,21 +103,21 @@ public class ChessClient implements ServerMessageObserver  {
             }
             case CREATEGAME -> {
                 facade.createGame(params, authToken);
+                this.chessGame = new ChessGame();
                 yield "created game successfully!\n" + help();
             }
             case PLAYGAME -> {
-                currentGameID = facade.playGame(params, gameList, authToken);
-                playState = PlayState.INGAME;
+                currentGameID = facade.playGame(params, gameList, authToken, this.playState);
 
-                printGameBoard();
+                printGameBoard(getTeam());
                 yield "joined game successfully.";
             }
             case OBSERVEGAME -> {
                 currentGameID = facade.observeGame(params, gameList, authToken);
-                playState = PlayState.INGAME;
+                playState = PlayState.OBSERVER;
                 observerState = true;
 
-                printGameBoard();
+                printGameBoard(ChessGame.TeamColor.WHITE);
                 yield "now observing game.";
             }
             case MAKEMOVE -> {
@@ -134,15 +134,15 @@ public class ChessClient implements ServerMessageObserver  {
     private void highlightMove(String[] params, String authToken) {
     }
 
-    private void printGameBoard() {
-        chessBoardUi.drawBothGames();
+    private void printGameBoard(ChessGame.TeamColor teamColor) {
+        chessBoardUi.drawGame(chessGame.getBoard(), teamColor);
     }
 
     private String gameUiOptions(String cmd) {
         return switch(cmd) {
             case "1" -> makeMoveRequest();
             case "2" -> {
-                printGameBoard();
+                printGameBoard(getTeam());
                 yield "";
             }
             case "3" -> highlightMoveRequest();
@@ -155,13 +155,21 @@ public class ChessClient implements ServerMessageObserver  {
             }
             case "5" -> {
                 if (observerState) {
-                    yield "you are observer, you can't resign";
+                    yield "you are an observer, you can't resign";
                 }
                 facade.resign(authToken, currentGameID);
                 yield help();
             }
             default -> help();
         };
+    }
+
+    private ChessGame.TeamColor getTeam() {
+        if (playState == PlayState.WHITE | playState == PlayState.OBSERVER) {
+            return ChessGame.TeamColor.WHITE;
+        } else {
+            return ChessGame.TeamColor.BLACK;
+        }
     }
 
     private String makeMoveRequest() {
@@ -202,7 +210,7 @@ public class ChessClient implements ServerMessageObserver  {
     }
 
     public String help() {
-        if (playState == PlayState.INGAME) {
+        if (playState != PlayState.OUTOFGAME) {
             return """
                     1. Make Move
                     2. Redraw Chess Board

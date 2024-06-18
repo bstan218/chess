@@ -1,6 +1,8 @@
 package client.state;
 
 public enum PlayState {
-    INGAME,
+    WHITE,
+    BLACK,
+    OBSERVER,
     OUTOFGAME
 }
