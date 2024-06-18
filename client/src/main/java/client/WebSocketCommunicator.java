@@ -4,6 +4,7 @@ import client.websocket.ServerMessageObserver;
 import com.google.gson.Gson;
 import websocket.commands.ConnectCommand;
 import websocket.commands.LeaveGameCommand;
+import websocket.commands.ResignCommand;
 import websocket.commands.UserGameCommand;
 import websocket.messages.ErrorMessage;
 import websocket.messages.LoadGameMessage;
@@ -59,10 +60,20 @@ public class WebSocketCommunicator extends Endpoint {
 
     public void leaveGame(String authToken, Integer gameID) {
         try {
-            var command = new LeaveGameCommand(authToken, gameID);
+            LeaveGameCommand command = new LeaveGameCommand(authToken, gameID);
             this.session.getBasicRemote().sendText(gson.toJson(command));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void resign(String authToken, int currentGameID) {
+        try {
+            ResignCommand command = new ResignCommand(authToken, currentGameID);
+            this.session.getBasicRemote().sendText(gson.toJson(command));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

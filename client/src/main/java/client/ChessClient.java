@@ -19,12 +19,18 @@ public class ChessClient implements ServerMessageObserver  {
 
     private SignInState signInState;
     private RequestState requestState;
+
+    public void setPlayState(PlayState playState) {
+        this.playState = playState;
+    }
+
     private PlayState playState;
     private boolean observerState;
+    private boolean resignedState = false;
 
     private String authToken;
     private List<GameData> gameList;
-    private ChessGame chessGame = null;
+    private ChessGame chessGame = new ChessGame();
     private int currentGameID;
 
 
@@ -107,7 +113,8 @@ public class ChessClient implements ServerMessageObserver  {
                 yield "created game successfully!\n" + help();
             }
             case PLAYGAME -> {
-                currentGameID = facade.playGame(params, gameList, authToken, this.playState);
+                currentGameID = facade.playGame(params, gameList, authToken, this);
+
 
                 printGameBoard(getTeam());
                 yield "joined game successfully.";
@@ -121,6 +128,12 @@ public class ChessClient implements ServerMessageObserver  {
                 yield "now observing game.";
             }
             case MAKEMOVE -> {
+                if (observerState == true) {
+                    yield "cannot make a move as an observer";
+                }
+                if (resignedState == true) {
+                    yield "cannot make a move - the game is over";
+                }
                 facade.makeMove(params, authToken);
                 yield "";
             }

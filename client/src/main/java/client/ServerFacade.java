@@ -1,5 +1,6 @@
 package client;
 
+import chess.ChessGame;
 import chess.response.ListGameResponse;
 import client.state.PlayState;
 import client.websocket.ServerMessageObserver;
@@ -49,16 +50,16 @@ public class ServerFacade {
         httpCommunicator.makeRequest("POST", "/game", reqBody, authToken, null);
     }
 
-    public int playGame(String[] params, List<GameData> gameList, String authToken, PlayState playState) throws ResponseException {
+    public int playGame(String[] params, List<GameData> gameList, String authToken, ChessClient chessClient) throws ResponseException {
         int gameID = gameList.get(Integer.parseInt(params[0])-1).gameID();
         var reqBody = Map.of("playerColor", params[1].toUpperCase(), "gameID", gameID);
         httpCommunicator.makeRequest("PUT", "/game", reqBody, authToken, null);
         webSocketCommunicator.connectToGame(authToken, gameID);
 
         if (params[1].toUpperCase().equals("WHITE")) {
-            playState = PlayState.WHITE;
+            chessClient.setPlayState(PlayState.WHITE);
         } else if (params[1].toUpperCase().equals("BLACK"))
-            playState = PlayState.BLACK;
+            chessClient.setPlayState(PlayState.BLACK);
         return gameID;
     }
 
@@ -82,8 +83,8 @@ public class ServerFacade {
         webSocketCommunicator.leaveGame(authToken, currentGameID);
     }
 
-    public String resign(String authToken, int currentGameID) {
-        return null;
+    public void resign(String authToken, int currentGameID) {
+        webSocketCommunicator.resign(authToken, currentGameID);
     }
 
     public void makeMove(String[] params, String authToken) {

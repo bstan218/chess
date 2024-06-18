@@ -52,7 +52,7 @@ public class WebSocketHandler {
                 case CONNECT -> connect(session, username, new ConnectCommand(userGameCommand.getAuthString(), userGameCommand.getGameID()));
                 case MAKE_MOVE -> makeMove(session, username, (MakeMoveCommand) userGameCommand);
                 case LEAVE -> leaveGame(session, username, fromJson.fromJson(message,LeaveGameCommand.class));
-                case RESIGN -> resign(session, username, (ResignCommand) userGameCommand);
+                case RESIGN -> resign(session, username, fromJson.fromJson(message,ResignCommand.class));
             }
         } catch (DataAccessException ex) {
             // Serializes and sends the error message
@@ -69,7 +69,11 @@ public class WebSocketHandler {
         remote.sendString(toJson.fromResponse(errorMessage));
     }
 
-    private void resign(Session session, String username, ResignCommand command) {
+    private void resign(Session session, String username, ResignCommand command) throws IOException {
+        String authToken = command.getAuthString();
+
+        ServerMessage serverMessage = new NotificationMessage(String.format("%s resigned! \n", username));
+        connectionManager.broadcast(command.getGameID(), null, toJson.fromResponse(serverMessage));
     }
 
     private void leaveGame(Session session, String username, LeaveGameCommand command) throws DataAccessException, IOException {
